@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/dashboard/destination', [AdminDestinationController::class, 'index'])->name('admin.dashboard.destination');
         Route::get('/dashboard/destination/create', [AdminDestinationController::class, 'create'])->name('admin.dashboard.destination.create');
+        Route::post('/dashboard/destination/store', [AdminDestinationController::class, 'store'])->name('admin.dashboard.destination.store');
 
         Route::get('/dashboard/user', [AdminUserController::class, 'index'])->name('admin.dashboard.user');
 
