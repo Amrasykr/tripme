@@ -1,4 +1,4 @@
-<header class="z-10 py-4 bg-white shadow-md">
+<header class="z-10 py-4  md:py-6 bg-white shadow-md">
     <div class="container flex justify-between items-center px-6 mx-auto h-full text-purple-600 md:justify-end">
         <!-- Mobile hamburger -->
         <button class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple" @click="toggleSideMenu" aria-label="Menu">
@@ -10,14 +10,14 @@
         <x-dropdown>
             <x-slot name="trigger">
                 <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none" @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account" aria-haspopup="true">
-                    <div class="text-2xl">
-                        <i class="fa-solid fa-circle-user"></i>
-                    </div>
+                    <img src="{{ asset('images/user-default.png') }}" alt="user" class="w-12 rounded-full">
                 </button>
             </x-slot>
 
             <x-slot name="content">
-                    Hello!, <span class="font-semibold">{{Auth::user()->name}}</span>
+                <div class="px-2 py-2">
+                    Hello 👋 , <span class="font-semibold">{{Auth::user()->name}}</span>
+                </div>
                 <x-dropdown-link href="{{ route('profile.edit') }}">
                     <x-slot name="icon">
                         <svg class="mr-3 w-4 h-4" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">

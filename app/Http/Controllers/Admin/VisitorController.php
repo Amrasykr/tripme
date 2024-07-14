@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 
 class VisitorController extends Controller
@@ -13,7 +14,8 @@ class VisitorController extends Controller
     public function index()
     {
         //
-        return view ('admin.dashboard.visitor.index');
+        $visitors = Reservation::all();
+        return view ('admin.dashboard.visitor.index', compact('visitors'));
     }
 
     /**

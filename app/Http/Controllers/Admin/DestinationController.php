@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Destination;
 use Illuminate\Http\Request;
 
 class DestinationController extends Controller
@@ -12,8 +13,14 @@ class DestinationController extends Controller
      */
     public function index()
     {
-        //
-        return view('admin.dashboard.destination.index');
+        $destinations = Destination::all();
+        return view('admin.dashboard.destination.index', compact('destinations'));
+    }
+
+    public function create()
+    {
+        
+        return view('admin.dashboard.destination.create');
     }
 
     /**

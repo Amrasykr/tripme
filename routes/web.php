@@ -20,9 +20,16 @@ Route::middleware('auth')->group(function () {
     // Rute untuk admin
     Route::prefix('admin')->middleware('admin')->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
         Route::get('/dashboard/destination', [AdminDestinationController::class, 'index'])->name('admin.dashboard.destination');
+        Route::get('/dashboard/destination/create', [AdminDestinationController::class, 'create'])->name('admin.dashboard.destination.create');
+
         Route::get('/dashboard/user', [AdminUserController::class, 'index'])->name('admin.dashboard.user');
+
+
         Route::get('/dashboard/visitor', [AdminVisitorController::class, 'index'])->name('admin.dashboard.visitor');
+
+
         Route::get('/profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [AdminProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [AdminProfileController::class, 'destroy'])->name('profile.destroy');

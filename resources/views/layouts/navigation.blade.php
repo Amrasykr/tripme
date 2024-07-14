@@ -1,10 +1,10 @@
 <aside class="z-20 hidden w-64 overflow-y-auto bg-white md:block flex-shrink-0">
-    <div class="py-4 text-gray-500">
-        <a class="ml-6 text-lg font-bold text-gray-800" href="{{ route('admin.dashboard') }}">
-            Windmill
+    <div class="text-gray-500">
+        <a class=" text-lg font-bold text-gray-800 flex justify-center" href="{{ route('admin.dashboard') }}">
+            <img src="{{ asset('images/logo.png') }}" alt="logo" class="w-32">
         </a>
 
-        <ul class="mt-6">
+        <ul>
             <li class="relative px-6 py-3">
                 <x-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
                     <x-slot name="icon">
