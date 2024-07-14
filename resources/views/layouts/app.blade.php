@@ -22,7 +22,10 @@
             });
           </script>
 
-          
+        <!-- SweetAlert -->
+        <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
+        <link rel="stylesheet" href="{{ asset('vendor/sweetalert/sweetalert.css') }}">
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
 <body>
@@ -55,6 +58,26 @@
         </main>
     </div>
 </div>
+
+@stack('scripts')
+
+<script>
+    // Function to display alerts
+    function showAlert(type, message) {
+        alert(type + ': ' + message);
+    }
+
+    // Check for success message
+    @if(session('success'))
+        showAlert('Success', '{{ session('success') }}');
+    @endif
+
+    // Check for error message
+    @if(session('error'))
+        showAlert('Error', '{{ session('error') }}');
+    @endif
+</script>
+
 
 </body>
 </html>

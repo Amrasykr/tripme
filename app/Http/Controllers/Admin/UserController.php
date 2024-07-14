@@ -5,18 +5,32 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $users = User::where('role', 'user')->get();
-        return view('admin.dashboard.user.index', compact('users'));
+        // Retrieve search keyword from input
+        $search = $request->input('search');
+    
+        // Query users based on search keyword
+        $usersQuery = User::where('role', 'user');
+    
+        if ($search) {
+            $usersQuery->where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%')
+                      ->orWhere('email', 'like', '%' . $search . '%');
+            });
+        }
+    
+        // Fetch users based on query
+        $users = $usersQuery->paginate(5);
+    
+        return view('admin.dashboard.user.index', compact('users', 'search'));
     }
 
     /**
@@ -48,6 +62,26 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Find the user by ID
+        $user = User::find($id);
+    
+        if (!$user) {
+            return redirect()->route('admin.dashboard.user')->with('error', 'User not found.');
+        }
+    
+        // Delete user's image if it exists
+        if ($user->image) {
+            $imagePath = public_path('user_image/' . $user->image);
+    
+            if (File::exists($imagePath)) {
+                File::delete($imagePath);
+            }
+        }
+    
+        // Delete the user record
+        $user->delete();
+    
+        return redirect()->route('admin.dashboard.user')->with('success', 'User deleted successfully.');
     }
+    
 }

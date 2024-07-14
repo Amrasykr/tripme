@@ -5,17 +5,36 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Destination;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class DestinationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $destinations = Destination::all();
-        return view('admin.dashboard.destination.index', compact('destinations'));
+        // Retrieve search keyword from input
+        $search = $request->input('search');
+    
+        // Query destinations based on search keyword
+        $destinationsQuery = Destination::query();
+    
+        if ($search) {
+            $destinationsQuery->where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%')
+                      ->orWhere('address', 'like', '%' . $search . '%')
+                      ->orWhere('category', 'like', '%' . $search . '%');
+            });
+        }
+    
+        // Fetch destinations based on query
+        $destinations = $destinationsQuery->paginate(5);
+    
+        return view('admin.dashboard.destination.index', compact('destinations', 'search'));
     }
+
 
     public function create()
     {
@@ -39,8 +58,7 @@ class DestinationController extends Controller
             'image_2' => 'required|image|mimes:jpeg,png,jpg|max:1048',
             'image_3' => 'image|mimes:jpeg,png,jpg|max:1048',
             'image_4' => 'image|mimes:jpeg,png,jpg|max:1048',
-            'image' => 'required',
-            'contact' => 'required',
+            'content' => 'required',
         ]);
 
         $destination = new Destination([
@@ -49,53 +67,40 @@ class DestinationController extends Controller
             'address' => $validated_data['address'],
             'address_url' => $validated_data['address_url'],
             'category' => $validated_data['category'],
-            'main_image' => $validated_data['tumbnail'],
-            'image' => $validated_data['image'],
-            'contact' => $validated_data['contact'],
+            'content' => $validated_data['content'],
         ]);
 
-        // Handle tumbnail
+        // Handle main image
         if ($request->hasFile('tumbnail') && $request->file('tumbnail')->isValid()) {
             $newFileName = uniqid() . '.' . $request->file('tumbnail')->getClientOriginalExtension();
-            $request->file('tumbnail')->move('assets/destination_image', $newFileName);
+            $request->file('tumbnail')->move('assets/tumbnail_image', $newFileName);
             $destination->main_image = $newFileName;
         } else {
             $destination->main_image = 'default-thumbnail.png';
         }
 
-        // Handle image_1
-        if ($request->hasFile('image_1') && $request->file('image_1')->isValid()) {
-            $newFileName = uniqid() . '.' . $request->file('image_1')->getClientOriginalExtension();
-            $request->file('image_1')->move('assets/destination_image', $newFileName);
-            $destination->image_1 = $newFileName;
-        }
-
-        // Handle image_2
-        if ($request->hasFile('image_2') && $request->file('image_2')->isValid()) {
-            $newFileName = uniqid() . '.' . $request->file('image_2')->getClientOriginalExtension();
-            $request->file('image_2')->move('assets/destination_image', $newFileName);
-            $destination->image_2 = $newFileName;
-        }
-
-        // Handle image_3
-        if ($request->hasFile('image_3') && $request->file('image_3')->isValid()) {
-            $newFileName = uniqid() . '.' . $request->file('image_3')->getClientOriginalExtension();
-            $request->file('image_3')->move('assets/destination_image', $newFileName);
-            $destination->image_3 = $newFileName;
-        }
-
-        // Handle image_4
-        if ($request->hasFile('image_4') && $request->file('image_4')->isValid()) {
-            $newFileName = uniqid() . '.' . $request->file('image_4')->getClientOriginalExtension();
-            $request->file('image_4')->move('assets/destination_image', $newFileName);
-            $destination->image_4 = $newFileName;
+        // Handle other images
+        $imageFields = ['image_1', 'image_2', 'image_3', 'image_4'];
+        foreach ($imageFields as $fieldName) {
+            if ($request->hasFile($fieldName) && $request->file($fieldName)->isValid()) {
+                $newFileName = uniqid() . '.' . $request->file($fieldName)->getClientOriginalExtension();
+                $request->file($fieldName)->move('assets/destination_image', $newFileName);
+                $destination->{$fieldName} = $newFileName;
+            }
         }
 
         // Save the destination record to the database
         $destination->save();
 
-        // Redirect or return response as needed
-        return redirect()->route('dashboard.admin.article.index')->with('success', 'Destination created successfully!');
+
+        // Display SweetAlert based on whether the destination was successfully saved
+        if ($destination) {
+            // Success alert
+            return redirect()->route('admin.dashboard.destination')->with('success', 'Destination created successfully!');
+        } else {
+            // Error alert
+            return redirect()->route('admin.dashboard.destination.create')->withInput()->with('error', 'Failed to create destination. Please try again.');
+        }
     }
 
 
@@ -105,21 +110,119 @@ class DestinationController extends Controller
     public function show(string $id)
     {
         //
+        $destination = Destination::find($id);
+        return view('admin.dashboard.destination.show', compact('destination'));
+    }
+
+    public function edit(string $id)
+    {
+        $destination = Destination::find($id);
+        return view('admin.dashboard.destination.edit', compact('destination'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        // Validate the incoming request
+        $validated_data = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'address' => 'required',
+            'address_url' => 'required',
+            'category' => 'required',
+            'tumbnail' => 'image|mimes:jpeg,png,jpg|max:1048',
+            'image_1' => 'image|mimes:jpeg,png,jpg|max:1048',
+            'image_2' => 'image|mimes:jpeg,png,jpg|max:1048',
+            'image_3' => 'image|mimes:jpeg,png,jpg|max:1048',
+            'image_4' => 'image|mimes:jpeg,png,jpg|max:1048',
+            'content' => 'required',
+        ]);
+
+        // Find the destination record by ID
+        $destination = Destination::findOrFail($id);
+
+        // Update destination data
+        $destination->name = $validated_data['name'];
+        $destination->description = $validated_data['description'];
+        $destination->address = $validated_data['address'];
+        $destination->address_url = $validated_data['address_url'];
+        $destination->category = $validated_data['category'];
+        $destination->content = $validated_data['content'];
+
+        // Handle main image update
+        if ($request->hasFile('tumbnail') && $request->file('tumbnail')->isValid()) {
+            // Delete old main image if exists
+            $this->deletePublicImage($destination->main_image, 'assets/tumbnail_image');
+
+            // Upload new main image
+            $newFileName = uniqid() . '.' . $request->file('tumbnail')->getClientOriginalExtension();
+            $request->file('tumbnail')->move('assets/tumbnail_image', $newFileName);
+            $destination->main_image = $newFileName;
+        }
+
+        // Handle other images update
+        $imageFields = ['image_1', 'image_2', 'image_3', 'image_4'];
+        foreach ($imageFields as $fieldName) {
+            if ($request->hasFile($fieldName) && $request->file($fieldName)->isValid()) {
+                // Delete old image if exists
+                $this->deletePublicImage($destination->{$fieldName}, 'assets/destination_image');
+
+                // Upload new image
+                $newFileName = uniqid() . '.' . $request->file($fieldName)->getClientOriginalExtension();
+                $request->file($fieldName)->move('assets/destination_image', $newFileName);
+                $destination->{$fieldName} = $newFileName;
+            }
+        }
+
+        // Save the updated destination record
+        $destination->save();
+
+        // Redirect with success message
+        return redirect()->route('admin.dashboard.destination')->with('success', 'Destination updated successfully!');
     }
+
+    // Helper function to delete public images
+    private function deletePublicImage($fileName, $directory)
+    {
+        $filePath = public_path($directory . '/' . $fileName);
+        if (File::exists($filePath)) {
+            File::delete($filePath);
+        }
+    }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        // Find the destination by ID (assuming Eloquent model)
+        $destination = Destination::find($id);
+
+        // Delete main image
+        if ($destination->main_image && $destination->main_image != 'default-thumbnail.png') {
+            $mainImagePath = public_path('assets/tumbnail_image/' . $destination->main_image);
+            if (File::exists($mainImagePath)) {
+                File::delete($mainImagePath);
+            }
+        }
+
+        // Delete other images (adjust based on your fields)
+        $imageFields = ['image_1', 'image_2', 'image_3', 'image_4'];
+        foreach ($imageFields as $fieldName) {
+            if ($destination->{$fieldName}) {
+                $imagePath = public_path('assets/destination_image/' . $destination->{$fieldName});
+                if (File::exists($imagePath)) {
+                    File::delete($imagePath);
+                }
+            }
+        }
+
+        // Optionally, delete the record from database
+        $destination->delete();
+
+        return redirect()->route('admin.dashboard.destination')->with('success', 'Destination deleted successfully.');
     }
 }
