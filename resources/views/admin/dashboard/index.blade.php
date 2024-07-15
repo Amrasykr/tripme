@@ -41,11 +41,11 @@
         </div>
 
 
-        <div class="mt-4 md:flex md:space-x-5">
+        <div class="mt-4 mx-auto md:flex md:space-x-5">
             <div class="w-full md:w-3/5 bg-white p-4 shadow-xl rounded-lg">
                 <canvas id="myChart"></canvas>
             </div>
-            <div class="w-full md:w-2/5 relative overflow-x-auto shadow-lg sm:rounded-xl mt-5 md:mt-0">
+            <div class="w-[28rem] md:w-2/5 block overflow-x-auto shadow-lg rounded-lg mt-5 md:mt-0">
                 <div class="flex flex-wrap sm:space-y-0 items-center justify-between p-4 bg-gray-200">
                     <form action="/admin/dashboard">
                         <label for="table-search" class="sr-only">Search</label>
