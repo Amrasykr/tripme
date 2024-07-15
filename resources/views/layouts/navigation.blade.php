@@ -1,7 +1,7 @@
 <aside class="z-20 hidden w-64 overflow-y-auto bg-white md:block flex-shrink-0">
     <div class="text-gray-500">
         <a class=" text-lg font-bold text-gray-800 flex justify-center" href="{{ route('admin.dashboard') }}">
-            <img src="{{ asset('images/logo.png') }}" alt="logo" class="w-32">
+            <img src="{{ asset('images/logo.png') }}" alt="logo" class="w-32 my-8">
         </a>
 
         <ul>
