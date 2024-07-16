@@ -8,9 +8,18 @@
     <title>{{ config('TripMe', 'Tripme') }} :: @yield('title')</title>
     <link rel="icon" type="image/png" href="{{ asset('images/logo-head.png') }}">
 
+    @notifyCss
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- Scripts -->
     <script src="{{ asset('js/init-alpine.js') }}"></script>
+
+    <style>
+        .notification-container {
+            position: absolute;
+            z-index: 1000; 
+        }
+    </style>
+
 </head>
 <body>
     @include('layouts.user-navigation')
@@ -21,6 +30,11 @@
         </div>
     </div>
 
+    <div class="notification-container">
+        <x-notify::notify />
+    </div>
     @yield('script')
+    @notifyJs
+    
 </body>
 </html>

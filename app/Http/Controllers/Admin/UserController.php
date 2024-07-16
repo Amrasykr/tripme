@@ -81,7 +81,13 @@ class UserController extends Controller
         // Delete the user record
         $user->delete();
     
-        return redirect()->route('admin.dashboard.user')->with('success', 'User deleted successfully.');
+        if ($user) {
+            notify()->success(message: 'User Deleted Successfully');
+            return redirect()->route('admin.dashboard.user');
+        } else {
+            notify()->error(message: 'User to Delete user');
+            return redirect()->back()->withInput();
+        }
     }
     
 }

@@ -7,20 +7,27 @@
 
     <title>{{ config('TripMe', 'Tripme') }} :: @yield('title', 'Dashboard')</title>
 
+    @notifyCss
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="icon" type="image/png" href="{{ asset('images/logo-head.png') }}">
+
 
     <!-- Scripts -->
     <script src="{{ asset('js/init-alpine.js') }}"></script>
 
     <!-- tinymce -->
-    <script src="https://cdn.tiny.cloud/1/2oib8af25tz6ikzr6fqfks0mrncjqj8ybbl576d7emupo4nk/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-
-    <!-- SweetAlert -->
-    <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('vendor/sweetalert/sweetalert.css') }}">
-
+    <script src="https://cdn.tiny.cloud/1/2oib8af25tz6ikzr6fqfks0mrncjqj8ybbl576d7emupo4nk/tinymce/6/tinymce.min.js"
+    referrerpolicy="origin"></script>
+    {{-- Font Awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+        .notification-container {
+            position: absolute;
+            z-index: 1000; 
+        }
+   
+    </style>
 </head>
 <body>
     <div class="flex h-screen bg-gray-50" :class="{ 'overflow-hidden': isSideMenuOpen }">
@@ -46,7 +53,12 @@
         </div>
     </div>
 
+    <div class="notification-container">
+        <x-notify::notify />
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     @yield('script')
+    @notifyJs
 </body>
 </html>

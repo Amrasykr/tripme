@@ -37,7 +37,13 @@ class ReservationController extends Controller
         $reservation->status = 'finished';
         $reservation->save();
 
-        return redirect()->back();
+        if ($reservation) {
+            notify()->success(message: 'Successfully Confirming Reservation');
+            return redirect()->route('user.dashboard.reservation');
+        } else {
+            notify()->error(message: 'Failed to Confirm Reservation');
+            return redirect()->back()->withInput();
+        }
     }
 
     public function cancel(string $id)
@@ -46,7 +52,13 @@ class ReservationController extends Controller
         $reservation->status = 'canceled';
         $reservation->save();
 
-        return redirect()->back();
+        if ($reservation) {
+            notify()->success(message: 'Successfully Canceling Reservation');
+            return redirect()->route('user.dashboard.reservation');
+        } else {
+            notify()->error(message: 'Failed to Cancel Reservation');
+            return redirect()->back()->withInput();
+        }
     }
 
     /**

@@ -92,14 +92,12 @@ class DestinationController extends Controller
         // Save the destination record to the database
         $destination->save();
 
-
-        // Display SweetAlert based on whether the destination was successfully saved
         if ($destination) {
-            // Success alert
-            return redirect()->route('admin.dashboard.destination')->with('success', 'Destination created successfully!');
+            notify()->success(message: 'Destination Created Successfully');
+            return redirect()->route('admin.dashboard.destination');
         } else {
-            // Error alert
-            return redirect()->route('admin.dashboard.destination.create')->withInput()->with('error', 'Failed to create destination. Please try again.');
+            notify()->error(message: 'Failed to create destination');
+            return redirect()->back()->withInput();
         }
     }
 
@@ -179,8 +177,13 @@ class DestinationController extends Controller
         // Save the updated destination record
         $destination->save();
 
-        // Redirect with success message
-        return redirect()->route('admin.dashboard.destination')->with('success', 'Destination updated successfully!');
+        if ($destination) {
+            notify()->success(message: 'Destination Updated Successfully');
+            return redirect()->route('admin.dashboard.destination');
+        } else {
+            notify()->error(message: 'Failed to Update Destination');
+            return redirect()->back()->withInput();
+        }
     }
 
     // Helper function to delete public images
@@ -223,6 +226,12 @@ class DestinationController extends Controller
         // Optionally, delete the record from database
         $destination->delete();
 
-        return redirect()->route('admin.dashboard.destination')->with('success', 'Destination deleted successfully.');
+        if ($destination) {
+            notify()->success(message: 'Destination Deleted Successfully');
+            return redirect()->route('admin.dashboard.destination');
+        } else {
+            notify()->error(message: 'Failed to Delete Destination');
+            return redirect()->back()->withInput();
+        }
     }
 }
