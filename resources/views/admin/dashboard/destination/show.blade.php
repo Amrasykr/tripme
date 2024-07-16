@@ -1,7 +1,14 @@
-<x-app-layout>
-    <x-slot name="header">
+@extends('layouts.app')
+
+@section('title', $destination->name)
+    
+@section('header')
+    <h2 class="text-4xl font-medium text-gray-700">
         {{$destination->name}}
-    </x-slot>
+    </h2>
+@endsection
+    
+@section('content')
     <div class="mb-10 md:flex md:space-x-5">
         <div class="w-full md:w-1/3 bg-white">
             <div class="tumbnail">
@@ -27,8 +34,7 @@
             </div>
         </div>
         <div class="w-full md:w-2/3 bg-white mt-3 md:mt-0">
-            <form class="w-full bg-white p-8 shadow-xl rounded-lg" enctype="multipart/form-data" method="POST" action="/admin/dashboard/destination/store">
-                @csrf
+            <div class="w-full bg-white p-8 shadow-xl rounded-lg">
                 <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                         <label for="name" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Destination Name</label>
@@ -66,8 +72,14 @@
                 <div class="mt-2 flex justify-end">
                     <a href="/admin/dashboard/destination/{{$destination->id}}/edit" class="bg-yellow-500 text-white px-6 py-2 shadow-lg rounded-md">Edit</a>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
-
-</x-app-layout>
+@endsection
+    
+@section('script')
+    <script>
+    
+    </script>
+@endsection
+    

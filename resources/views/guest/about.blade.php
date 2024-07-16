@@ -1,4 +1,8 @@
-<x-user-layout>
+@extends('layouts.user')
+
+@section('title', 'About')
+
+@section('content')
 
     {{-- Hero --}}
     <div class="relative mt-28">
@@ -12,25 +16,25 @@
                     <h3 class="text-4xl md:text-8xl text-white font-bold tracking-wider uppercase ">
                         sukabumi
                     </h3>
-                    <button class="py-1 px-2 md:py-2 md:px-4 font-medium  bg-purple-700 hover:bg-white text-white hover:text-purple-700 text-lg md:text-2xl mt-6 rounded-lg transition-all duration-500 ease-in-out">
-                        Why ? <span><i class="fa-solid fa-arrow-right" class="text-white text-lg md:text-3xl"></i></span>
-                    </button>
+                    <a href="{{ url('/about#why') }}" class="py-1 px-2 md:py-2 md:px-4   bg-purple-700 hover:bg-white text-white hover:text-purple-700 text-lg md:text-2xl mt-6 rounded-lg transition-all duration-500 ease-in-out">
+                        Why ? <span><i class="fa-solid fa-arrow-right text-white text-lg md:text-3xl ml-2"></i></span>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 
     {{-- Why --}}
-    <div class="my-10 md:my-20 px-3 md:px-14">
+    <div class="my-10 md:my-20 px-3 md:px-14" id="why">
         <div class="md:flex justify-between space-x-0 md:space-x-8">
             <div class="w-full md:w-1/2 mb-10 md:mb-0">
                 <p class="text-2xl font-medium text-purple-700">
                     Why Choose Our Services?
                 </p>
-                <h1 class="text-3xl md:text-5xl font-light tracking-wide my-4 md:my-10">
+                <h1 class="text-3xl md:text-5xl font-light tracking-wide mt-2">
                     Enhancing the Well-being of Sukabumi Residents
                 </h1>
-                <p class="text-md md:text-xl font-light ">
+                <p class="text-md md:text-xl font-light mt-4 md:mt-16 ">
                     We are committed to enriching the lives of Sukabumi residents through sustainable tourism practices. 
                     By showcasing Sukabumi's cultural and natural wealth, we aim to boost economic growth and community development. 
                     Our efforts have resulted in significant impacts: a 50% increase in tourist visits, 
@@ -76,5 +80,26 @@
             </div>
         </div>
     </div>
-    
-</x-user-layout>
+
+@endsection
+
+@section('script')
+    <script>
+
+        // Type Animation
+        var typedStatus = new Typed(".auto-type-status", {
+            strings : ["Hidden Gems in", "the Beauty of", "Breathtaking Landscapes of", "Vibrant Cultures"],
+            typeSpeed : 100,
+            backSpeed : 80,
+            
+            loop : true
+        })
+
+        
+        // Scroll Animation
+        AOS.init({
+            duration: 2500
+        });
+
+    </script>
+@endsection   

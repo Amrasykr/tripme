@@ -1,9 +1,18 @@
-<x-app-layout>
-    <x-slot name="header">
-        {{ __('Dashboard') }}    
-    </x-slot>
+@extends('layouts.app')
+
+@section('title', 'Main Dashboard')
+
+@section('header')
+    <h2 class="text-4xl font-medium text-gray-700">
+        Main Dashboard
+    </h2>
+@endsection
+
+@section('content')
 
     <div class="py-4">
+
+        {{-- Cards --}}
         <div class="md:flex md:space-x-20">
             <!-- Card 1 -->
             <div class="w-full md:w-1/3 rounded-lg p-4 mb-4 flex items-center justify-start space-x-6 shadow-xl bg-white">
@@ -15,7 +24,7 @@
                     <h3 class="text-xl font-semibold text-gray-700 mt-2">Total Destinations</h3>
                 </div>
             </div>
-    
+
             <!-- Card 2 -->
             <div class="w-full md:w-1/3  rounded-lg p-4 mb-4 flex items-center justify-start space-x-6 shadow-xl bg-white">
                 <div class=" rounded-full bg-orange-700 w-20 h-20 flex items-center justify-center">
@@ -26,7 +35,7 @@
                     <h3 class="text-xl font-semibold text-gray-700 mt-2">Total Users</h3>
                 </div>
             </div>
-    
+
             <!-- Card 3 -->
             <div class="w-full md:w-1/3 rounded-lg p-4 mb-4 flex items-center justify-start space-x-6 shadow-xl bg-white">
                 <div class=" rounded-full bg-blue-700 w-20 h-20 flex items-center justify-center">
@@ -39,12 +48,14 @@
             </div>
 
         </div>
-
-
+        
+        {{-- Data --}}
         <div class="mt-4 mx-auto md:flex md:space-x-5">
+            {{-- Line Chart --}}
             <div class="w-full md:w-3/5 bg-white p-4 shadow-xl rounded-lg">
                 <canvas id="myChart"></canvas>
             </div>
+            {{-- Table --}}
             <div class="w-[28rem] md:w-2/5 block overflow-x-auto shadow-lg rounded-lg mt-5 md:mt-0">
                 <div class="flex flex-wrap sm:space-y-0 items-center justify-between p-4 bg-gray-200">
                     <form action="/admin/dashboard">
@@ -71,7 +82,7 @@
                             <tr>
                                 <td colspan="6" class="text-center py-5 text-lg">There is no data</td>
                             </tr>
-                         @endempty
+                        @endempty
                         @foreach ($total_visitors_by_reservations as $item)
                         <tr class="bg-white border-b hover:bg-gray-50">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $item->destination_name }}</th>
@@ -84,31 +95,34 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+@endsection
+
+@section('script')
     <script>
         var ctx = document.getElementById('myChart').getContext('2d');
-          var chart = new Chart(ctx, {
+        var chart = new Chart(ctx, {
             type: 'line',
             data: {
-              labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-              datasets: [{
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [{
                 label: 'Visitors',
                 data: [12, 19, 3, 5, 2, 3, 14],
                 backgroundColor: 'rgb(180, 51, 3)',
                 borderColor: 'rgb(126, 58, 241)',
                 borderWidth: 1
-              }]
+            }]
             },
             options: {
-              responsive: true,
-              scales: {
+            responsive: true,
+            scales: {
                 yAxes: [{
-                  ticks: {
+                ticks: {
                     beginAtZero: true
-                  }
+                }
                 }]
-              }
             }
-          });
+            }
+        });
     </script>
-</x-app-layout>
+@endsection
+

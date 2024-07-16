@@ -1,6 +1,11 @@
-<x-user-layout>
-    {{-- Hero --}}
-    <div class="relative mt-28" >
+@extends('layouts.user')
+
+@section('title', 'Destinations')
+
+@section('content')
+
+    {{-- Top 1 --}}
+    <div class="relative mt-24" >
         <div class="px-3 md:px-14">
             <div class="relative">
                 <a href="#">
@@ -24,7 +29,6 @@
             </div>
         </div>
     </div>
-
 
     {{-- All Destinations --}}
     <div class="my-10 md:my-20">
@@ -79,5 +83,10 @@
             </div>
         </div>
     </div>
+@endsection
 
-</x-user-layout>
+@section('script')
+    <script>
+    </script>
+@endsection
+    
