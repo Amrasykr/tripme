@@ -12,10 +12,10 @@ use App\Http\Controllers\guest\DestinationController;
 use App\Http\Controllers\Guest\HomeController;
 
 
-
-
-
+use App\Http\Controllers\User\CalendarController as UserCalendarController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
+use App\Http\Controllers\User\ReservationController as UserReservationController;
+use App\Http\Controllers\User\TicketController as UserTicketController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -56,7 +56,21 @@ Route::middleware('auth')->group(function () {
 
     // Rute untuk user
     Route::prefix('user')->middleware('user')->group(function () {
+
         Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
+        Route::patch('/dashboard/{id}/update', [UserDashboardController::class, 'update'])->name('user.dashboard.update');
+
+        Route::get('/dashboard/reservation', [UserReservationController::class, 'index'])->name('user.dashboard.reservation');
+        Route::patch('dashboard/reservation/{id}/confirm', [UserReservationController::class, 'confirm'])->name('user.dashboard.reservation.confirm');
+        Route::patch('dashboard/reservation/{id}/cancel', [UserReservationController::class, 'cancel'])->name('user.dashboard.reservation.cancel');
+        Route::post('dashboard/reservation/{id}/review', [UserReservationController::class, 'review'])->name('user.dashboard.reservation.review');
+
+
+        Route::get('/dashboard/calendar', [UserCalendarController::class, 'index'])->name('user.dashboard.calendar');
+
+        Route::get('/dashboard/ticket', [UserTicketController::class, 'index'])->name('user.dashboard.ticket');
+        Route::get('/dashboard/ticket/{id}/download', [UserTicketController::class, 'download'])->name('user.dashboard.ticket.dowload');
+
     });
 });
 

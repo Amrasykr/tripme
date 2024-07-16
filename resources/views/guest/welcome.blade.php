@@ -1,6 +1,10 @@
-<x-user-layout>
+@extends('layouts.user')
+
+@section('title', 'Homepage')
+
+@section('content')
     {{-- Hero --}}
-    <div class="relative mt-28" data-aos="fade-up">
+    <div class="relative mt-24" data-aos="fade-up">
         <div class="px-3 md:px-14">
             <div class="relative">
                 <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full md:h-[43rem] object-cover rounded-2xl">
@@ -11,9 +15,9 @@
                     <h3 class="text-4xl md:text-8xl text-white font-bold tracking-wider uppercase ">
                         sukabumi
                     </h3>
-                    <button class="py-1 px-2 md:py-2 md:px-4 font-medium  bg-purple-700 hover:bg-white text-white hover:text-purple-700 text-lg md:text-2xl mt-6 rounded-lg transition-all duration-500 ease-in-out">
-                        Let's Go  <span><i class="fa-solid fa-arrow-right" class="text-white text-lg md:text-3xl"></i></span>
-                    </button>
+                    <a href="{{ url('/#top') }}" class="py-1 px-2 md:py-2 md:px-4   bg-purple-700 hover:bg-white text-white hover:text-purple-700 text-lg md:text-2xl mt-6 rounded-lg transition-all duration-500 ease-in-out">
+                        Let's Go  <span><i class="fa-solid fa-arrow-right text-white text-lg md:text-3xl ml-2 "></i></span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -65,14 +69,14 @@
     </div>
 
     {{-- Top 3 Destinations --}}
-    <div class="my-10 md:my-20">
+    <div class="my-10 md:my-20" id="top">
         <div class="flex flex-col items-center text-center">
-            <div class="text-3xl md:text-7xl font-light text-gray-900" >
-                Our Destinations
+            <div class="text-3xl md:text-7xl font-light text-gray-900" data-aos="zoom-in">
+                Top 3 Destinations
             </div>
 
             <div class="md:flex space-y-5 md:space-y-0 space-x-0 md:space-x-8 md:mt-8 w-full px-8 md:px-24">
-                <div class="w-full md:w-1/3  bg-white shadow-xl p-5 rounded-xl">
+                <div class="w-full md:w-1/3  bg-white shadow-xl p-5 rounded-xl" data-aos="fade-up">
                     <a href="#">
                         <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full  object-cover rounded-2xl">
                         <div class="py-1 bg-purple-700 text-sm  text-white w-1/3 my-3 rounded-2xl mx-1">
@@ -86,7 +90,7 @@
                         </p>
                     </a>
                 </div>
-                <div class="w-full md:w-1/3  bg-white shadow-xl p-5 rounded-xl">
+                <div class="w-full md:w-1/3  bg-white shadow-xl p-5 rounded-xl" data-aos="fade-up">
                     <a href="#">
                         <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full  object-cover rounded-2xl">
                         <div class="py-1 bg-purple-700 text-sm  text-white w-1/3 my-3 rounded-2xl mx-1">
@@ -100,7 +104,7 @@
                         </p>
                     </a>
                 </div>
-                <div class="w-full md:w-1/3  bg-white shadow-xl p-5 rounded-xl">
+                <div class="w-full md:w-1/3  bg-white shadow-xl p-5 rounded-xl" data-aos="fade-up">
                     <a href="#">
                         <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full  object-cover rounded-2xl">
                         <div class="py-1 bg-purple-700 text-sm  text-white w-1/3 my-3 rounded-2xl mx-1">
@@ -117,5 +121,25 @@
             </div>
         </div>
     </div>
-    
-</x-user-layout>
+@endsection
+
+@section('script')
+    <script>
+
+        // Type Animation
+        var typedStatus = new Typed(".auto-type-status", {
+            strings : ["Hidden Gems in", "the Beauty of", "Breathtaking Landscapes of", "Vibrant Cultures"],
+            typeSpeed : 100,
+            backSpeed : 80,
+            
+            loop : true
+        })
+
+        
+        // Scroll Animation
+        AOS.init({
+            duration: 2500
+        });
+
+    </script>
+@endsection

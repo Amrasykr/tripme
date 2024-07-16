@@ -1,3 +1,4 @@
+<div class="bottom-0 w-full">
 <div class="px-8">
     <div class="h-[2px] bg-gray-900">
         
@@ -20,3 +21,4 @@
         © 2024 All rights reserved - Ammar Asysyakur
     </div>
 </footer>
+</div>
