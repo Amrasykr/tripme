@@ -78,7 +78,13 @@ class DashboardController extends Controller
         $user->save();
 
         // Redirect with success message
-        return redirect()->route('user.dashboard')->with('success', 'Profile updated successfully!');
+        if ($user) {
+            notify()->success(message: 'User Updated Successfully');
+            return redirect()->route('user.dashboard');
+        } else {
+            notify()->error(message: 'Failed to Update User');
+            return redirect()->back()->withInput();
+        }
     }
 
     // Helper function to delete public image

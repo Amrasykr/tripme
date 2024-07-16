@@ -142,7 +142,7 @@
         </div>
         
         <div class="mt-2 flex justify-end">
-            <button type="submit" class="bg-purple-600 text-white px-6 py-2 shadow-lg rounded-md">Submit</button>
+            <button type="submit" class="bg-purple-600 text-white px-6 py-2 shadow-lg rounded-md">dadada</button>
         </div>
     </form>
 </div>
@@ -150,9 +150,13 @@
 @endsection
     
 @section('script')
-    <script>
-    
-    </script>
+<script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount linkchecker',
+      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+    });
+  </script>
 @endsection
 
 

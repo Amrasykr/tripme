@@ -48,9 +48,11 @@ class VisitorController extends Controller
         $visitor->save();
 
         if ($visitor) {
-            return redirect()->route('admin.dashboard.visitor')->with('success', 'Visitor has been confirmed');
+            notify()->success(message: 'Successfully Confirming Visitor');
+            return redirect()->route('admin.dashboard.visitor');
         } else {
-            return redirect()->route('admin.dashboard.visitor')->with('error', 'Visitor confirmation failed');
+            notify()->error(message: 'Failed to Confirm Visitor');
+            return redirect()->back()->withInput();
         }
     }
 
@@ -62,9 +64,11 @@ class VisitorController extends Controller
         $visitor->save();
 
         if ($visitor) {
-            return redirect()->route('admin.dashboard.visitor')->with('success', 'Visitor has been rejected');
+            notify()->success(message: 'Successfully Rejecting Visitor');
+            return redirect()->route('admin.dashboard.visitor');
         } else {
-            return redirect()->route('admin.dashboard.visitor')->with('error', 'Visitor rejection failed');
+            notify()->error(message: 'Failed to Reject Visitor');
+            return redirect()->back()->withInput();
         }
     }
 
