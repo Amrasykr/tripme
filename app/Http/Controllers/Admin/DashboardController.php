@@ -17,7 +17,7 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-    
+
         $query = Reservation::query();
 
         if ($search) {
@@ -25,11 +25,28 @@ class DashboardController extends Controller
                 $q->where('name', 'like', "%{$search}%");
             });
         }
-    
+
         $total_destinations = Destination::count();
         $total_users = User::where('role', 'user')->count();
         $total_visitors = Reservation::count();
-    
+        $total_visitor_on_january = Reservation::whereMonth('created_at', 1)->count();
+        $total_visitor_on_february = Reservation::whereMonth('created_at', 2)->count();
+        $total_visitor_on_march = Reservation::whereMonth('created_at', 3)->count();
+        $total_visitor_on_april = Reservation::whereMonth('created_at', 4)->count();
+        $total_visitor_on_may = Reservation::whereMonth('created_at', 5)->count();
+        $total_visitor_on_june = Reservation::whereMonth('created_at', 6)->count();
+        $total_visitor_on_july = Reservation::whereMonth('created_at', 7)->count();
+
+        $visitors_data = [
+            'January' => $total_visitor_on_january,
+            'February' => $total_visitor_on_february,
+            'March' => $total_visitor_on_march,
+            'April' => $total_visitor_on_april,
+            'May' => $total_visitor_on_may,
+            'June' => $total_visitor_on_june,
+            'July' => $total_visitor_on_july,
+        ];
+
         $total_visitors_by_reservations = $query
             ->select('destination_id', DB::raw('count(*) as total_visitors'))
             ->groupBy('destination_id')
@@ -44,11 +61,11 @@ class DashboardController extends Controller
                 return $item;
             });
 
-        return view('admin.dashboard.index', compact('total_destinations', 'total_users', 'total_visitors', 'total_visitors_by_reservations', 'search'));
+        return view('admin.dashboard.index', compact('total_destinations', 'total_users', 'total_visitors', 'total_visitors_by_reservations', 'search', 'visitors_data'));
     }
-    
-    
-    
+
+
+
 
     /**
      * Store a newly created resource in storage.

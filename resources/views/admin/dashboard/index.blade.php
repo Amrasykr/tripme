@@ -100,13 +100,15 @@
 @section('script')
     <script>
         var ctx = document.getElementById('myChart').getContext('2d');
+        var visitorsData = @json($visitors_data);
+        
         var chart = new Chart(ctx, {
             type: 'line',
             data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: Object.keys(visitorsData),
             datasets: [{
                 label: 'Visitors',
-                data: [12, 19, 3, 5, 2, 3, 14],
+                data: Object.values(visitorsData),
                 backgroundColor: 'rgb(180, 51, 3)',
                 borderColor: 'rgb(126, 58, 241)',
                 borderWidth: 1
