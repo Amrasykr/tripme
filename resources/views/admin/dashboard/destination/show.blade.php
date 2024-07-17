@@ -15,7 +15,7 @@
                 <img src="{{ asset('assets/tumbnail_image/'. $destination->main_image) }}" alt="destination image" class="w-full h-72 rounded-lg object-cover object-center">
             </div>
             <div class="flex space-x-5 mt-4">
-                <div class="w-1/2">
+                <div class="w-1/2  md:h-32">
                     <img src="{{ asset('assets/destination_image/'. $destination->image_1) }}" alt="destination image" class="w-full h-32 rounded-lg object-cover object-center">
                 </div>
                 <div class="w-1/2 md:h-32 ">
@@ -23,15 +23,28 @@
 
                 </div>
             </div>
+            @if ($destination->image_3 && !$destination->image_4)
             <div class="flex space-x-5 mt-4">
-                <div class="w-1/2 md:h-32 ">
+                <div class="w-full md:h-32">
                     <img src="{{ asset('assets/destination_image/'. $destination->image_3) }}" alt="destination image" class="w-full h-32 rounded-lg object-cover object-center">
-
                 </div>
-                <div class="w-1/2 md:h-32 ">
+            </div>
+        @elseif ($destination->image_4 && !$destination->image_3)
+            <div class="flex space-x-5 mt-4">
+                <div class="w-full md:h-32">
                     <img src="{{ asset('assets/destination_image/'. $destination->image_4) }}" alt="destination image" class="w-full h-32 rounded-lg object-cover object-center">
                 </div>
             </div>
+        @elseif ($destination->image_3 && $destination->image_4)
+            <div class="flex space-x-5 mt-4">
+                <div class="w-1/2 md:h-32">
+                    <img src="{{ asset('assets/destination_image/'. $destination->image_3) }}" alt="destination image" class="w-full h-32 rounded-lg object-cover object-center">
+                </div>
+                <div class="w-1/2 md:h-32">
+                    <img src="{{ asset('assets/destination_image/'. $destination->image_4) }}" alt="destination image" class="w-full h-32 rounded-lg object-cover object-center">
+                </div>
+            </div>
+        @endif        
         </div>
         <div class="w-full md:w-2/3 bg-white mt-3 md:mt-0">
             <div class="w-full bg-white p-8 shadow-xl rounded-lg">
