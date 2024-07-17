@@ -29,6 +29,11 @@ class ReservationController extends Controller
     public function store(Request $request)
     {
         //
+        $user = auth()->user();
+        if(!$user) {
+            notify()->error(message: 'You must login first');
+            return redirect()->back()->withInput();
+        }
     }
 
     public function confirm(string $id)

@@ -32,7 +32,7 @@ class VisitorController extends Controller
 
         $visitors = $query->orderBy('status', 'asc')
             ->orderBy('created_at', 'desc')
-            ->paginate(10);
+            ->paginate(5);
 
         return view('admin.dashboard.visitor.index', compact('visitors'));
     }
