@@ -46,7 +46,11 @@
                         <div class="flex items-center space-x-3">
                             <div class="avatar">
                                 <div class="p-2">
-                                    <img src="{{ asset('images/user-default.png') }}" alt="user image" class="mask mask-box rounded-full w-10">
+                                    @if ($visitor->user->image)
+                                    <img src="{{ asset('assets/user_image/'. $visitor->user->image) }}" alt="user image" class="rounded-full w-12">
+                                    @else
+                                    <img src="{{ asset('images/user-default.png') }}" alt="user image" class="rounded-full w-12">
+                                    @endif                                
                                 </div>
                             </div>
                             <div>
