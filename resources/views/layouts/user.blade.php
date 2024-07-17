@@ -25,7 +25,7 @@
     </style>
 </head>
 
-<body class="bg-slate-50">        
+<body class="bg-white">        
     <!-- Desktop sidebar -->
     @include('layouts.user-navigation')
 

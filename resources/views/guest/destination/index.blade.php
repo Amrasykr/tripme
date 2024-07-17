@@ -6,16 +6,16 @@
 
     {{-- Top 1 --}}
     <div class="relative mt-24">
-        <div class="px-3 md:px-14" data-aos="fade-up">
+        <div class="px-3 md:px-14" >
             <div class="relative">
                 <a href="#">
                     <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full md:h-[43rem] object-cover rounded-2xl">
                     <div class="absolute inset-0 bg-black opacity-45 rounded-2xl z-10"></div>
                     <div class="absolute inset-0 flex flex-col items-start justify-end ml-4 pb-4 md:ml-10 md:pb-10 z-20">
-                        <h3 class="text-2xl md:text-7xl text-white font-bold tracking-wider uppercase ">
+                        <h3 class="text-2xl md:text-7xl text-white font-semibold tracking-tight mb-2">
                             Curug Cimarinjung
                         </h3>
-                        <p class="text-sm md:text-3xl text-white font-light">
+                        <p class="text-sm md:text-3xl text-white font-light tracking-tight">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         </p>
                         <div class="my-1 md:mt-3 md:mb-1 w-2/3 md:w-4/12">
@@ -29,7 +29,7 @@
                             </a>                 
                         </div>
                         <div class="w-1/4 md:w-2/12">
-                            <div class="w-full py-1 px-4 md:px-10 bg-yellow-700 text-xs md:text-sm my-2 text-white rounded-2xl text-center">
+                            <div class="w-full py-1 px-4 md:px-10 bg-second_white text-xs md:text-sm my-2 text-tertiary rounded-2xl text-center">
                                 Lorem, ipsum.
                             </div>
                         </div>
