@@ -30,7 +30,7 @@ class DestinationController extends Controller
         }
     
         // Fetch destinations based on query
-        $destinations = $destinationsQuery->paginate(5);
+        $destinations = $destinationsQuery->paginate(4);
     
         return view('admin.dashboard.destination.index', compact('destinations', 'search'));
     }

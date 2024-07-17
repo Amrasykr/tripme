@@ -71,6 +71,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard/ticket', [UserTicketController::class, 'index'])->name('user.dashboard.ticket');
         Route::get('/dashboard/ticket/{id}/download', [UserTicketController::class, 'download'])->name('user.dashboard.ticket.dowload');
 
+        Route::get('/destination/{id}/reservation', [UserReservationController::class, 'store'])->name('user.destination.reservation');
+
     });
 });
 

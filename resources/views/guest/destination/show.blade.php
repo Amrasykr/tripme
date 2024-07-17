@@ -12,21 +12,30 @@
                     <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full md:h-[43rem] object-cover rounded-2xl">
                     <div class="absolute inset-0 bg-black opacity-45 rounded-2xl z-10"></div>
                     <div class="absolute inset-0 flex flex-col items-start justify-end ml-4 pb-4 md:ml-10 md:pb-10  z-20 ">
-                        <h3 class="text-2xl md:text-6xl text-white font-bold tracking-wider uppercase ">
-                            Curug Cimarunjung
+                        <h3 class="text-2xl md:text-7xl text-white font-bold tracking-wider uppercase ">
+                            Curug Cimarinjung
                         </h3>
-                        <p class="text-sm md:text-2xl text-white font-light">
+                        <p class="text-sm md:text-3xl text-white font-light">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         </p>
-                        <p class="text-xs md:text-sm text-white font-light">
-                            5 Bulan yang Lalu <span class="mx-1 md:mx-2 font-extralight "><b>·</b></span> 24 Pengunjung
-                        </p>
-                        <div class="py-1 px-4 bg-yellow-700 text-xs md:text-sm my-2 text-white rounded-2xl text-center">
-                            Waterfall
+                        <div class="my-1 md:mt-3 md:mb-1 w-2/3 md:w-4/12">
+                            <p class="w-fulltext-xs md:text-sm text-white font-light">
+                                5 Bulan yang Lalu <span class="mx-1 md:mx-2 font-extralight "><b>·</b></span> 24 Pengunjung
+                            </p>
+                            <a href="https://maps.app.goo.gl/havk3PsogusN7VqF6" class="w-full" target="_blank">
+                                <p class="text-xs md:text-sm text-white font-light">
+                                    <span class="font-extralight"><i class="fa-solid fa-location-dot text-white"></i></span> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint impedit magnam eum cum nostrum sequi.
+                                </p>
+                            </a>                 
                         </div>
-                        <button class="py-1 px-2 md:py-2 md:px-4 font-medium  bg-purple-700 hover:bg-white text-white hover:text-purple-700 text-lg md:text-2xl mt-4 md:mt-6 rounded-lg transition-all duration-500 ease-in-out">
-                            Book <span><i class="fa-solid fa-arrow-right" class="text-white text-lg md:text-3xl"></i></span>
-                        </button>
+                        <div class="w-1/4 md:w-2/12">
+                            <div class="w-full py-1 px-4 md:px-10 bg-yellow-700 text-xs md:text-sm my-2 text-white rounded-2xl text-center">
+                                Lorem, ipsum.
+                            </div>
+                            <button class="w-full mt-2 py-1 px-2 md:py-2 md:px-10 font-medium  bg-purple-700 hover:bg-white text-white hover:text-purple-700 text-lg md:text-2xl  rounded-lg transition-all duration-500 ease-in-out">
+                                Book <span><i class="fa-solid fa-arrow-right" class="text-white text-lg md:text-3xl"></i></span>
+                            </button>
+                        </div>
                     </div>
                 </a>
             </div>
@@ -75,7 +84,7 @@
             </div>
 
             <div class="md:flex space-y-5 md:space-y-0 space-x-0 md:space-x-8 md:mt-8 w-full px-8 md:px-24">
-                <div class="w-full md:w-1/3  bg-white shadow-xl p-5 rounded-xl">
+                <div class="w-full md:w-1/3  bg-white hover:bg-purple-100  shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out"  >
                     <a href="#">
                         <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full  object-cover rounded-2xl">
                         <div class="py-1 bg-purple-700 text-sm  text-white w-1/3 my-3 rounded-2xl mx-1">
@@ -87,10 +96,9 @@
                         <p class="text-start text-xl my-2 mx-1 font-light "> 
                             Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         </p>
-
                     </a>
                 </div>
-                <div class="w-full md:w-1/3  bg-white shadow-xl p-5 rounded-xl">
+                <div class="w-full md:w-1/3  bg-white hover:bg-purple-100  shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out"  >
                     <a href="#">
                         <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full  object-cover rounded-2xl">
                         <div class="py-1 bg-purple-700 text-sm  text-white w-1/3 my-3 rounded-2xl mx-1">
@@ -102,10 +110,9 @@
                         <p class="text-start text-xl my-2 mx-1 font-light "> 
                             Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         </p>
-
                     </a>
                 </div>
-                <div class="w-full md:w-1/3  bg-white shadow-xl p-5 rounded-xl">
+                <div class="w-full md:w-1/3  bg-white hover:bg-purple-100  shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out"  >
                     <a href="#">
                         <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full  object-cover rounded-2xl">
                         <div class="py-1 bg-purple-700 text-sm  text-white w-1/3 my-3 rounded-2xl mx-1">
