@@ -82,7 +82,7 @@
     <!-- Right nav -->
     @if (Auth::user())
     <div class="hidden lg:flex items-center relative" x-data="{ open: false }">
-        <button @click="open = !open" class="flex items-center bg-white text-gray-700 font-semibold rounded focus:outline-none focus:shadow-inner">
+        <button @click="open = !open" class="flex items-center  text-gray-700 font-semibold rounded focus:outline-none">
             <span class="mr-1">
                 @if (Auth::user()->image)
                 <img src="{{ asset('assets/user_image/' . Auth::user()->image) }}" alt="user" class="w-10 rounded-full">
