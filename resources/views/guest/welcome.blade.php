@@ -16,7 +16,7 @@
                         sukabumi
                     </h3>
                     <a href="{{ url('/#top') }}" class="py-1 px-2 md:py-2 md:px-4   bg-purple-700 hover:bg-white text-white hover:text-purple-700 text-lg md:text-2xl mt-6 rounded-lg transition-all duration-500 ease-in-out">
-                        Let's Go  <span><i class="fa-solid fa-arrow-right text-white text-lg md:text-3xl ml-2 "></i></span>
+                        Let's Go  <span><i class="fa-solid fa-arrow-right text-white hover:text-purple-700 text-lg md:text-3xl ml-2 "></i></span>
                     </a>
                 </div>
             </div>

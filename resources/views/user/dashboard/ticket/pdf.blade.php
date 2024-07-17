@@ -41,6 +41,7 @@
         </div>
         <div class="ticket-footer">
             <p>Generated at: {{ now()->format('Y-m-d H:i:s') }}</p>
+            {{-- <p></p> --}}
         </div>
     </div>
 </body>
