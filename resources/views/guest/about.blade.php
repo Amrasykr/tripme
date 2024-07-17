@@ -27,7 +27,7 @@
     {{-- Why --}}
     <div class="my-10 md:my-20 px-3 md:px-14" id="why">
         <div class="md:flex justify-between space-x-0 md:space-x-8">
-            <div class="w-full md:w-1/2 mb-10 md:mb-0">
+            <div class="w-full md:w-1/2 mb-10 md:mb-0" data-aos="fade-right">
                 <p class="text-2xl font-medium text-purple-700">
                     Why Choose Our Services?
                 </p>
@@ -41,8 +41,8 @@
                     revitalizing local businesses; a 30% decrease in unemployment, creating new job opportunities; a 40% rise in local income, empowering communities; and a 25% improvement in infrastructure, enhancing connectivity and facilities for residents and visitors alike.
                 </p>
             </div>
-            <div class="w-full md:w-1/2 space-y-4 flex flex-col items-center">
-                <img src="{{ asset('images/about.jpg') }}" alt="hero" class="w-full h-64 object-cover object-center rounded-2xl">
+            <div class="w-full md:w-1/2 space-y-4 flex flex-col items-center" data-aos="fade-left">
+                <img src="{{ asset('images/about-2.jpg') }}" alt="hero" class="w-full h-64 object-cover object-center rounded-2xl">
                 <div class="grid grid-cols-2 grid-rows-2 gap-4 md:gap-x-56 md:gap-y-9">
                     <div>
                         <h1 class="text-2xl md:text-4xl font-semibold text-purple-700">
