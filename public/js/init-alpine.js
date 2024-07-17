@@ -2,25 +2,25 @@ document.addEventListener('alpine:init', () => {
     Alpine.data('data', () => ({
         isProfileMenuOpen: false,
         toggleProfileMenu() {
-            this.isProfileMenuOpen = !this.isProfileMenuOpen
+            this.isProfileMenuOpen = !this.isProfileMenuOpen;
         },
 
         closeProfileMenu() {
-            this.isProfileMenuOpen = false
+            this.isProfileMenuOpen = false;
         },
 
         isSideMenuOpen: false,
         toggleSideMenu() {
-            this.isSideMenuOpen = !this.isSideMenuOpen
+            this.isSideMenuOpen = !this.isSideMenuOpen;
         },
 
         closeSideMenu() {
-            this.isSideMenuOpen = false
+            this.isSideMenuOpen = false;
         },
 
         isMultiLevelMenuOpen: false,
         toggleMultiLevelMenu() {
-            this.isMultiLevelMenuOpen = !this.isMultiLevelMenuOpen
+            this.isMultiLevelMenuOpen = !this.isMultiLevelMenuOpen;
         }
-    }))
-})
+    }));
+});
