@@ -42,10 +42,10 @@
                 </p>
             </div>
             <div class="w-full md:w-1/2 space-y-4 flex flex-col items-center">
-                <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full h-64 object-cover rounded-2xl">
+                <img src="{{ asset('images/about.jpg') }}" alt="hero" class="w-full h-64 object-cover object-center rounded-2xl">
                 <div class="grid grid-cols-2 grid-rows-2 gap-4 md:gap-x-56 md:gap-y-9">
                     <div>
-                        <h1 class="text-2xl md:text-4xl font-semibold text-purple-700 tracking-widest">
+                        <h1 class="text-2xl md:text-4xl font-semibold text-purple-700">
                             50%
                         </h1>
                         <h4 class="text-md md:text-xl font-light text-gray-900">
@@ -53,7 +53,7 @@
                         </h4>  
                     </div>
                     <div>
-                        <h1 class="text-2xl md:text-4xl font-semibold text-purple-700 tracking-widest">
+                        <h1 class="text-2xl md:text-4xl font-semibold text-purple-700">
                             30%
                         </h1>
                         <h4 class="text-md md:text-xl font-light text-gray-900">
@@ -61,7 +61,7 @@
                         </h4>  
                     </div>
                     <div>
-                        <h1 class="text-2xl md:text-4xl font-semibold text-purple-700 tracking-widest">
+                        <h1 class="text-2xl md:text-4xl font-semibold text-purple-700">
                             40%
                         </h1>
                         <h4 class="text-md md:text-xl font-light text-gray-900">
@@ -69,7 +69,7 @@
                         </h4>  
                     </div>
                     <div>
-                        <h1 class="text-2xl md:text-4xl font-semibold text-purple-700 tracking-widest">
+                        <h1 class="text-2xl md:text-4xl font-semibold text-purple-700">
                             25%
                         </h1>
                         <h4 class="text-md md:text-xl font-light text-gray-900">
