@@ -5,8 +5,8 @@
 @section('content')
 
     {{-- Top 1 --}}
-    <div class="relative mt-24" >
-        <div class="px-3 md:px-14">
+    <div class="relative mt-24">
+        <div class="px-3 md:px-14" data-aos="fade-up">
             <div class="relative">
                 <a href="#">
                     <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full md:h-[43rem] object-cover rounded-2xl">
@@ -96,6 +96,10 @@
 
 @section('script')
     <script>
+        // Scroll Animation
+        AOS.init({
+            duration: 2500
+        });
     </script>
 @endsection
     

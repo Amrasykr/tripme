@@ -5,7 +5,7 @@
 @section('content')
     {{-- Hero --}}
     <div class="relative mt-24" >
-        <div class="px-3 md:px-14">
+        <div class="px-3 md:px-14" data-aos="fade-up">
             <div class="relative">
                 <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full md:h-[43rem] object-cover rounded-2xl">
                 <div class="absolute inset-0 bg-black opacity-45 rounded-2xl z-10"></div>

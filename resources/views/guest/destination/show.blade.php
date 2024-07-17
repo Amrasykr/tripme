@@ -6,7 +6,7 @@
 
     {{-- Hero --}}
     <div class="relative mt-24">
-        <div class="px-3 md:px-14">
+        <div class="px-3 md:px-14" data-aos="fade-up">
             <div class="relative">
                 <a href="#">
                     <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full md:h-[43rem] object-cover rounded-2xl">
@@ -134,17 +134,6 @@
 
 @section('script')
     <script>
-
-        // Type Animation
-        var typedStatus = new Typed(".auto-type-status", {
-            strings : ["Hidden Gems in", "the Beauty of", "Breathtaking Landscapes of", "Vibrant Cultures"],
-            typeSpeed : 100,
-            backSpeed : 80,
-            
-            loop : true
-        })
-
-        
         // Scroll Animation
         AOS.init({
             duration: 2500
