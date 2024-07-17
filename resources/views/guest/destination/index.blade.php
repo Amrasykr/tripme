@@ -47,48 +47,22 @@
             </div>
 
             <div class="md:flex space-y-5 md:space-y-0 space-x-0 md:space-x-8 md:mt-8 w-full px-8 md:px-24">
+                @foreach ($destinations as $destination)
                 <div class="w-full md:w-1/3  bg-white hover:bg-purple-100  shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out"  >
-                    <a href="#">
-                        <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full  object-cover rounded-2xl">
+                    <a href="/destination/{{$destination->id}}">
+                        <img src="{{ asset('assets/tumbnail_image/'.$destination->main_image) }}" alt="hero" class="w-full h-72 object-cover rounded-2xl">
                         <div class="py-1 bg-purple-700 text-sm  text-white w-1/3 my-3 rounded-2xl mx-1">
-                            Waterfall
+                            {{$destination->category}}
                         </div>
                         <h3 class="text-start text-3xl font-medium tracking-wide mx-1">
-                        Curug Cimarunjung
+                        {{$destination->name}}
                         </h3>
                         <p class="text-start text-xl my-2 mx-1 font-light "> 
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            {{$destination->description}}
                         </p>
                     </a>
                 </div>
-                <div class="w-full md:w-1/3  bg-white hover:bg-purple-100  shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out"  >
-                    <a href="#">
-                        <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full  object-cover rounded-2xl">
-                        <div class="py-1 bg-purple-700 text-sm  text-white w-1/3 my-3 rounded-2xl mx-1">
-                            Waterfall
-                        </div>
-                        <h3 class="text-start text-3xl font-medium tracking-wide mx-1">
-                        Curug Cimarunjung
-                        </h3>
-                        <p class="text-start text-xl my-2 mx-1 font-light "> 
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        </p>
-                    </a>
-                </div>
-                <div class="w-full md:w-1/3  bg-white hover:bg-purple-100  shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out"  >
-                    <a href="#">
-                        <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full  object-cover rounded-2xl">
-                        <div class="py-1 bg-purple-700 text-sm  text-white w-1/3 my-3 rounded-2xl mx-1">
-                            Waterfall
-                        </div>
-                        <h3 class="text-start text-3xl font-medium tracking-wide mx-1">
-                        Curug Cimarunjung
-                        </h3>
-                        <p class="text-start text-xl my-2 mx-1 font-light "> 
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        </p>
-                    </a>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

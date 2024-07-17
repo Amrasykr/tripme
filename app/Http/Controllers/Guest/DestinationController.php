@@ -4,7 +4,9 @@ namespace App\Http\Controllers\guest;
 
 use App\Http\Controllers\Controller;
 use App\Models\Destination;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 
 class DestinationController extends Controller
@@ -14,8 +16,8 @@ class DestinationController extends Controller
      */
     public function index()
     {
-        //
-        return view('guest.destination.index');
+        $destinations = Destination::all();
+        return view('guest.destination.index', compact('destinations'));
     }
 
     /**
@@ -33,7 +35,11 @@ class DestinationController extends Controller
     {
         //
         $destination = Destination::find($id);
-        return view('guest.destination.show', compact('destination'));
+        $related_destinations = Destination::where('category', $destination->category)
+            ->where('id', '!=', $destination->id)
+            ->get();
+            
+        return view('guest.destination.show', compact('destination', 'related_destinations'));
     }
 
     /**
