@@ -1,8 +1,8 @@
-<nav x-data="{ open: false }" class="fixed top-0 z-40 flex flex-wrap items-center justify-between w-full px-4 py-5 shadow-md bg-white bg-opacity-90 md:py-4 md:px-8 lg:px-20">
+<nav x-data="{ open: false }" class="fixed top-0 z-40 flex flex-wrap items-center justify-between w-full px-4 py-5 shadow-md bg-second_white bg-opacity-90 md:py-4 md:px-8 lg:px-20">
     <!-- Left nav -->
     <div class="flex items-center">
         <a href="/">
-            <img src="{{ asset('images/logo.png') }}" alt="logo" class="w-32">
+            <img src="{{ asset('images/logo.svg') }}" alt="logo" class="w-28">
         </a>
     </div>
     <!-- End left nav -->
@@ -28,28 +28,28 @@
     <!-- Toggle menu -->
     <div x-show="open" class="relative w-full overflow-hidden transition-all duration-700 lg:hidden">
         <div class="flex flex-col mb-3 mt-7 space-y-2 text-lg text-gray-900">
-            <a href="/" class="hover:text-purple-700">Home</a>
+            <a href="/" class="text-secondary hover:text-tertiary transition-all duration-300 ease-in-out">Home</a>
             <hr>
-            <a href="/destination" class="hover:text-purple-700">Destination</a>
+            <a href="/destination" class="text-secondary hover:text-tertiary transition-all duration-300 ease-in-out">Destination</a>
             <hr>
-            <a href="/about" class="hover:text-purple-700">About</a>
+            <a href="/about" class="text-secondary hover:text-tertiary transition-all duration-300 ease-in-out">About</a>
             <hr>
             @if (Auth::user())
-            <a href="/user/dashboard" class="hover:text-purple-700">Dashboard</a>
+            <a href="/user/dashboard" class="text-secondary hover:text-tertiary transition-all duration-300 ease-in-out">Dashboard</a>
             <hr>
             <form method="POST" action="{{ route('logout') }}" class="mt-4">
                 @csrf
-                <button type="submit" class="hover:text-purple-700">Logout</a>
+                <button type="submit" class="text-secondary hover:text-tertiary transition-all duration-300 ease-in-out">Logout</a>
             </form>
             @endif
         </div>
         <div>
             @if (!Auth::user())
-            <a href="/register" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-gray-900 bg-purple-700 hover:bg-purple-900 hover:text-purple-700">
+            <a href="/register" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium bg-purple-700 hover:bg-purple-900 text-secondary hover:text-tertiary transition-all duration-300 ease-in-out">
                 Sign up
             </a>
             <p class="mt-6 text-center text-base font-medium">
-                <a href="/login" class="text-gray-900 hover:text-purple-700">Sign in</a>
+                <a href="/login" class=" text-secondary hover:text-tertiary transition-all duration-300 ease-in-out">Sign in</a>
             </p>
             @endif
         </div>
@@ -60,18 +60,18 @@
     <!-- Show Menu lg -->
     @if (Auth::user())
         <div class="hidden w-full lg:flex lg:items-center lg:w-auto mr-28">
-            <div class="flex-1 pt-6 justify-center text-lg text-gray-900 lg:pt-0 lg:flex space-x-10">
-                <a href="/" class="mr-3 text-base font-medium  inline-block py-2 no-underline hover:text-purple-700 text-gray-900 transition-all duration-300 ease-in-out">Home</a>
-                <a href="/destination" class="mr-3 text-base font-medium inline-block py-2 no-underline hover:text-purple-700 text-gray-900 transition-all duration-300 ease-in-out">Destination</a>
-                <a href="/about" class="inline-block text-base font-medium py-2 no-underline hover:text-purple-700 text-gray-900 transition-all duration-300 ease-in-out">About</a>
+            <div class="flex-1 pt-6 justify-center text-lg lg:pt-0 lg:flex space-x-10">
+                <a href="/" class="mr-3 text-base font-medium  inline-block py-2 no-underline text-secondary hover:text-tertiary  transition-all duration-300 ease-in-out">Home</a>
+                <a href="/destination" class="mr-3 text-base font-medium inline-block py-2 no-underline text-secondary hover:text-tertiary  transition-all duration-300 ease-in-out">Destination</a>
+                <a href="/about" class="inline-block text-base font-medium py-2 no-underline text-secondary hover:text-tertiary  transition-all duration-300 ease-in-out">About</a>
             </div>
         </div>
     @else
     <div class="hidden w-full lg:flex lg:items-center lg:w-auto ">
-        <div class="flex-1 pt-6 justify-center text-lg text-gray-900 lg:pt-0 lg:flex space-x-10">
-            <a href="/" class="mr-3 text-base font-medium  inline-block py-2 no-underline hover:text-purple-700 text-gray-900 transition-all duration-300 ease-in-out">Home</a>
-            <a href="/destination" class="mr-3 text-base font-medium inline-block py-2 no-underline hover:text-purple-700 text-gray-900 transition-all duration-300 ease-in-out">Destination</a>
-            <a href="/about" class="inline-block text-base font-medium py-2 no-underline hover:text-purple-700 text-gray-900 transition-all duration-300 ease-in-out">About</a>
+        <div class="flex-1 pt-6 justify-center text-lg lg:pt-0 lg:flex space-x-10">
+            <a href="/" class="mr-3 text-base font-medium  inline-block py-2 no-underline text-secondary hover:text-tertiary  transition-all duration-300 ease-in-out">Home</a>
+            <a href="/destination" class="mr-3 text-base font-medium inline-block py-2 no-underline text-secondary hover:text-tertiary transition-all duration-300 ease-in-out">Destination</a>
+            <a href="/about" class="inline-block text-base font-medium py-2 no-underline text-secondary hover:text-tertiary  transition-all duration-300 ease-in-out">About</a>
         </div>
     </div>
     @endif
@@ -112,8 +112,8 @@
     </div>
     @else
     <div class="hidden w-full lg:flex lg:items-center lg:w-auto">
-        <div class="items-center flex-1 pt-6 justify-center text-lg text-gray-900 lg:pt-0 list-reset lg:flex">
-            <a href="/login" class="whitespace-nowrap text-base font-medium text-gray-900 hover:text-purple-700 transition-all duration-300 ease-in-out">Sign in</a>
+        <div class="items-center flex-1 pt-6 justify-center text-lg lg:pt-0 list-reset lg:flex">
+            <a href="/login" class="whitespace-nowrap text-base font-medium text-secondary hover:text-tertiary transition-all duration-300 ease-in-out">Sign in</a>
             <a href="/register" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white  hover:rounded-3xl bg-purple-700 hover:bg-purple-800 transition-all duration-700 ease-in-out">Sign up</a>
         </div>
     </div>
