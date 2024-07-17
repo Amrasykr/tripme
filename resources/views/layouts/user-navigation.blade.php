@@ -1,7 +1,9 @@
 <nav x-data="{ open: false }" class="fixed top-0 z-40 flex flex-wrap items-center justify-between w-full px-4 py-5 shadow-md bg-white bg-opacity-90 md:py-4 md:px-8 lg:px-20">
     <!-- Left nav -->
     <div class="flex items-center">
-        <img src="{{ asset('images/logo.png') }}" alt="logo" class="w-32">
+        <a href="/">
+            <img src="{{ asset('images/logo.png') }}" alt="logo" class="w-32">
+        </a>
     </div>
     <!-- End left nav -->
   
