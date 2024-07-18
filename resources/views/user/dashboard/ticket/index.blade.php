@@ -134,8 +134,8 @@
                                     <td class="px-6 py-4 w-1/4">{{ \Carbon\Carbon::parse($rsvp->date)->translatedFormat('l, j F Y') }}</td>
                                     <td class="px-6 py-4 w-1/4">{{ $rsvp->status }}</td>
                                     <td class="px-4 py-6 w-24 flex space-x-3 items-center">
-                                        <a href="/user/dashboard/ticket/{{$rsvp->id}}/download" class="font-medium text-green-400 hover:underline text-lg" title="Confirm">
-                                            <i class="fa-solid fa-eye"></i>
+                                        <a href="/user/dashboard/ticket/{{$rsvp->id}}/download" class="font-medium text-secondary hover:underline text-lg" title="Confirm">
+                                            <i class="fa-solid fa-arrow-down"></i>
                                         </a>
                                     </td>                 
                                 </tr>

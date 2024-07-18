@@ -19,7 +19,7 @@
             </x-slot>
 
             <x-slot name="content">
-                <div class="px-2 py-2">
+                <div class="px-2 py-2 text-tertiary">
                     Hello 👋 , <span class="font-semibold">{{Auth::user()->name}}</span>
                 </div>
                 <x-dropdown-link href="{{ route('profile.edit') }}">

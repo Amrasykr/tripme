@@ -71,57 +71,32 @@
     </div>
 
     {{-- Top 3 Destinations --}}
-    <div class="my-10 md:my-20" id="top">
-        <div class="flex flex-col items-center text-center px-4 md:px-0 container">
-            <div class="text-3xl md:text-7xl font-light text-tertiary">
-                Top  Destinations
+    <div class="my-10 md:my-20 container px-4 md:px-0">
+        <div class="flex flex-col items-center text-center">
+            <div class="text-3xl md:text-7xl font-light text-gray-900">
+                Our Destinations
             </div>
-            <div class="md:flex space-y-8 md:space-y-0 space-x-0 md:space-x-8 mt-6 md:mt-8 w-full md:justify-center">
-                <div class="w-full md:w-1/3  hover:bg-second_white  shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out"  >
-                    <a href="#">
-                        <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full  object-cover rounded-2xl">
-                        <div class="py-1 bg-tertiary text-sm  text-white w-1/3 my-3 rounded-2xl mx-1">
-                            Waterfall
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6 md:mt-8 w-full">
+                @foreach ($top_3_destinations as $destination)
+                <div class="hover:bg-second_white shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out">
+                    <a href="/destination/{{$destination->id}}">
+                        <img src="{{ asset('assets/tumbnail_image/'.$destination->main_image) }}" alt="hero" class="w-full h-72 object-cover rounded-2xl">
+                        <div class="py-1 bg-tertiary text-sm text-white w-1/3 my-3 md:my-5 rounded-2xl mx-1">
+                            {{$destination->category}}
                         </div>
                         <h3 class="text-start text-tertiary text-3xl font-medium tracking-wide mx-1">
-                        Curug Cimarunjung
+                            {{$destination->name}}
                         </h3>
-                        <p class="text-start text-tertiary text-xl my-2 mx-1 font-light "> 
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        <p class="text-start text-tertiary text-xl my-2 mx-1 font-light">
+                            {{$destination->description}}
                         </p>
                     </a>
                 </div>
-                <div class="w-full md:w-1/3  hover:bg-second_white  shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out"  >
-                    <a href="#">
-                        <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full  object-cover rounded-2xl">
-                        <div class="py-1 bg-tertiary text-sm  text-white w-1/3 my-5 rounded-2xl mx-1">
-                            Waterfall
-                        </div>
-                        <h3 class="text-start text-tertiary text-3xl font-medium tracking-wide mx-1">
-                        Curug Cimarunjung
-                        </h3>
-                        <p class="text-start text-tertiary text-xl my-2 mx-1 font-light "> 
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        </p>
-                    </a>
-                </div>
-                <div class="w-full md:w-1/3  hover:bg-second_white  shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out"  >
-                    <a href="#">
-                        <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full  object-cover rounded-2xl">
-                        <div class="py-1 bg-tertiary text-sm  text-white w-1/3 my-3 rounded-2xl mx-1">
-                            Waterfall
-                        </div>
-                        <h3 class="text-start text-tertiary text-3xl font-medium tracking-wide mx-1">
-                        Curug Cimarunjung
-                        </h3>
-                        <p class="text-start text-tertiary text-xl my-2 mx-1 font-light "> 
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        </p>
-                    </a>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
+
 @endsection
 
 @section('script')

@@ -89,7 +89,7 @@
             </tbody>
         </table>
         <!-- Pagination Links -->
-        <div class="px-4 py-3 bg-white border-t border-gray-200 sm:flex sm:justify-between">
+        <div class="px-4 py-3 bg-white border-t border-gray-200 ">
             {{ $visitors->withQueryString()->links() }}
         </div>
     </div>

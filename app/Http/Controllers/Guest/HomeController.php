@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use App\Models\Destination;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class HomeController extends Controller
@@ -15,7 +17,14 @@ class HomeController extends Controller
     public function index()
     {
         //
-        return view('guest.welcome');
+        $top_3_destinations = Destination::select('destination.id', 'destination.name', 'destination.category', 'destination.main_image', 'destination.description')
+        ->join('reservation', 'destination.id', '=', 'reservation.destination_id')
+        ->groupBy('destination.id', 'destination.name', 'destination.category', 'destination.main_image', 'destination.description')
+        ->orderByRaw('COUNT(reservation.destination_id) DESC')
+        ->limit(3)
+        ->get();
+        
+        return view('guest.welcome', ['top_3_destinations' => $top_3_destinations]);
     }
 
     /**

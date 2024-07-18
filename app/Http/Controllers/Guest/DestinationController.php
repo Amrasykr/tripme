@@ -7,6 +7,7 @@ use App\Models\Destination;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 
 class DestinationController extends Controller
@@ -17,7 +18,16 @@ class DestinationController extends Controller
     public function index()
     {
         $destinations = Destination::all();
-        return view('guest.destination.index', compact('destinations'));
+    
+        $top = Destination::select('destination.id', 'destination.name', 'destination.category', 'destination.main_image', 'destination.description', 'destination.created_at', 'destination.address', 'destination.address_url', DB::raw('COUNT(reservation.destination_id) as total_visitors'))
+            ->join('reservation', 'destination.id', '=', 'reservation.destination_id')
+            ->groupBy('destination.id', 'destination.name', 'destination.category', 'destination.main_image', 'destination.description', 'destination.created_at', 'destination.address', 'destination.address_url')
+            ->orderByDesc('total_visitors')
+            ->first();
+
+        $total_visitors = $top ? $top->total_visitors : 0;
+    
+        return view('guest.destination.index', compact('destinations', 'top', 'total_visitors'));
     }
 
     /**
@@ -38,8 +48,12 @@ class DestinationController extends Controller
         $related_destinations = Destination::where('category', $destination->category)
             ->where('id', '!=', $destination->id)
             ->get();
+
+        $total_visitors = DB::table('reservation')
+            ->where('destination_id', $destination->id)
+            ->count();
             
-        return view('guest.destination.show', compact('destination', 'related_destinations'));
+        return view('guest.destination.show', compact('destination', 'related_destinations', 'total_visitors'));
     }
 
     /**
