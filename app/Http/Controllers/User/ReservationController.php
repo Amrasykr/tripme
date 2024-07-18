@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Reservation;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -26,12 +27,26 @@ class ReservationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, string $id)
     {
-        //
-        $user = auth()->user();
-        if(!$user) {
-            notify()->error(message: 'You must login first');
+        $validated_data = $request->validate([
+            'date' => 'required',
+        ]);
+
+        $reservation = new Reservation([
+            'user_id' => auth()->id(),
+            'date' => $validated_data['date'],
+            'destination_id' => $id,
+            'status' => 'pending',
+        ]);
+
+        $reservation->save();
+
+        if ($reservation) {
+            notify()->success(message: 'Successfully Creating Reservation');
+            return redirect()->route('user.dashboard.reservation');
+        } else {
+            notify()->error(message: 'Failed to Create Reservation');
             return redirect()->back()->withInput();
         }
     }
@@ -62,6 +77,31 @@ class ReservationController extends Controller
             return redirect()->route('user.dashboard.reservation');
         } else {
             notify()->error(message: 'Failed to Cancel Reservation');
+            return redirect()->back()->withInput();
+        }
+    }
+
+    public function review (Request $request, string $id)
+    {
+        $validated_data = $request->validate([
+            'rating' => 'required',
+            'content' => 'required',
+        ]);
+
+        $review = new Review([
+            'user_id' => auth()->id(),
+            'reservation_id' => $id,
+            'rating' => $validated_data['rating'],
+            'content' => $validated_data['content'],
+        ]);
+
+        $review->save();
+
+        if ($review) {
+            notify()->success(message: 'Successfully Reviewing Reservation');
+            return redirect()->route('user.dashboard.reservation');
+        } else {
+            notify()->error(message: 'Failed to Review Reservation');
             return redirect()->back()->withInput();
         }
     }

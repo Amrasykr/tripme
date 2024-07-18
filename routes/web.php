@@ -61,9 +61,10 @@ Route::middleware('auth')->group(function () {
         Route::patch('/dashboard/{id}/update', [UserDashboardController::class, 'update'])->name('user.dashboard.update');
 
         Route::get('/dashboard/reservation', [UserReservationController::class, 'index'])->name('user.dashboard.reservation');
-        Route::patch('dashboard/reservation/{id}/confirm', [UserReservationController::class, 'confirm'])->name('user.dashboard.reservation.confirm');
-        Route::patch('dashboard/reservation/{id}/cancel', [UserReservationController::class, 'cancel'])->name('user.dashboard.reservation.cancel');
-        Route::post('dashboard/reservation/{id}/review', [UserReservationController::class, 'review'])->name('user.dashboard.reservation.review');
+        Route::patch('/dashboard/reservation/{id}/confirm', [UserReservationController::class, 'confirm'])->name('user.dashboard.reservation.confirm');
+        Route::patch('/dashboard/reservation/{id}/cancel', [UserReservationController::class, 'cancel'])->name('user.dashboard.reservation.cancel');
+        Route::post('/dashboard/reservation/{id}/review', [UserReservationController::class, 'review'])->name('user.dashboard.reservation.review');
+        Route::post('/reservation/{id}', [UserReservationController::class, 'store'])->name('user.dashboard.reservation.store');
 
 
         Route::get('/dashboard/calendar', [UserCalendarController::class, 'index'])->name('user.dashboard.calendar');

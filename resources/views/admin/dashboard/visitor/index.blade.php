@@ -70,7 +70,6 @@
                                 <i class="fa-solid fa-check"></i>
                             </button>
                         </form>
-
                         <form action="/admin/dashboard/visitor/{{$visitor->id}}/reject" method="POST" style="display:inline;">
                             @csrf
                             @method('PATCH')

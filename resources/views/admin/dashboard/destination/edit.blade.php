@@ -146,7 +146,7 @@
         </div>
         
         <div class="mt-2 flex justify-end">
-            <button type="submit" class="bg-purple-600 text-white px-6 py-2 shadow-lg rounded-md">Submit</button>
+            <button type="submit" class="bg-secondary text-white px-6 py-2 shadow-lg rounded-md">Submit</button>
         </div>
     </form>
 </div>

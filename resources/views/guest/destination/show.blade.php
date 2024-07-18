@@ -37,9 +37,36 @@
                         </div>
                         <div class="w-4/12 md:w-2/12 md:mt-2">
                             <div class="w-full">
-                                <a href="{{ url('/#top') }}" class="w-full block py-1 px-4 md:py-3 md:px-8 bg-second_white hover:bg-alternate text-tertiary text-lg md:text-2xl rounded-full transition-all duration-500 ease-in-out text-center">
+                                <button onclick="booking.showModal()" class="w-full block py-1 px-4 md:py-3 md:px-8 bg-second_white hover:bg-alternate text-tertiary text-lg md:text-2xl rounded-full transition-all duration-500 ease-in-out text-center">
                                     Book <span><i class="fa-solid fa-arrow-right text-tertiary text-lg md:text-xl ml-2"></i></span>
-                                </a>
+                                </button>
+                                <dialog id="booking" class="modal">
+                                    <div class="modal-box">
+                                      <form method="dialog">
+                                        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                      </form>
+                                      <h3 class="text-lg font-bold">Hello!</h3>
+                                      @if (!Auth::check() || Auth::user()->role === 'admin')
+                                      <p class="py-4">Ahh, you need to login first before booking</p>
+                                      @else
+                                      <p class="py-4">Please, choose the best date for you to trip </p>
+                                      <form action="/user/reservation/{{$destination->id}}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('POST')
+                                        <div class="w-full">
+                                            <input id="date" name="date" type="date" 
+                                                   class="appearance-none block w-full bg-second_white text-tertiary border-none @error('date') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:bg-white">
+                                            @error('description')
+                                                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="mt-2 flex justify-end">
+                                            <button type="submit" class="bg-secondary text-white px-6 py-2 shadow-lg rounded-md">Submit</button>
+                                        </div>
+                                    </form>
+                                      @endif    
+                                    </div>
+                                  </dialog>
                             </div>
                         </div>                        
                     </div>
