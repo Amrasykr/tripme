@@ -50,7 +50,7 @@ class DashboardController extends Controller
         $total_visitors_by_reservations = $query
             ->select('destination_id', DB::raw('count(*) as total_visitors'))
             ->groupBy('destination_id')
-            ->get()
+            ->paginate(5)
             ->map(function ($item) {
                 $destination = Destination::find($item->destination_id);
                 if ($destination) {

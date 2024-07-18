@@ -12,7 +12,7 @@
                     <img src="{{ asset('assets/tumbnail_image/'.$destination->main_image) }}" alt="hero" class="w-full md:h-[43rem] object-cover rounded-2xl">
                     <div class="absolute inset-0 bg-black opacity-45 rounded-2xl z-10"></div>
                     <div class="absolute inset-0 flex flex-col items-start justify-end ml-4 pb-4 md:ml-10 md:pb-10 z-20">
-                        <div class="w-3/5 md:1/3">
+                        <div class="">
                             <h3 class="text-2xl md:text-7xl text-white font-semibold tracking-tight mb-2">
                                 {{$destination->name}}
                             </h3>
@@ -22,7 +22,7 @@
                         </div>
                         <div class="my-1 md:mt-3 md:mb-1 w-2/3 md:w-4/12">
                             <p class="w-full text-xs md:text-sm text-white font-light">
-                                {{ \Carbon\Carbon::parse($destination->created_at)->diffForHumans() }}  <span class="mx-1 md:mx-2 font-extralight "><b>·</b></span> 24 Pengunjung
+                                {{ \Carbon\Carbon::parse($destination->created_at)->diffForHumans() }}  <span class="mx-1 md:mx-2 font-extralight "><b>·</b></span> {{$total_visitors}} Visitors
                             </p>
                             <a href="{{$destination->address_url}}" class="w-full" target="_blank">
                                 <p class="text-xs md:text-sm text-white font-light">
@@ -97,12 +97,11 @@
     <div class="my-10 md:my-20 container px-4 md:px-0">
         <div class="flex flex-col items-center text-center">
             <div class="text-3xl md:text-7xl font-light text-gray-900">
-                Related Destinations
+                Our Destinations
             </div>
-
-            <div class="md:flex justify-center space-y-8 md:space-y-0 space-x-0 md:space-x-8 mt-6 md:mt-8 w-full">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6 md:mt-8 w-full">
                 @foreach ($related_destinations as $related)
-                <div class="w-full md:w-1/3  hover:bg-second_white shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out">
+                <div class="hover:bg-second_white shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out">
                     <a href="/destination/{{$related->id}}">
                         <img src="{{ asset('assets/tumbnail_image/'.$related->main_image) }}" alt="hero" class="w-full h-72 object-cover rounded-2xl">
                         <div class="py-1 bg-tertiary text-sm text-white w-1/3 my-3 md:my-5 rounded-2xl mx-1">

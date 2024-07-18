@@ -90,6 +90,10 @@
                         </tr>
                         @endforeach
                     </tbody>
+                    <!-- Pagination Links -->
+                    {{-- <div class="px-4 py-3 bg-white border-t border-gray-200 ">
+                        {{ $total_visitors_by_reservations->withQueryString()->links() }}
+                    </div> --}}
                 </table>
             </div>    
         </div>
