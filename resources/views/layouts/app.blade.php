@@ -27,7 +27,7 @@
     </style>
 </head>
 <body>
-    <div class="flex h-screen bg-gray-50" :class="{ 'overflow-hidden': isSideMenuOpen }">
+    <div class="flex h-screen" :class="{ 'overflow-hidden': isSideMenuOpen }">
         <!-- Desktop sidebar -->
         @include('layouts.navigation')
         <!-- Mobile sidebar -->
@@ -50,7 +50,7 @@
             <main class="h-full overflow-y-auto">
                 <div class="container px-6 mx-auto grid">
                     <div class="flex items-center my-6 space-x-5">
-                        <button onclick="window.history.back()" class="bg-purple-600 w-10 h-12 rounded-l-lg flex justify-center items-center">
+                        <button onclick="window.history.back()" class="bg-secondary w-10 h-12 rounded-l-lg flex justify-center items-center">
                             <i class="fa-solid fa-arrow-left text-xl text-white"></i>
                         </button>
                         @yield('header')

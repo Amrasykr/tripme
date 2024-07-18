@@ -77,7 +77,7 @@
                 Top  Destinations
             </div>
             <div class="md:flex space-y-8 md:space-y-0 space-x-0 md:space-x-8 mt-6 md:mt-8 w-full md:justify-center">
-                <div class="w-full md:w-1/3 bg-second_white hover:bg-alternate  shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out"  >
+                <div class="w-full md:w-1/3  hover:bg-second_white  shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out"  >
                     <a href="#">
                         <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full  object-cover rounded-2xl">
                         <div class="py-1 bg-tertiary text-sm  text-white w-1/3 my-3 rounded-2xl mx-1">
@@ -91,7 +91,7 @@
                         </p>
                     </a>
                 </div>
-                <div class="w-full md:w-1/3 bg-second_white hover:bg-alternate  shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out"  >
+                <div class="w-full md:w-1/3  hover:bg-second_white  shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out"  >
                     <a href="#">
                         <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full  object-cover rounded-2xl">
                         <div class="py-1 bg-tertiary text-sm  text-white w-1/3 my-5 rounded-2xl mx-1">
@@ -105,7 +105,7 @@
                         </p>
                     </a>
                 </div>
-                <div class="w-full md:w-1/3 bg-second_white hover:bg-alternate  shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out"  >
+                <div class="w-full md:w-1/3  hover:bg-second_white  shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out"  >
                     <a href="#">
                         <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full  object-cover rounded-2xl">
                         <div class="py-1 bg-tertiary text-sm  text-white w-1/3 my-3 rounded-2xl mx-1">

@@ -102,10 +102,10 @@
 
             <div class="md:flex justify-center space-y-8 md:space-y-0 space-x-0 md:space-x-8 mt-6 md:mt-8 w-full">
                 @foreach ($related_destinations as $related)
-                <div class="w-full md:w-1/3 bg-second_white hover:bg-alternate shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out">
+                <div class="w-full md:w-1/3  hover:bg-second_white shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out">
                     <a href="/destination/{{$related->id}}">
                         <img src="{{ asset('assets/tumbnail_image/'.$related->main_image) }}" alt="hero" class="w-full h-72 object-cover rounded-2xl">
-                        <div class="py-1 bg-tertiary text-sm text-white w-1/3 my-3 rounded-2xl mx-1">
+                        <div class="py-1 bg-tertiary text-sm text-white w-1/3 my-3 md:my-5 rounded-2xl mx-1">
                             {{$related->category}}
                         </div>
                         <h3 class="text-start text-tertiary text-3xl font-medium tracking-wide mx-1">
