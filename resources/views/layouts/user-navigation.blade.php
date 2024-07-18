@@ -97,13 +97,13 @@
         <ul x-show="open" @click.away="open = false" class="bg-white text-gray-700 rounded shadow-lg absolute py-2 top-16 right-0" style="min-width:20rem">
             <li>
                 @if (Auth::user()->role ==='user')
-                <a href="/user/dashboard" class="block hover:bg-purple-200 whitespace-no-wrap py-2 px-4 transition-all duration-500 ease-in-out">Dashboard</a>
+                <a href="/user/dashboard" class="block hover:bg-second_white text-tertiary whitespace-no-wrap py-2 px-4 transition-all duration-500 ease-in-out">Dashboard</a>
                 @else
-                <a href="/admin/dashboard" class="block hover:bg-purple-200 whitespace-no-wrap py-2 px-4 transition-all duration-500 ease-in-out">Dashboard</a>
+                <a href="/admin/dashboard" class="block hover:bg-second_white text-tertiary whitespace-no-wrap py-2 px-4 transition-all duration-500 ease-in-out">Dashboard</a>
                 @endif
             </li>
             <li>
-                <form method="POST" action="{{ route('logout') }}" class="block hover:bg-purple-200 whitespace-no-wrap py-2 px-4">
+                <form method="POST" action="{{ route('logout') }}" class="block hover:bg-second_white text-tertiary whitespace-no-wrap py-2 px-4">
                     @csrf
                     <button type="submit">Logout</button>
                 </form>

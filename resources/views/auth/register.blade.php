@@ -13,7 +13,7 @@
 
     <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
         <div class="w-full">
-            <h1 class="mb-4 text-xl font-semibold text-gray-700">
+            <h1 class="mb-4 text-xl font-semibold text-secondary">
                 Create account
             </h1>
 
@@ -25,7 +25,7 @@
                     <x-text-input type="text"
                              id="name"
                              name="name"
-                             class="block w-full"
+                             class="block w-full text-tertiary focus:ring-tertiary"
                              value="{{ old('name') }}"
                              required
                              autofocus/>
@@ -36,7 +36,7 @@
                     <x-input-label for="email" :value="__('Email')"/>
                     <x-text-input name="email"
                              type="email"
-                             class="block w-full"
+                             class="block w-full text-tertiary focus:ring-tertiary"
                              value="{{ old('email') }}"/>
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
@@ -45,7 +45,7 @@
                     <x-input-label for="password" :value="__('Password')"/>
                     <x-text-input type="password"
                              name="password"
-                             class="block w-full"
+                             class="block w-full text-tertiary focus:ring-tertiary"
                              required/>
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
@@ -54,13 +54,13 @@
                     <x-input-label id="password_confirmation" :value="__('Confirm Password')"/>
                     <x-text-input type="password"
                              name="password_confirmation"
-                             class="block w-full"
+                             class="block w-full text-tertiary focus:ring-tertiary"
                              required/>
                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                 </div>
 
                 <div class="mt-4">
-                    <x-primary-button class="block w-full">
+                    <x-primary-button class="block w-full bg-secondary hover:bg-tertiary">
                         {{ __('Register') }}
                     </x-primary-button>
                 </div>
@@ -69,7 +69,7 @@
             <hr class="my-8"/>
 
             <p class="mt-4">
-                <a class="text-sm font-medium text-primary-600 hover:underline"
+                <a class="text-sm font-medium text-secondary hover:text-tertiary"
                    href="{{ route('login') }}">{{ __('Already registered?') }}</a>
             </p>
         </div>

@@ -10,7 +10,7 @@
     </div>
     <div class="flex justify-center items-center p-6 sm:p-12 md:w-1/2">
         <div class="w-full">
-            <h1 class="mb-4 font-semibold text-gray-700">
+            <h1 class="mb-4 font-semibold text-tertiary">
                 {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
             </h1>
 
@@ -24,7 +24,7 @@
                 <div class="mt-4">
                     <x-input-label for="email" :value="__('Email')"/>
                     <x-text-input type="email"
-                             class="block w-full"
+                             class="block w-full text-tertiary focus:ring-tertiary"
                              name="email"
                              id="email"
                              required
@@ -32,7 +32,7 @@
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
 
-                <x-primary-button class="block mt-4 w-full">
+                <x-primary-button class="block mt-4 w-full hover:bg-tertiary bg-secondary">
                     {{ __('Email Password Reset Link') }}
                 </x-primary-button>
             </form>

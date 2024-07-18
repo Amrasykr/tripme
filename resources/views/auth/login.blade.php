@@ -12,7 +12,7 @@
         </div>
         <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div class="w-full">
-                <h1 class="mb-4 text-xl font-semibold text-gray-700">
+                <h1 class="mb-4 text-xl font-semibold text-secondary">
                     Login
                 </h1>
 
@@ -26,7 +26,7 @@
                                 id="email"
                                 name="email"
                                 value="{{ old('email') }}"
-                                class="block w-full"
+                                class="block w-full focus:ring-primary"
                                 required
                                 autofocus/>
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -38,21 +38,21 @@
                         <x-text-input type="password"
                                 id="password"
                                 name="password"
-                                class="block w-full"/>
+                                class="block w-full focus:ring-primary"/>
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
                     <div class="flex mt-6 text-sm">
-                        <label class="flex items-center dark:text-gray-400">
+                        <label class="flex items-center text-secondary">
                             <input type="checkbox"
                                 name="remember"
-                                class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple">
+                                class="text-secondary form-checkbox focus:border-tertiary focus:outline-none focus:shadow-outline-tertiary focus:ring-tertiary">
                             <span class="ml-2">{{ __('Remember me') }}</span>
                         </label>
                     </div>
 
                     <div class="mt-4">
-                        <x-primary-button class="block w-full">
+                        <x-primary-button class="block w-full bg-secondary hover:bg-tertiary">
                             {{ __('Log in') }}
                         </x-primary-button>
                     </div>
@@ -62,7 +62,7 @@
 
                 @if (Route::has('password.request'))
                     <p class="mt-4">
-                        <a class="text-sm font-medium text-primary-600 hover:underline"
+                        <a class="text-sm font-medium text-secondary hover:underline"
                         href="{{ route('password.request') }}">
                             {{ __('Forgot your password?') }}
                         </a>
