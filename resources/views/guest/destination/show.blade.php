@@ -50,6 +50,20 @@
                                       <p class="py-4">Ahh, you need to login first before booking</p>
                                       @else
                                       <p class="py-4">Please, choose the best date for you to trip </p>
+                                      <form action="/user/reservation/{{$destination->id}}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('POST')
+                                        <div class="w-full">
+                                            <input id="date" name="date" type="date" 
+                                                   class="appearance-none block w-full bg-second_white text-tertiary border-none @error('date') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:bg-white">
+                                            @error('description')
+                                                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="mt-2 flex justify-end">
+                                            <button type="submit" class="bg-secondary text-white px-6 py-2 shadow-lg rounded-md">Submit</button>
+                                        </div>
+                                    </form>
                                       @endif    
                                     </div>
                                   </dialog>

@@ -153,14 +153,55 @@
                                                     </button>
                                                 </form>
                                             @elseif ($rsvp->status === 'finished')
-                                                <form action="/user/dashboard/reservation/{{ $rsvp->id }}/review" method="POST" style="display:inline;">
-                                                    @csrf
-                                                    <button type="submit" class="font-medium text-tertiary text-lg" title="Create Review">
+                                                @if ($rsvp->review)
+                                                    <p class="text-gray-700 font-extrabold">-</p>
+                                                @else
+                                                    <button onclick="showModal()" class="font-medium text-tertiary text-lg" title="Create Review">
                                                         <i class="fa-solid fa-magnifying-glass"></i>
                                                     </button>
-                                                </form>
+                                                    <dialog id="review" class="modal">
+                                                        <div class="modal-box">
+                                                            <form method="dialog">
+                                                                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                                            </form>
+                                                            <h3 class="text-lg font-bold">Hello!</h3>
+                                                            <p class="py-4">We will respond well to your review</p>
+                                                            <form action="/user/dashboard/reservation/{{$rsvp->id}}/review" method="POST" style="display:inline;">
+                                                                @csrf
+                                                                @method('POST')
+                                                                <div class="w-full mb-4">
+                                                                    <label for="rating" class="block text-tertiary text-sm font-bold mb-2">Rating</label>
+                                                                    <select id="rating" name="rating" 
+                                                                            class="appearance-none block w-full bg-second_white text-tertiary border-none @error('rating') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:bg-white">
+                                                                        <option value="" disabled selected>Select rating</option>
+                                                                        <option value="1">Bad</option>
+                                                                        <option value="2">Poor</option>
+                                                                        <option value="3">Average</option>
+                                                                        <option value="4">Good</option>
+                                                                        <option value="5">Excellent</option>
+                                                                    </select>
+                                                                    @error('rating')
+                                                                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                                                                    @enderror
+                                                                </div>   
+                                                                <div class="w-full mb-4">
+                                                                    <label for="content" class="block text-tertiary text-sm font-bold mb-2">Content</label>
+                                                                    <textarea id="content" name="content" rows="4"
+                                                                              class="appearance-none block w-full bg-second_white text-tertiary border-none @error('content') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:bg-white"></textarea>
+                                                                    @error('content')
+                                                                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="mt-2 flex justify-end">
+                                                                    <button type="submit" class="bg-secondary text-white px-6 py-2 shadow-lg rounded-md">Submit</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </dialog>
+                                                @endif
                                             @endif
-                                        </td>                 
+                                        </td>
+                                                                                             
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -178,6 +219,13 @@
 
 @section('script')
     <script>
+        function showModal() {
+            var modal = document.getElementById('review');
+            if (modal) {
+                modal.showModal();
+            }
+        }
+
     </script>
 @endsection
 
