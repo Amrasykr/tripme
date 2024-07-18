@@ -3,9 +3,10 @@
 @section('title', 'Homepage')
 
 @section('content')
+
     {{-- Hero --}}
-    <div class="relative mt-24" >
-        <div class="px-3 md:px-14" >
+    <div class="relative mt-24 container" data-aos="fade-up">
+        <div class="px-4 md:px-0" >
             <div class="relative">
                 <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full md:h-[43rem] object-cover rounded-2xl">
                 <div class="absolute inset-0 bg-black/40 rounded-2xl z-10"></div>
@@ -26,7 +27,7 @@
     </div>
 
     {{-- services --}}
-    <div class="mt-10 md:mt-20">
+    <div class="mt-10 md:mt-20 px-4 md:px-0 container">
         <div class="flex flex-col items-center text-center">
             <div class="text-3xl md:text-7xl font-light text-tertiary" >
                 Make Every Journey Memorable
@@ -37,7 +38,7 @@
                     <img src="{{ asset('images/erik.jpeg') }}" alt="user" class="w-6 h-6 md:w-14 md:h-14 object-cover object-bottom my-8 rounded-full">
                 </span> Us
             </div>
-            <div class="md:flex md:space-x-8 space-y-8 md:space-y-0 mt-0 md:mt-8 w-full px-12 md:px-24" >
+            <div class="md:flex md:space-x-8 space-y-8 md:space-y-0 mt-0 md:mt-8 w-full" >
                 <div class="w-full md:w-1/3 bg-secondary rounded-xl text-white shadow-xl">
                     <h3 class="text-2xl md:text-4xl font-base pt-5 md:pt-10">
                         Adventure Tours
@@ -71,11 +72,11 @@
 
     {{-- Top 3 Destinations --}}
     <div class="my-10 md:my-20" id="top">
-        <div class="flex flex-col items-center text-center">
+        <div class="flex flex-col items-center text-center px-4 md:px-0 container">
             <div class="text-3xl md:text-7xl font-light text-tertiary">
-                Top 3 Destinations
+                Top  Destinations
             </div>
-            <div class="md:flex space-y-5 md:space-y-0 space-x-0 md:space-x-8 md:mt-8 w-full px-8 md:px-24 md:justify-center">
+            <div class="md:flex space-y-8 md:space-y-0 space-x-0 md:space-x-8 mt-6 md:mt-8 w-full md:justify-center">
                 <div class="w-full md:w-1/3 bg-second_white hover:bg-alternate  shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out"  >
                     <a href="#">
                         <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full  object-cover rounded-2xl">
@@ -93,7 +94,7 @@
                 <div class="w-full md:w-1/3 bg-second_white hover:bg-alternate  shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out"  >
                     <a href="#">
                         <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full  object-cover rounded-2xl">
-                        <div class="py-1 bg-tertiary text-sm  text-white w-1/3 my-3 rounded-2xl mx-1">
+                        <div class="py-1 bg-tertiary text-sm  text-white w-1/3 my-5 rounded-2xl mx-1">
                             Waterfall
                         </div>
                         <h3 class="text-start text-tertiary text-3xl font-medium tracking-wide mx-1">

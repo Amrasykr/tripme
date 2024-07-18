@@ -7,7 +7,6 @@ module.exports = {
         "./storage/framework/views/*.php",
         "./resources/views/**/*.blade.php",
     ],
-
     theme: {
         themeVariants: ["dark"],
         Forms: (theme) => ({
@@ -19,6 +18,9 @@ module.exports = {
                 },
             },
         }),
+        container: {
+            center: true,
+        },
         extend: {
             maxHeight: {
                 0: "0",
