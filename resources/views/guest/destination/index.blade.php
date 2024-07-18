@@ -5,8 +5,8 @@
 @section('content')
 
     {{-- Top 1 --}}
-    <div class="relative mt-24">
-        <div class="px-3 md:px-14" >
+    <div class="relative mt-24" data-aos="fade-up">
+        <div class="px-4 md:px-0 container" >
             <div class="relative">
                 <a href="#">
                     <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full md:h-[43rem] object-cover rounded-2xl">
@@ -40,24 +40,24 @@
     </div>
 
     {{-- All Destinations --}}
-    <div class="my-10 md:my-20">
+    <div class="my-10 md:my-20 container px-4 md:px-0">
         <div class="flex flex-col items-center text-center">
             <div class="text-3xl md:text-7xl font-light text-gray-900" >
                 Our Destinations
             </div>
 
-            <div class="md:flex space-y-5 md:space-y-0 space-x-0 md:space-x-8 md:mt-8 w-full px-8 md:px-24">
+            <div class="md:flex space-y-8 md:space-y-0 space-x-0 md:space-x-8 mt-6 md:mt-8 w-full ">
                 @foreach ($destinations as $destination)
-                <div class="w-full md:w-1/3  bg-white hover:bg-purple-100  shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out"  >
+                <div class="w-full md:w-1/3 bg-second_white hover:bg-alternate  shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out"  >
                     <a href="/destination/{{$destination->id}}">
                         <img src="{{ asset('assets/tumbnail_image/'.$destination->main_image) }}" alt="hero" class="w-full h-72 object-cover rounded-2xl">
-                        <div class="py-1 bg-purple-700 text-sm  text-white w-1/3 my-3 rounded-2xl mx-1">
+                        <div class="py-1 bg-tertiary text-sm  text-white w-1/3 my-3 rounded-2xl mx-1">
                             {{$destination->category}}
                         </div>
-                        <h3 class="text-start text-3xl font-medium tracking-wide mx-1">
+                        <h3 class="text-start text-tertiary text-3xl font-medium tracking-wide mx-1">
                         {{$destination->name}}
                         </h3>
-                        <p class="text-start text-xl my-2 mx-1 font-light "> 
+                        <p class="text-start text-tertiary text-xl my-2 mx-1 font-light "> 
                             {{$destination->description}}
                         </p>
                     </a>
