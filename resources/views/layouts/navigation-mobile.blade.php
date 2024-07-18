@@ -17,10 +17,7 @@
             <li class="relative px-6 py-3">
                 <x-responsive-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
                     <x-slot name="icon">
-                        <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
-                             stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                            <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                        </svg>
+                        <i class="text-tertiary fa-solid fa-house"></i>
                     </x-slot>
                     Dashboard
                 </x-responsive-nav-link>
@@ -28,11 +25,25 @@
             <li class="relative px-6 py-3">
                 <x-responsive-nav-link href="{{ route('admin.dashboard.user') }}" :active="request()->routeIs('admin.dashboard.user')">
                     <x-slot name="icon">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 8 4 4 0 010-8zm0 10.292c-2.5 0-5.5 1.334-5.5 4v1h11v-1c0-2.666-3-4-5.5-4z"></path>
-                        </svg>
+                        <i class="text-tertiary fa-solid fa-users"></i>
                     </x-slot>
                     Users
+                </x-responsive-nav-link>
+            </li>
+            <li class="relative px-6 py-3">
+                <x-responsive-nav-link href="{{ route('admin.dashboard.destination') }}" :active="request()->routeIs('admin.dashboard.destination')">
+                    <x-slot name="icon">
+                        <i class="text-tertiary fa-solid fa-mountain-sun"></i>
+                    </x-slot>
+                    Destination
+                </x-responsive-nav-link>
+            </li>
+            <li class="relative px-6 py-3">
+                <x-responsive-nav-link href="{{ route('admin.dashboard.visitor') }}" :active="request()->routeIs('admin.dashboard.visitor')">
+                    <x-slot name="icon">
+                        <i class="text-tertiary fa-solid fa-user-check"></i>
+                    </x-slot>
+                    Visitor
                 </x-responsive-nav-link>
             </li>
         </ul>

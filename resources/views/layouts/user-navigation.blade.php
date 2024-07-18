@@ -60,17 +60,17 @@
     <!-- Show Menu lg -->
     @if (Auth::user())
         <div class="hidden w-full lg:flex lg:items-center lg:w-auto">
-            <div class="flex-1 pt-6 justify-center text-lg lg:pt-0 lg:flex space-x-10">
-                <a href="/" class="mr-3 text-base font-medium  inline-block py-2 no-underline text-secondary hover:text-tertiary  transition-all duration-300 ease-in-out">Home</a>
-                <a href="/destination" class="mr-3 text-base font-medium inline-block py-2 no-underline text-secondary hover:text-tertiary  transition-all duration-300 ease-in-out">Destination</a>
+            <div class="flex-1 pt-6 justify-center text-lg lg:pt-0 lg:flex space-x-10 mr-10">
+                <a href="/" class="text-base font-medium  inline-block py-2 no-underline text-secondary hover:text-tertiary  transition-all duration-300 ease-in-out">Home</a>
+                <a href="/destination" class="text-base font-medium inline-block py-2 no-underline text-secondary hover:text-tertiary  transition-all duration-300 ease-in-out">Destination</a>
                 <a href="/about" class="inline-block text-base font-medium py-2 no-underline text-secondary hover:text-tertiary  transition-all duration-300 ease-in-out">About</a>
             </div>
         </div>
     @else
     <div class="hidden w-full lg:flex lg:items-center lg:w-auto ">
-        <div class="flex-1 pt-6 justify-center text-lg lg:pt-0 lg:flex space-x-10">
-            <a href="/" class="mr-3 text-base font-medium  inline-block py-2 no-underline text-secondary hover:text-tertiary  transition-all duration-300 ease-in-out">Home</a>
-            <a href="/destination" class="mr-3 text-base font-medium inline-block py-2 no-underline text-secondary hover:text-tertiary transition-all duration-300 ease-in-out">Destination</a>
+        <div class="flex-1 pt-6 justify-center text-lg lg:pt-0 lg:flex space-x-10 ml-12">
+            <a href="/" class="text-base font-medium  inline-block py-2 no-underline text-secondary hover:text-tertiary  transition-all duration-300 ease-in-out">Home</a>
+            <a href="/destination" class="text-base font-medium inline-block py-2 no-underline text-secondary hover:text-tertiary transition-all duration-300 ease-in-out">Destination</a>
             <a href="/about" class="inline-block text-base font-medium py-2 no-underline text-secondary hover:text-tertiary  transition-all duration-300 ease-in-out">About</a>
         </div>
     </div>
