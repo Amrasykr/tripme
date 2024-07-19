@@ -71,7 +71,7 @@
     </div>
 
     {{-- Top 3 Destinations --}}
-    <div class="my-10 md:my-20 container px-4 md:px-0">
+    <div class="my-10 md:my-20 container px-4 md:px-0" id="top">
         <div class="flex flex-col items-center text-center">
             <div class="text-3xl md:text-7xl font-light text-gray-900">
                 Our Destinations
@@ -114,7 +114,7 @@
         
         // Scroll Animation
         AOS.init({
-            duration: 2500
+            duration: 2000
         });
 
     </script>
