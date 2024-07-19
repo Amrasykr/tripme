@@ -8,7 +8,7 @@
     <div class="relative mt-24" data-aos="fade-up">
         <div class="px-4 md:px-0 container" >
             <div class="relative">
-                <a href="#">
+                <a href="/destination/{{$top->id}}">
                     <img src="{{ asset('assets/tumbnail_image/'.$top->main_image) }}" alt="hero" class="w-full md:h-[43rem] object-cover rounded-2xl">
                     <div class="absolute inset-0 bg-black opacity-45 rounded-2xl z-10"></div>
                     <div class="absolute inset-0 flex flex-col items-start justify-end ml-4 pb-4 md:ml-10 md:pb-10 z-20">
@@ -72,7 +72,7 @@
     <script>
         // Scroll Animation
         AOS.init({
-            duration: 2500
+            duration: 2000
         });
     </script>
 @endsection

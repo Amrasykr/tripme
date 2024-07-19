@@ -32,7 +32,7 @@
                         </div>
                         <div class="w-4/12 md:w-2/12">
                             <div class="w-full py-1 px-4 md:px-10 bg-tertiary text-xs md:text-sm my-2 text-second_white rounded-2xl text-center">
-                                Lorem, ipsum.
+                               {{$destination->category}}
                             </div>
                         </div>
                         <div class="w-4/12 md:w-2/12 md:mt-2">
@@ -155,7 +155,7 @@
     <script>
         // Scroll Animation
         AOS.init({
-            duration: 2500
+            duration: 2000
         });
 
     </script>

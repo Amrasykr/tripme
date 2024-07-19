@@ -98,7 +98,7 @@
         })
 
         AOS.init({
-            duration: 2500
+            duration: 2000
         });
     </script>
 @endsection   
