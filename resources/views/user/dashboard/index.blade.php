@@ -111,37 +111,36 @@
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-3 mt-10">
                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                <label for="name" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Name</label>
-                                <input id="name" name="name" type="text" value={{Auth::user()->name}} class="appearance-none block w-full bg-white text-tertiary focus:ring-tertiary border-none @error('name') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
-                                @error('name')
+                                <label for="phone" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Name</label>
+                                <input id="phone" name="phone" type="text" value={{Auth::user()->name}} class="appearance-none block w-full bg-white text-tertiary focus:ring-tertiary border-none @error('phone') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                                @error('phone')
                                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="w-full md:w-1/2 px-3">
                                 <label for="image" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Image</label>
-                                <input id="image" name="image" type="file" class="appearance-none block w-full bg-white text-tertiary focus:ring-tertiary border-none @error('image') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
-                                
-                                @if (Auth::user()->image)
-                                    <p class="text-gray-500 text-xs italic">{{ Auth::user()->image }}</p>
-                                @else
-                                    <p class="text-gray-500 text-xs italic">Default User Image</p>
-                                @endif
-                                
-                                @error('image')
+                                <input id="phone" name="phone" type="text" value={{Auth::user()->name}} class="appearance-none block w-full bg-white text-tertiary focus:ring-tertiary border-none @error('phone') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                                @error('phone')
                                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                 @enderror
                             </div>                        
                         </div>
-                        <div class="flex flex-wrap -mx-3 mb-3">
-                            <div class="w-full px-3">
-                                <label for="Email" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Email</label>
-                                <input id="Email" name="email" type="text" value={{Auth::user()->email}}  class="appearance-none block w-full bg-white text-tertiary focus:ring-tertiary border-none @error('email') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                        <div class="flex flex-wrap -mx-3 mb-3 mt-10">
+                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                <label for="phone" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Phone Number</label>
+                                <input id="phone" name="phone" type="text" value="{{ Auth::user()->phone }}" class="appearance-none block w-full bg-white text-tertiary focus:ring-tertiary border-none @error('phone') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                                @error('phone')
+                                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                                @enderror
+                            </div>                            
+                            <div class="w-full md:w-1/2 px-3">
+                                <label for="email" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Email</label>
+                                <input id="email" name="email" type="email" value={{Auth::user()->email}} class="appearance-none block w-full bg-white text-tertiary focus:ring-tertiary border-none @error('email') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
                                 @error('email')
                                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                 @enderror
-                            </div>
+                            </div>                        
                         </div>
-                        
                         <div class="mt-2 flex justify-end">
                             <button type="submit" class="bg-tertiary text-white px-8 py-2 shadow-lg rounded-md">Edit</button>
                         </div>
