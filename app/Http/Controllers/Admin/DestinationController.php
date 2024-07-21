@@ -59,6 +59,8 @@ class DestinationController extends Controller
             'image_3' => 'image|mimes:jpeg,png,jpg|max:1048',
             'image_4' => 'image|mimes:jpeg,png,jpg|max:1048',
             'content' => 'required',
+            'price' => 'required',
+            'capacity_perday' => 'required',
         ]);
 
         $destination = new Destination([
@@ -68,6 +70,8 @@ class DestinationController extends Controller
             'address_url' => $validated_data['address_url'],
             'category' => $validated_data['category'],
             'content' => $validated_data['content'],
+            'price' => $validated_data['price'],
+            'capacity_perday' => $validated_data['capacity_perday'],
         ]);
 
         // Handle main image
@@ -136,6 +140,8 @@ class DestinationController extends Controller
             'image_3' => 'image|mimes:jpeg,png,jpg|max:1048',
             'image_4' => 'image|mimes:jpeg,png,jpg|max:1048',
             'content' => 'required',
+            'price' => 'required',
+            'capacity_perday' => 'required',
         ]);
 
         // Find the destination record by ID
@@ -148,6 +154,8 @@ class DestinationController extends Controller
         $destination->address_url = $validated_data['address_url'];
         $destination->category = $validated_data['category'];
         $destination->content = $validated_data['content'];
+        $destination->price = $validated_data['price'];
+        $destination->capacity_perday = $validated_data['capacity_perday'];
 
         // Handle main image update
         if ($request->hasFile('tumbnail') && $request->file('tumbnail')->isValid()) {

@@ -51,34 +51,38 @@
                 <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                         <label for="name" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Destination Name</label>
-                        <input id="name" name="name" type="text" value="{{$destination->name}}" class="appearance-none block w-full bg-second_white text-tertiary border-none @error('name') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight  focus:outline-none focus:bg-white" type="file" disabled>
+                        <input id="name" name="name" type="text" value="{{$destination->name}}" class="appearance-none block w-full bg-second_white text-tertiary border-none @error('name') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight  focus:outline-none focus:bg-white" disabled>
 
                     </div>
                     <div class="w-full md:w-1/2 px-3">
                         <label for="category" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Category</label>
-                        <input id="name" name="name" type="text" value="{{$destination->category}}" class="appearance-none block w-full bg-second_white text-tertiary border-none @error('name') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight  focus:outline-none focus:bg-white" type="file" disabled>
+                        <input id="name" name="name" type="text" value="{{$destination->category}}" class="appearance-none block w-full bg-second_white text-tertiary border-none @error('name') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight  focus:outline-none focus:bg-white" disabled>
                     </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                         <label for="address" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Address</label>
-                        <input id="address" name="address" type="text" value="{{$destination->address}}" class="appearance-none block w-full bg-second_white text-tertiary border-none @error('address') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                        <input id="address" name="address" type="text" value="{{$destination->address}}" class="appearance-none block w-full bg-second_white text-tertiary border-none @error('address') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" disabled>
                     </div>
                     <div class="w-full md:w-1/2 px-3">
                         <label for="address_url" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Address URL</label>
-                        <input id="address_url" name="address_url" type="text" value="{{$destination->address_url}}" class="appearance-none block w-full bg-second_white text-tertiary border-none @error('address_url') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
-                        @error('address_url')
-                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                        @enderror
+                        <input id="address_url" name="address_url" type="text" value="{{$destination->address_url}}" class="appearance-none block w-full bg-second_white text-tertiary border-none @error('address_url') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" disabled>
+                    </div>
+                </div>
+                <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                        <label for="address" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Ticket Price</label>
+                        <input id="address" name="address" type="text" value="{{$destination->price}}" class="appearance-none block w-full bg-second_white text-tertiary border-none @error('address') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" disabled>
+                    </div>
+                    <div class="w-full md:w-1/2 px-3">
+                        <label for="address_url" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Capacity Per Day</label>
+                        <input id="address_url" name="address_url" type="text" value="{{$destination->capacity_perday}}" class="appearance-none block w-full bg-second_white text-tertiary border-none @error('address_url') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" disabled>
                     </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="w-full px-3">
                         <label for="description" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Description</label>
-                        <input id="description" name="description" type="text" value="{{$destination->description}}"class="appearance-none block w-full bg-second_white text-tertiary border-none @error('description') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
-                        @error('description')
-                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                        @enderror
+                        <input id="description" name="description" type="text" value="{{$destination->description}}"class="appearance-none block w-full bg-second_white text-tertiary border-none @error('description') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" disabled>
                     </div>
                 </div>
                 
