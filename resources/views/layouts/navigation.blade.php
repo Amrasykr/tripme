@@ -41,6 +41,15 @@
                 </x-nav-link>
             </li>
 
+            <li class="relative px-6 py-3">
+                <x-nav-link href="{{ route('admin.dashboard.travel') }}" :active="request()->routeIs('admin.dashboard.travel')">
+                    <x-slot name="icon">
+                        <i class="text-tertiary fa-solid fa-car"></i>
+                    </x-slot>
+                    Travel
+                </x-nav-link>
+            </li>
+
         </ul>
     </div>
 </aside>

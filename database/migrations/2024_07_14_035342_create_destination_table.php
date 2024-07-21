@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('image_3')->nullable();
             $table->string('image_4')->nullable();
             $table->longText('content');
+            $table->integer('price');
+            $table->integer('capacity_perday');
             $table->timestamps();
         });
     }
