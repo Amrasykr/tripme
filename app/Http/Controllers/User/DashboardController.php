@@ -19,7 +19,7 @@ class DashboardController extends Controller
         $pending_reservation = Reservation::where('user_id', auth()->id())->where('status', 'pending')->count();
         $confirmed_reservation = Reservation::where('user_id', auth()->id())->where('status', 'confirmed')->count();
         $finished_reservation = Reservation::where('user_id', auth()->id())->where('status', 'finished')->count();
-        return view ('user.dashboard.index', compact('pending_reservation', 'confirmed_reservation', 'finished_reservation'));
+        return view('user.dashboard.index', compact('pending_reservation', 'confirmed_reservation', 'finished_reservation'));
     }
 
     /**
@@ -47,7 +47,9 @@ class DashboardController extends Controller
         $validated_data = $request->validate([
             'name' => 'sometimes|required|string|max:255',
             'email' => 'sometimes|required|string|email|max:255',
+            'phone' => 'sometimes|required',
             'image' => 'sometimes|required|image|mimes:jpeg,png,jpg|max:1048',
+
         ]);
 
         // Find the user by ID
@@ -59,6 +61,9 @@ class DashboardController extends Controller
         }
         if (isset($validated_data['email'])) {
             $user->email = $validated_data['email'];
+        }
+        if (isset($validated_data['phone'])) {
+            $user->phone = $validated_data['phone'];
         }
 
         // Handle image update
