@@ -70,6 +70,22 @@
             </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label for="price" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Ticket Price</label>
+                <input id="price" name="price" type="number" value="{{ old('price', $destination->price) }}" class="appearance-none block w-full bg-second_white text-tertiary border-none @error('price') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:bg-white">
+                @error('price')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="w-full md:w-1/2 px-3">
+                <label for="capacity_perday" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Capacity</label>
+                <input id="capacity_perday" name="capacity_perday" type="number" value="{{ old('capacity_perday', $destination->capacity_perday) }}" class="appearance-none block w-full bg-second_white text-tertiary border-none @error('capacity_perday') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:bg-white">
+                @error('capacity_perday')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </div>
+        </div>
+        <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
                 <label for="description" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Description</label>
                 <input id="description" name="description" type="text" value="{{ old('description', $destination->description) }}"

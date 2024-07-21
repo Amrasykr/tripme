@@ -36,8 +36,8 @@
                 <tr>
                     <th scope="col" class="px-6 py-3 w-1/3">Name</th>
                     <th scope="col" class="px-6 py-3 w-1/4">Address</th>
-                    <th scope="col" class="px-6 py-3 w-1/4">Category</th>
-                    <th scope="col" class="px-6 py-3 w-1/4">Created At</th>
+                    <th scope="col" class="px-6 py-3 w-1/4">Ticket Price</th>
+                    <th scope="col" class="px-6 py-3 w-1/4">Capacity Perday</th>
                     <th scope="col" class="px-6 py-3 w-24">Action</th>
                 </tr>
             </thead>
@@ -62,8 +62,8 @@
                         </div>
                     </td>
                     <td class="px-6 py-4">{{ $destination->address }}</td>
-                    <td class="px-6 py-4 ">{{ $destination->category }}</td>
-                    <td class="px-6 py-4">{{ \Carbon\Carbon::parse($destination->created_at)->translatedFormat('l, j F Y') }}</td>
+                    <td class="px-6 py-4 ">Rp.{{ $destination->price }}</td>
+                    <td class="px-6 py-4">{{ $destination->capacity_perday}}</td>
                     <td class="px-3 py-7 w-24 flex space-x-3 items-center">
                         <a href="/admin/dashboard/destination/{{$destination->id}}" class="font-medium text-secondary hover:underline text-lg">
                             <i class="fas fa-eye"></i>
