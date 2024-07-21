@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="fixed top-0 z-40 flex flex-wrap items-center justify-between w-full px-4 py-5 shadow-md bg-second_white bg-opacity-90 md:py-4 md:px-4 lg:px-20">
+<nav x-data="{ open: false }" class="fixed top-0 z-40 flex flex-wrap items-center justify-between w-full px-4 py-5 shadow-md bg-second_white/50 backdrop-blur-md md:py-4 md:px-4 lg:px-20">
     <!-- Left nav -->
     <div class="flex items-center">
         <a href="/">

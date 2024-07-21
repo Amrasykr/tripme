@@ -15,13 +15,20 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('destination_id');
+            $table->unsignedBigInteger('travel_id')->nullable();
             $table->date('date');
-            $table->enum('status', ['pending', 'confirmed', 'canceled', 'rejected', 'on-going', 'finished']);
+            $table->integer('total_price');
+            $table->integer('duration');
+            $table->integer('person');
+            $table->string('pickup_location');
+            $table->integer('distance_in_km');
+            $table->enum('status', ['unpaid', 'paid and pending', 'confirmed', 'canceled', 'rejected', 'finished']);
             $table->timestamps();
 
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('destination_id')->references('id')->on('destination')->onDelete('cascade');
+            $table->foreign('travel_id')->references('id')->on('travel')->onDelete('cascade');
         });
     }
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DestinationController as AdminDestinationControll
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\VisitorController as AdminVisitorController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
+use App\Http\Controllers\Admin\TravelController as AdminTravelController;
 
 
 use App\Http\Controllers\Guest\AboutController;
@@ -48,6 +49,12 @@ Route::middleware('auth')->group(function () {
         Route::patch('/dashboard/visitor/{id}/confirm', [AdminVisitorController::class, 'confirm'])->name('admin.dashboard.visitor.confirm');
         Route::patch('/dashboard/visitor/{id}/reject', [AdminVisitorController::class, 'reject'])->name('admin.dashboard.visitor.reject');
 
+        Route::get('/dashboard/travel', [AdminTravelController::class, 'index'])->name('admin.dashboard.travel');
+        Route::get('/dashboard/travel/create', [AdminTravelController::class, 'create'])->name('admin.dashboard.travel.create');
+        Route::post('/dashboard/travel/store', [AdminTravelController::class, 'store'])->name('admin.dashboard.travel.store');
+        Route::get('/dashboard/travel/{id}/edit', [AdminTravelController::class, 'edit'])->name('admin.dashboard.travel.edit');
+        Route::patch('/dashboard/travel/{id}/update', [AdminTravelController::class, 'update'])->name('admin.dashboard.travel.update');
+        Route::delete('/dashboard/travel/{id}/delete', [AdminTravelController::class, 'destroy'])->name('admin.dashboard.travel.destroy');
 
         Route::get('/profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [AdminProfileController::class, 'update'])->name('profile.update');
