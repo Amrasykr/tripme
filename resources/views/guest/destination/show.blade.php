@@ -22,11 +22,14 @@
                         </div>
                         <div class="my-1 md:mt-3 md:mb-1 w-2/3 md:w-4/12">
                             <p class="w-full text-xs md:text-sm text-white font-light">
+                                {{$destination->capacity_perday}} Capacities Per Day  <span class="mx-1 md:mx-2 font-extralight "><b>·</b></span> {{$available_capacity_today}} Available Capacity Today
+                            </p>
+                            <p class="w-full text-xs md:text-sm text-white font-light">
                                 {{ \Carbon\Carbon::parse($destination->created_at)->diffForHumans() }}  <span class="mx-1 md:mx-2 font-extralight "><b>·</b></span> {{$total_visitors}} Visitors
                             </p>
                             <a href="{{$destination->address_url}}" class="w-full" target="_blank">
                                 <p class="text-xs md:text-sm text-white font-light">
-                                    <span class="font-extralight"><i class="fa-solid fa-location-dot text-white"></i></span> {{$destination->address}}
+                                    <span class="font-extralight mr-1"><i class="fa-solid fa-location-dot text-white"></i></span> {{$destination->address}}
                                 </p>
                             </a>                 
                         </div>
@@ -50,6 +53,8 @@
                                       <p class="py-4">Ahh, you need to login first before booking</p>
                                       @elseif (!Auth::user()->phone)
                                       <p class="py-4">Ahh, you need to complete your personal data first before booking</p>
+                                      @elseif ($available_capacity_today == 0)
+                                      <p class="py-4">Ahh sorry, no available reservation today</p>
                                       @else
                                       <p class="py-4">Please, choose the best date for you to trip </p>
                                       <form action="/user/reservation/{{$destination->id}}" method="POST" style="display:inline;">
