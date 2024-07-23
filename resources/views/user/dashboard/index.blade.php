@@ -119,8 +119,8 @@
                             </div>
                             <div class="w-full md:w-1/2 px-3">
                                 <label for="image" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Image</label>
-                                <input id="phone" name="phone" type="text" value={{Auth::user()->name}} class="appearance-none block w-full bg-white text-tertiary focus:ring-tertiary border-none @error('phone') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
-                                @error('phone')
+                                <input id="image" name="image" type="file" class="appearance-none block w-full bg-white text-tertiary focus:ring-tertiary border-none @error('imgae') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                                @error('image')
                                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                 @enderror
                             </div>                        

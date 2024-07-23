@@ -20,8 +20,8 @@ return new class extends Migration
             $table->integer('total_price');
             $table->integer('duration');
             $table->integer('person');
-            $table->string('pickup_location');
-            $table->integer('distance_in_km');
+            $table->string('pickup_location')->nullable();
+            $table->integer('distance_in_km')->nullable();
             $table->enum('status', ['unpaid', 'paid and pending', 'confirmed', 'canceled', 'rejected', 'finished']);
             $table->timestamps();
 

@@ -130,36 +130,50 @@
                                         </tr>
                                     @endempty
                                     @foreach ($reservation as $rsvp)
-                                    <tr class="bg-white border-b">
+                                    <tr class="bg-white border-b" onclick="detail.showModal()">       
                                         <td class="px-6 py-4 w-1/4">{{ $rsvp->destination->name }}</td>
                                         <td class="px-6 py-4 w-1/4">{{ \Carbon\Carbon::parse($rsvp->date)->translatedFormat('l, j F Y') }}</td>
                                         <td class="px-6 py-4 w-1/4">{{ $rsvp->status }}</td>
                                         <td class="px-4 py-6 w-24 flex space-x-3 items-center">
-                                            @if ($rsvp->status === 'pending' || $rsvp->status === 'rejected' || $rsvp->status === 'canceled' || $rsvp->status === 'on going')
-                                                <p class="text-gray-700 font-extrabold">-</p>
-                                            @elseif ($rsvp->status === 'confirmed')
-                                                <form action="/user/dashboard/reservation/{{ $rsvp->id }}/confirm" method="POST" style="display:inline;">
+                                            @if ($rsvp->status === 'unpaid')
+                                                <form action="/user/dashboard/reservation/{{ $rsvp->id }}/buy" method="POST" style="display:inline;">
                                                     @csrf
-                                                    @method('PATCH')
-                                                    <button type="submit" class="font-medium text-secondary hover:underline text-lg" title="Confirm">
-                                                        <i class="fa-solid fa-check"></i>
+                                                    <button type="submit" class="font-medium text-secondary hover:underline text-lg" title="Buy">
+                                                        <i class="fa-solid fa-shopping-cart"></i>
                                                     </button>
                                                 </form>
                                                 <form action="/user/dashboard/reservation/{{ $rsvp->id }}/cancel" method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('PATCH')
-                                                    <button type="submit" class="font-medium text-red-600 hover:underline text-lg" title="Reject">
+                                                    <button type="submit" class="font-medium text-red-600 hover:underline text-lg" title="Cancel">
                                                         <i class="fa-solid fa-ban"></i>
                                                     </button>
                                                 </form>
+                                            @elseif ($rsvp->status === 'confirmed')
+                                            <form action="/user/dashboard/reservation/{{ $rsvp->id }}/confirm" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('PATCH')
+                                                <button type="submit" class="font-medium text-secondary hover:underline text-lg" title="Confirm">
+                                                    <i class="fa-solid fa-flag"></i>
+                                                </button>
+                                            </form>
+                                                <form action="/user/dashboard/reservation/{{ $rsvp->id }}/cancel" method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit" class="font-medium text-red-600 hover:underline text-lg" title="Cancel">
+                                                        <i class="fa-solid fa-ban"></i>
+                                                    </button>
+                                                </form>
+                                            @elseif ($rsvp->status === 'rejected' || $rsvp->status === 'paid and pending')
+                                                <!-- No actions to display -->
                                             @elseif ($rsvp->status === 'finished')
                                                 @if ($rsvp->review)
                                                     <p class="text-gray-700 font-extrabold">-</p>
                                                 @else
-                                                    <button onclick="showModal()" class="font-medium text-tertiary text-lg" title="Create Review">
+                                                    <button onclick="document.getElementById('review-{{ $rsvp->id }}').showModal()" class="font-medium text-tertiary text-lg" title="Create Review">
                                                         <i class="fa-solid fa-magnifying-glass"></i>
                                                     </button>
-                                                    <dialog id="review" class="modal">
+                                                    <dialog id="review-{{ $rsvp->id }}" class="modal">
                                                         <div class="modal-box">
                                                             <form method="dialog">
                                                                 <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
@@ -200,8 +214,7 @@
                                                     </dialog>
                                                 @endif
                                             @endif
-                                        </td>
-                                                                                             
+                                        </td>                                                                               
                                     </tr>
                                     @endforeach
                                 </tbody>
