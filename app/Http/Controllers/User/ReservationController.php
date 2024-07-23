@@ -41,6 +41,18 @@ class ReservationController extends Controller
         ]);
     
         $destination = Destination::findOrFail($id);
+    
+        $reservations_on_date = Reservation::where('destination_id', $id)
+            ->whereDate('date', $validated_data['date'])
+            ->sum('person');
+
+        $remaining_capacity = $destination->capacity_perday - $reservations_on_date;
+
+        if ($validated_data['person'] > $remaining_capacity) {
+            notify()->error('Reservation capacity for the selected date is full.');
+            return redirect()->back()->withInput();
+        }
+
         $travel = Travel::find($validated_data['travel_id'] ?? null);
     
         $total_price = $destination->price * $validated_data['person'];

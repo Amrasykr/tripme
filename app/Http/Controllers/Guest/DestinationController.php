@@ -44,9 +44,8 @@ class DestinationController extends Controller
      */
     public function show(string $id)
     {
-        //
         $destination = Destination::find($id);
-        $travels = Travel::all();
+
         $related_destinations = Destination::where('category', $destination->category)
             ->where('id', '!=', $destination->id)
             ->get();
@@ -54,9 +53,18 @@ class DestinationController extends Controller
         $total_visitors = DB::table('reservation')
             ->where('destination_id', $destination->id)
             ->count();
-            
-        return view('guest.destination.show', compact('destination', 'related_destinations', 'total_visitors', 'travels'));
+    
+        $today_reservations = DB::table('reservation')
+            ->where('destination_id', $destination->id)
+            ->whereDate('date', Carbon::today())
+            ->sum('person');
+
+        $available_capacity_today = $destination->capacity_perday - $today_reservations;
+        $travels = Travel::all();
+    
+        return view('guest.destination.show', compact('destination', 'related_destinations', 'total_visitors', 'travels', 'available_capacity_today'));
     }
+    
 
     /**
      * Update the specified resource in storage.

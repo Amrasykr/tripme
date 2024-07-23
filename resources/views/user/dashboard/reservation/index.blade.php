@@ -144,7 +144,7 @@
                                                         <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                                     </form>
                                                     <div class="flex justify-between mt-6 items-center">
-                                                        <h3 class="text-lg font-bold">Your Reservation Detail!</h3>
+                                                        <h3 class="text-lg font-bold">Your Reservation Detail</h3>
                                                         <div class="font-medium text-tertiary  text-xs bg-slate-300 rounded-full py-1 px-2">
                                                             {{$rsvp->status}}
                                                         </div>
@@ -157,11 +157,11 @@
                                                                    {{$rsvp->destination->name}}
                                                                 </div>
                                                                 <div class="text-xs text-secondary">
-                                                                    <i class="fa-solid fa-tag mr-[0.2px]"></i> Rp. {{ number_format($rsvp->destination->price)}} 
+                                                                    </i> Rp. {{ number_format($rsvp->destination->price)}} 
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="flex flex-col m-2 space-y-5">
+                                                        <div class="flex flex-col m-2 justify-between">
                                                             <div class="text-md text-tertiary font-semibold ">
                                                                 Rp. {{ number_format($rsvp->destination->price * $rsvp->person) }}
                                                             </div>
@@ -176,15 +176,15 @@
                                                         Your Travel
                                                     </p>
                                                     <div class="border border-tertiary rounded-lg  flex justify-between">
-                                                        <div class="m-2 flex flex-col justify-between space-y-2">
+                                                        <div class="m-2 flex flex-col justify-between space-y-3 ">
                                                             <div class="text-md text-tertiary font-semibold">
                                                                {{$rsvp->travel->name}}
                                                             </div>
                                                             <div class="text-xs text-secondary">
-                                                                <i class="fa-solid fa-tag mr-[0.2px]"></i> Rp. {{number_format($rsvp->travel->price)}} 
+                                                                </i> Rp. {{number_format($rsvp->travel->price)}} 
                                                             </div>
                                                         </div>
-                                                        <div class="flex flex-col m-2">
+                                                        <div class="flex flex-col justify-between space-y-3 m-2 ">
                                                             <div class="text-md text-tertiary font-semibold ">
                                                                 Rp. {{ number_format($rsvp->travel->price_per_km * $rsvp->distance_in_km + $rsvp->travel->price) }}
                                                             </div>
