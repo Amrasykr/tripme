@@ -255,7 +255,6 @@
         </div>
     </dialog>
 
-
 @endsection
 
 @section('script')

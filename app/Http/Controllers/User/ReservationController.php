@@ -17,7 +17,7 @@ class ReservationController extends Controller
     public function index()
     {
         //
-        $reservation = Reservation::where('user_id', auth()->id())->get();
+        $reservation = Reservation::where('user_id', auth()->id())->paginate(5);
         $pending_reservation = Reservation::where('user_id', auth()->id())->where('status', 'pending')->count();
         $confirmed_reservation = Reservation::where('user_id', auth()->id())->where('status', 'confirmed')->count();
         $finished_reservation = Reservation::where('user_id', auth()->id())->where('status', 'finished')->count();
