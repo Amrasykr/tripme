@@ -120,12 +120,13 @@
                             <div class="w-full md:w-1/2 px-3">
                                 <label for="image" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Image</label>
                                 <input id="image" name="image" type="file" class="appearance-none block w-full bg-white text-tertiary focus:ring-tertiary border-none @error('imgae') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                                <p class="text-tertiary text-xs italic">current image = {{ Auth::user()->image }}</p>
                                 @error('image')
                                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                 @enderror
                             </div>                        
                         </div>
-                        <div class="flex flex-wrap -mx-3 mb-3 mt-10">
+                        <div class="flex flex-wrap -mx-3 mb-3 mt-2">
                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                 <label for="phone" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Phone Number</label>
                                 <input id="phone" name="phone" type="text" value="{{ Auth::user()->phone }}" class="appearance-none block w-full bg-white text-tertiary focus:ring-tertiary border-none @error('phone') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">

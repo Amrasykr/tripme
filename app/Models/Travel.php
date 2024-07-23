@@ -15,4 +15,9 @@ class Travel extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function reservation()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }

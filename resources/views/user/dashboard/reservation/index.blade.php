@@ -134,34 +134,110 @@
                                         <td class="px-6 py-4 w-1/4">{{ $rsvp->destination->name }}</td>
                                         <td class="px-6 py-4 w-1/4">{{ \Carbon\Carbon::parse($rsvp->date)->translatedFormat('l, j F Y') }}</td>
                                         <td class="px-6 py-4 w-1/4">{{ $rsvp->status }}</td>
-                                        <td class="px-4 py-6 w-24 flex space-x-3 items-center">
+                                        <td class="px-4 py-6 w-24 flex space-x-1 items-center">
+                                            <button onclick="document.getElementById('detail-{{ $rsvp->id }}').showModal()" class="font-medium text-tertiary  text-xs bg-slate-300 rounded-full px-3 py-2" title="detail">
+                                                Detail
+                                            </button>
+                                            <dialog id="detail-{{ $rsvp->id }}" class="modal">
+                                                <div class="modal-box">
+                                                    <form method="dialog">
+                                                        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                                    </form>
+                                                    <div class="flex justify-between mt-6 items-center">
+                                                        <h3 class="text-lg font-bold">Your Reservation Detail!</h3>
+                                                        <div class="font-medium text-tertiary  text-xs bg-slate-300 rounded-full py-1 px-2">
+                                                            {{$rsvp->status}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="bg-second_white h-20 rounded-lg mt-4 flex justify-between">
+                                                        <div class="m-2 flex space-x-2">
+                                                            <img src="{{ asset('assets/tumbnail_image/' .$rsvp->destination->main_image ) }}" class="rounded-md w-24 object-cover object-center">
+                                                            <div class="flex flex-col justify-between">
+                                                                <div class="text-md text-tertiary font-semibold">
+                                                                   {{$rsvp->destination->name}}
+                                                                </div>
+                                                                <div class="text-xs text-secondary">
+                                                                    <i class="fa-solid fa-tag mr-[0.2px]"></i> Rp. {{ number_format($rsvp->destination->price)}} 
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex flex-col m-2 space-y-5">
+                                                            <div class="text-md text-tertiary font-semibold ">
+                                                                Rp. {{ number_format($rsvp->destination->price * $rsvp->person) }}
+                                                            </div>
+                                                            <div class="text-xs text-secondary text-end">
+                                                                *for {{$rsvp->person}} person
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    @if ($rsvp->travel_id)
+                                                    <p class="mt-2 mb-1 mx-1 text-xs font-semibold">
+                                                        Your Travel
+                                                    </p>
+                                                    <div class="border border-tertiary rounded-lg  flex justify-between">
+                                                        <div class="m-2 flex flex-col justify-between space-y-2">
+                                                            <div class="text-md text-tertiary font-semibold">
+                                                               {{$rsvp->travel->name}}
+                                                            </div>
+                                                            <div class="text-xs text-secondary">
+                                                                <i class="fa-solid fa-tag mr-[0.2px]"></i> Rp. {{number_format($rsvp->travel->price)}} 
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex flex-col m-2">
+                                                            <div class="text-md text-tertiary font-semibold ">
+                                                                Rp. {{ number_format($rsvp->travel->price_per_km * $rsvp->distance_in_km + $rsvp->travel->price) }}
+                                                            </div>
+                                                            <div class="text-xs text-secondary text-end">
+                                                                *for {{$rsvp->distance_in_km}} km
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @endif
+                                                    <div class="flex justify-between space-x-2 mt-6">
+                                                        <p class="mb-1 mx-1 text-md font-semibold">
+                                                            Total Price
+                                                        </p>
+                                                        <div class="flex flex-col space-y-1">
+                                                            <p class="mb-1 mx-1 text-lg font-semibold">
+                                                                Rp. {{number_format($rsvp->total_price)}}
+                                                            </p>
+                                                            @if ($rsvp->status == 'unpaid')
+                                                            <button type="submit" class="font-semibold text-tertiary text-md bg-alternate hover:bg-secondary hover:text-white transition-all duration-300 ease-in-out rounded-full px-3 py-2" title="payment">
+                                                                Payment
+                                                            </button>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </dialog>
                                             @if ($rsvp->status === 'unpaid')
                                                 <form action="/user/dashboard/reservation/{{ $rsvp->id }}/buy" method="POST" style="display:inline;">
                                                     @csrf
-                                                    <button type="submit" class="font-medium text-secondary hover:underline text-lg" title="Buy">
-                                                        <i class="fa-solid fa-shopping-cart"></i>
+                                                    <button type="submit" class="font-medium text-tertiary  text-xs bg-alternate rounded-full px-3 py-2" title="payment">
+                                                            Payment
                                                     </button>
                                                 </form>
                                                 <form action="/user/dashboard/reservation/{{ $rsvp->id }}/cancel" method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('PATCH')
-                                                    <button type="submit" class="font-medium text-red-600 hover:underline text-lg" title="Cancel">
-                                                        <i class="fa-solid fa-ban"></i>
-                                                    </button>
+                                                    <button type="submit" class="font-medium text-tertiary  text-xs bg-red-300 rounded-full px-3 py-2" title="cancel">
+                                                        Cancel
+                                                </button>
                                                 </form>
                                             @elseif ($rsvp->status === 'confirmed')
                                             <form action="/user/dashboard/reservation/{{ $rsvp->id }}/confirm" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('PATCH')
-                                                <button type="submit" class="font-medium text-secondary hover:underline text-lg" title="Confirm">
-                                                    <i class="fa-solid fa-flag"></i>
-                                                </button>
+                                                <button type="submit" class="font-medium text-tertiary  text-xs bg-blue-300 rounded-full px-3 py-2" title="finish">
+                                                    Finish
+                                            </button>
                                             </form>
                                                 <form action="/user/dashboard/reservation/{{ $rsvp->id }}/cancel" method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('PATCH')
-                                                    <button type="submit" class="font-medium text-red-600 hover:underline text-lg" title="Cancel">
-                                                        <i class="fa-solid fa-ban"></i>
+                                                    <button type="submit" class="font-medium text-tertiary  text-xs bg-red-300 rounded-full px-3 py-2" title="cancel">
+                                                        Cancel
                                                     </button>
                                                 </form>
                                             @elseif ($rsvp->status === 'rejected' || $rsvp->status === 'paid and pending')
@@ -170,8 +246,8 @@
                                                 @if ($rsvp->review)
                                                     <p class="text-gray-700 font-extrabold">-</p>
                                                 @else
-                                                    <button onclick="document.getElementById('review-{{ $rsvp->id }}').showModal()" class="font-medium text-tertiary text-lg" title="Create Review">
-                                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                                    <button onclick="document.getElementById('review-{{ $rsvp->id }}').showModal()"  class="font-medium text-tertiary  text-xs bg-yellow-300 rounded-full px-3 py-2" title="create review">
+                                                        Review
                                                     </button>
                                                     <dialog id="review-{{ $rsvp->id }}" class="modal">
                                                         <div class="modal-box">
@@ -232,10 +308,17 @@
 
 @section('script')
     <script>
-        function showModal() {
-            var modal = document.getElementById('review');
-            if (modal) {
-                modal.showModal();
+        function showReviewModal() {
+            var reviewModal = document.getElementById('review');
+            if (reviewModal) {
+                reviewModal.showModal();
+            }
+        }
+
+        function showDetailModal() {
+            var detailModal = document.getElementById('review');
+            if (detailModal) {
+                detailModal.showModal();
             }
         }
 
