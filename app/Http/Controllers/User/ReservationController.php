@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Reservation;
 use App\Models\Review;
+use App\Models\Destination;
+use App\Models\Travel;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -31,25 +33,46 @@ class ReservationController extends Controller
     {
         $validated_data = $request->validate([
             'date' => 'required',
+            'person' => 'required|integer',
+            'duration' => 'required|integer',
+            'pickup_location' => 'sometimes',
+            'distance_in_km' => 'sometimes',
+            'travel_id' => 'sometimes',
         ]);
-
+    
+        $destination = Destination::findOrFail($id);
+        $travel = Travel::find($validated_data['travel_id'] ?? null);
+    
+        $total_price = $destination->price * $validated_data['person'];
+        if ($travel) {
+            $total_price += $travel->price + ($travel->price_per_km * ($validated_data['distance_in_km'] ?? 0));
+        }
+    
         $reservation = new Reservation([
             'user_id' => auth()->id(),
             'date' => $validated_data['date'],
+            'duration' => $validated_data['duration'],
+            'person' => $validated_data['person'],
+            'pickup_location' => $validated_data['pickup_location'] ?? null,
+            'distance_in_km' => $validated_data['distance_in_km'] ?? null,
+            'travel_id' => $validated_data['travel_id'] ?? null,
             'destination_id' => $id,
-            'status' => 'pending',
+            'total_price' => $total_price,
+            'status' => 'unpaid',
         ]);
-
+    
         $reservation->save();
-
+    
         if ($reservation) {
-            notify()->success(message: 'Successfully Creating Reservation');
+            notify()->success('Successfully Creating Reservation');
             return redirect()->route('user.dashboard.reservation');
         } else {
-            notify()->error(message: 'Failed to Create Reservation');
+            notify()->error('Failed to Create Reservation');
             return redirect()->back()->withInput();
         }
     }
+    
+    
 
     public function confirm(string $id)
     {
@@ -81,7 +104,7 @@ class ReservationController extends Controller
         }
     }
 
-    public function review (Request $request, string $id)
+    public function review(Request $request, string $id)
     {
         $validated_data = $request->validate([
             'rating' => 'required',

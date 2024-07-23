@@ -48,25 +48,77 @@
                                       <h3 class="text-lg font-bold">Hello!</h3>
                                       @if (!Auth::check() || Auth::user()->role === 'admin')
                                       <p class="py-4">Ahh, you need to login first before booking</p>
+                                      @elseif (!Auth::user()->phone)
+                                      <p class="py-4">Ahh, you need to complete your personal data first before booking</p>
                                       @else
                                       <p class="py-4">Please, choose the best date for you to trip </p>
                                       <form action="/user/reservation/{{$destination->id}}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('POST')
                                         <div class="w-full">
-                                            <input id="date" name="date" type="date" 
-                                                   class="appearance-none block w-full bg-second_white text-tertiary border-none @error('date') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:bg-white">
-                                            @error('description')
-                                                <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                                            @enderror
+                                            <div class="w-full mb-4">
+                                                <label for="date" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Date</label>
+                                                <input id="date" name="date" type="date" class="appearance-none block w-full bg-second_white text-tertiary border-none @error('date') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:bg-white">
+                                                @error('date')
+                                                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            
+                                            <div class="flex flex-wrap -mx-3 mb-4">
+                                                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                                    <label for="person" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Person</label>
+                                                    <input id="person" name="person" type="number" value="{{ old('person') }}" class="appearance-none block w-full bg-second_white text-tertiary border-none @error('person') border-red-500 @enderror rounded py-3 px-4 leading-tight focus:bg-white">
+                                                    @error('person')
+                                                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                                    <label for="duration" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Duration</label>
+                                                    <input id="duration" name="duration" type="number" value="{{ old('duration') }}" class="appearance-none block w-full bg-second_white text-tertiary border-none @error('duration') border-red-500 @enderror rounded py-3 px-4 leading-tight focus:bg-white">
+                                                    @error('duration')
+                                                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        
+                                            <div class="flex flex-wrap -mx-3 mb-4">
+                                                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                                    <label for="travel" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Travel</label>
+                                                    <select id="travel" name="travel_id" class="appearance-none block w-full bg-second_white text-tertiary border-none @error('travel') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:bg-white">
+                                                        <option value="" disabled selected>Select Travel</option>
+                                                        @foreach($travels as $item)
+                                                            <option value="{{ $item->id }}">{{ $item->name }} - {{ $item->description }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('travel')
+                                                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                                    <label for="distance_in_km" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Distance (in km)</label>
+                                                    <input id="distance_in_km" name="distance_in_km" type="number" value="{{ old('distance_in_km') }}" class="appearance-none block w-full bg-second_white text-tertiary border-none @error('distance_in_km') border-red-500 @enderror rounded py-3 px-4 leading-tight focus:bg-white">
+                                                    @error('distance_in_km')
+                                                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        
+                                            <div class="w-full mb-4">
+                                                <label for="pickup_location" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Pick Up Location</label>
+                                                <textarea id="pickup_location" name="pickup_location" rows="4" class="appearance-none block w-full bg-second_white text-tertiary border-none @error('pickup_location') border-red-500 @enderror rounded py-3 px-4 leading-tight focus:bg-white">{{ old('pickup_location') }}</textarea>
+                                                @error('pickup_location')
+                                                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                                                @enderror
+                                            </div>
                                         </div>
-                                        <div class="mt-2 flex justify-end">
+                                        <div class="mt-10 flex justify-end">
                                             <button type="submit" class="bg-secondary text-white px-6 py-2 shadow-lg rounded-md">Submit</button>
+                                        </div>
                                         </div>
                                     </form>
                                       @endif    
                                     </div>
-                                  </dialog>
+                                </dialog>
                             </div>
                         </div>                        
                     </div>

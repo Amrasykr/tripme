@@ -5,6 +5,7 @@ namespace App\Http\Controllers\guest;
 use App\Http\Controllers\Controller;
 use App\Models\Destination;
 use App\Models\Reservation;
+use App\Models\Travel;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -45,6 +46,7 @@ class DestinationController extends Controller
     {
         //
         $destination = Destination::find($id);
+        $travels = Travel::all();
         $related_destinations = Destination::where('category', $destination->category)
             ->where('id', '!=', $destination->id)
             ->get();
@@ -53,7 +55,7 @@ class DestinationController extends Controller
             ->where('destination_id', $destination->id)
             ->count();
             
-        return view('guest.destination.show', compact('destination', 'related_destinations', 'total_visitors'));
+        return view('guest.destination.show', compact('destination', 'related_destinations', 'total_visitors', 'travels'));
     }
 
     /**
