@@ -42,7 +42,7 @@
                     <div class="w-full md:w-1/3 rounded-lg px-5 pb-4 pt-10 mb-4 flex items-center justify-between shadow-xl bg-alternate">
                         <div>
                             <h1 class="text-5xl font-bold text text-tertiary font-sans">{{$finished_reservation}}</h1>
-                            <h3 class="text-lg font-light text-tertiary/80">finished</h3>
+                            <h3 class="text-lg font-light text-tertiary/80">Finished</h3>
                         </div>
                         <div class="mt-[-6rem]">
                             <i class="fa-solid fa-clock text-4xl text-tertiary/70"></i>
@@ -169,53 +169,106 @@
                             <i class="fa-solid fa-arrow-right"></i>    
                         </button>
                     </div>
-                </div>
-                
+                </div>                
             
                 <div class="grid grid-cols-7 gap-4">
                     @foreach (['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] as $day)
                         <div class="text-center font-base text-md text-tertiary">{{ $day }}</div>
                     @endforeach
-            
+                
                     @php
                         $daysInMonth = \Carbon\Carbon::create($year, $month)->daysInMonth;
                         $firstDayOfMonth = \Carbon\Carbon::create($year, $month, 1)->dayOfWeek;
                     @endphp
-            
+                
                     @for ($i = 0; $i < $firstDayOfMonth; $i++)
                         <div></div>
                     @endfor
-            
+                
                     @for ($day = 1; $day <= $daysInMonth; $day++)
                         @php
                             $date = \Carbon\Carbon::create($year, $month, $day);
-                            $reservation = $reservations->firstWhere('date', $date->toDateString());
                         @endphp
-                        <div class="px-3 md:h-20 border border-secondary rounded-md">
-                            <div class="mt-2">{{ $day }}</div>
-                            @if ($reservation)
-                                <div class="mt-1.5">
-                                    <div class="text-[0.6rem] font-semibold text-tertiary">{{ $reservation->destination->name }}</div>
-                                    @if ($reservation->status === 'confirmed' || $reservation->status === 'finished')
-                                        <div class="text-[0.7rem] font-semibold text-primary"><b>·</b> {{ $reservation->status}}</div>
-                                    @elseif ($reservation->status === 'canceled' || $reservation->status === 'rejected')
-                                        <div class="text-[0.7rem] font-semibold text-red-600"><b>·</b> {{ $reservation->status}}</div>
-                                    @else
-                                        <div class="text-[0.7rem] font-semibold text-yellow-600"><b>·</b> {{ $reservation->status}}</div>
-                                    @endif
-    
-                                </div>
-                            @endif
-                        </div>
+                        <button onclick="showModal('{{ $date->toDateString() }}')">
+                            <div class="text-start px-3 md:h-20 border border-secondary rounded-md">
+                                <div class="mt-1">{{ $day }}</div>
+                                @php
+                                    $reservation = $reservations->firstWhere('date', $date->toDateString());
+                                @endphp
+                                @if ($reservation)
+                                    <div class="mt-1.5">
+                                        <div class="text-[0.6rem] font-semibold text-tertiary">{{ $reservation->destination->name }}</div>
+                                        @if ($reservation->status === 'confirmed' || $reservation->status === 'finished')
+                                            <div class="text-[0.7rem] font-semibold text-primary"><b>·</b> {{ $reservation->status}}</div>
+                                        @elseif ($reservation->status === 'canceled' || $reservation->status === 'rejected')
+                                            <div class="text-[0.7rem] font-semibold text-red-600"><b>·</b> {{ $reservation->status}}</div>
+                                        @else
+                                            <div class="text-[0.7rem] font-semibold text-yellow-600"><b>·</b> {{ $reservation->status}}</div>
+                                        @endif
+                                    </div>
+                                @endif
+                            </div>
+                        </button>
                     @endfor
                 </div>
             </div>
         </div>
     </div>
 
+    {{-- Modal --}}
+    <dialog id="my_modal_3" class="modal">
+        <div class="modal-box w-11/12 max-w-6xl">
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <h3 class="text-lg font-bold">Destinations <span id="selected-date"></span></h3>
+            <div class="grid grid-cols-2 grid-rows-3 gap-4 mt-6" id="destination-list">
+                    @foreach ($destinations as $destination)
+                        @php
+                            $capacity_today = $capacities[$destination->id] ?? 0;
+                        @endphp
+                        <a href="/destination/{{$destination->id}}">
+                            <div class="bg-second_white h-28 rounded-lg  flex justify-between ">
+                                <div class="m-2 flex space-x-2">
+                                    <img src="{{ asset('assets/tumbnail_image/' . $destination->main_image) }}" class="rounded-md w-24 object-cover object-center">
+                                    <div class="flex flex-col justify-between">
+                                        <div class="text-md text-tertiary font-semibold">
+                                            {{$destination->name}}
+                                        </div>
+                                        <div class="text-xs text-secondary">
+                                            Rp. {{ number_format($destination->price) }} per person
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col m-2 justify-between">
+                                    <div class="font-medium text-white text-center text-xs bg-secondary rounded-full py-1 mt-0.5">
+                                        {{$destination->category}}
+                                    </div>
+                                    <div class="text-xs text-secondary text-end">
+                                        *available for {{$capacity_today}} person
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
+            </div>
+        </div>
+    </dialog>
+
+
 @endsection
 
 @section('script')
-    <script>
-    </script>
+<script>
+    function showModal(date) {
+        const url = `?year={{ $year }}&month={{ $month }}&date=${date}`;
+        fetch(url)
+            .then(response => response.text())
+            .then(html => {
+                document.querySelector('body').innerHTML = html;
+                document.getElementById('selected-date').innerText = date;
+                my_modal_3.showModal();
+            });
+    }
+</script>
 @endsection

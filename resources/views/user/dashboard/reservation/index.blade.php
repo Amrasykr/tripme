@@ -149,7 +149,11 @@
                                                             {{$rsvp->status}}
                                                         </div>
                                                     </div>
-                                                    <div class="bg-second_white h-20 rounded-lg mt-4 flex justify-between">
+                                                    <div class="flex justify-between mt-4 items-center">
+                                                        <h3 class="text-xs text-tertiary font-medium mx-2">id : {{$rsvp->id}}</h3>
+                                                        <h3 class="text-xs text-tertiary font-medium mx-2">{{ \Carbon\Carbon::parse($rsvp->date)->translatedFormat('l, j F Y') }}</h3>
+                                                    </div>
+                                                    <div class="bg-second_white h-20 rounded-lg mt-1 flex justify-between">
                                                         <div class="m-2 flex space-x-2">
                                                             <img src="{{ asset('assets/tumbnail_image/' .$rsvp->destination->main_image ) }}" class="rounded-md w-24 object-cover object-center">
                                                             <div class="flex flex-col justify-between">
