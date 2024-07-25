@@ -216,12 +216,9 @@
                                                 </div>
                                             </dialog>
                                             @if ($rsvp->status === 'unpaid')
-                                                <form action="/user/dashboard/reservation/{{ $rsvp->id }}/buy" method="POST" style="display:inline;">
-                                                    @csrf
-                                                    <button type="submit" class="font-medium text-tertiary  text-xs bg-alternate rounded-full px-3 py-2" title="payment">
-                                                            Payment
-                                                    </button>
-                                                </form>
+                                                <button onclick="showPaymentModal('{{ $rsvp->snap_token }}')" class="font-medium text-tertiary text-xs bg-alternate rounded-full px-3 py-2" id="payment-button">
+                                                    Payment
+                                                </button>                                            
                                                 <form action="/user/dashboard/reservation/{{ $rsvp->id }}/cancel" method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('PATCH')
@@ -311,7 +308,8 @@
 @endsection
 
 @section('script')
-    <script>
+    <!-- Scripts -->
+    <script >
         function showReviewModal() {
             var reviewModal = document.getElementById('review');
             if (reviewModal) {
@@ -325,6 +323,40 @@
                 detailModal.showModal();
             }
         }
+
+        function showPaymentModal(snapToken) {
+        if (!snapToken) {
+            console.error('Snap token is not defined');
+            return;
+        }
+
+        window.snap.pay(snapToken, {
+            onSuccess: function(result) {
+                alert("Payment success!");
+                console.log(result);
+            },
+            onPending: function(result) {
+                alert("Waiting for your payment!");
+                console.log(result);
+                // Handle pending payment
+            },
+            onError: function(result) {
+                alert("Payment failed!");
+                console.log(result);
+                // Handle payment error
+            },
+            onClose: function() {
+                alert('You closed the popup without finishing the payment');
+                // Handle popup close
+            }
+        });
+    }
+
+    // Event Listener
+    document.getElementById('payment-button').addEventListener('click', function() {
+        var snapToken = '{{ $rsvp->snap_token }}'; // Make sure this is a valid token
+        showPaymentModal(snapToken);
+    });
 
     </script>
 @endsection

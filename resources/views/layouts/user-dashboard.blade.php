@@ -15,9 +15,9 @@
 
     @notifyCss
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    <!-- Scripts -->
     <script src="{{ asset('js/init-alpine.js') }}"></script>
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
+         
     <style>
         .notification-container {
             position: absolute;

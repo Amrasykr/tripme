@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.9",
         "laraveldaily/laravel-charts": "^0.2.3",
         "mckenziearts/laravel-notify": "^2.5",
+        "midtrans/midtrans-php": "^2.5",
         "realrashid/sweet-alert": "^7.2"
     },
     "require-dev": {
