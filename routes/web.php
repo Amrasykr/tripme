@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController  as AdminDashboardController;    
+use App\Http\Controllers\Admin\DashboardController  as AdminDashboardController;
 use App\Http\Controllers\Admin\DestinationController as AdminDestinationController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\VisitorController as AdminVisitorController;
@@ -68,6 +68,8 @@ Route::middleware('auth')->group(function () {
         Route::patch('/dashboard/{id}/update', [UserDashboardController::class, 'update'])->name('user.dashboard.update');
 
         Route::get('/dashboard/reservation', [UserReservationController::class, 'index'])->name('user.dashboard.reservation');
+        Route::get('/dashboard/reservation/{snap_token}/success', [UserReservationController::class, 'paymentSuccess'])->name('user.dashboard.reservation.payment.success');
+        Route::get('/dashboard/reservation/{snap_token}/failed', [UserReservationController::class, 'paymentFailed'])->name('user.dashboard.reservation.payment.failed');
         Route::patch('/dashboard/reservation/{id}/confirm', [UserReservationController::class, 'confirm'])->name('user.dashboard.reservation.confirm');
         Route::patch('/dashboard/reservation/{id}/cancel', [UserReservationController::class, 'cancel'])->name('user.dashboard.reservation.cancel');
         Route::post('/dashboard/reservation/{id}/review', [UserReservationController::class, 'review'])->name('user.dashboard.reservation.review');
@@ -80,7 +82,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard/ticket/{id}/download', [UserTicketController::class, 'download'])->name('user.dashboard.ticket.dowload');
 
         Route::get('/destination/{id}/reservation', [UserReservationController::class, 'store'])->name('user.destination.reservation');
-
     });
 });
 

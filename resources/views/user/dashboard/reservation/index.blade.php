@@ -206,11 +206,6 @@
                                                             <p class="mb-1 mx-1 text-lg font-semibold">
                                                                 Rp. {{number_format($rsvp->total_price)}}
                                                             </p>
-                                                            @if ($rsvp->status == 'unpaid')
-                                                            <button type="submit" class="font-semibold text-tertiary text-md bg-alternate hover:bg-secondary hover:text-white transition-all duration-300 ease-in-out rounded-full px-3 py-2" title="payment">
-                                                                Payment
-                                                            </button>
-                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
@@ -325,29 +320,20 @@
         }
 
         function showPaymentModal(snapToken) {
-        if (!snapToken) {
-            console.error('Snap token is not defined');
-            return;
-        }
-
         window.snap.pay(snapToken, {
             onSuccess: function(result) {
-                alert("Payment success!");
                 console.log(result);
+                window.location.href = `/user/dashboard/reservation/${snapToken}/success`;
             },
             onPending: function(result) {
-                alert("Waiting for your payment!");
                 console.log(result);
-                // Handle pending payment
             },
             onError: function(result) {
-                alert("Payment failed!");
                 console.log(result);
-                // Handle payment error
+                window.location.href = `/user/dashboard/reservation/${snapToken}/failed`;
             },
             onClose: function() {
                 alert('You closed the popup without finishing the payment');
-                // Handle popup close
             }
         });
     }
@@ -357,6 +343,7 @@
         var snapToken = '{{ $rsvp->snap_token }}'; // Make sure this is a valid token
         showPaymentModal(snapToken);
     });
+ 
 
     </script>
 @endsection
