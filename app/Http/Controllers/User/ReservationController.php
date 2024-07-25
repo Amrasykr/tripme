@@ -39,27 +39,27 @@ class ReservationController extends Controller
             'distance_in_km' => 'sometimes',
             'travel_id' => 'sometimes',
         ]);
-    
+
         $destination = Destination::findOrFail($id);
-    
+
         $reservations_on_date = Reservation::where('destination_id', $id)
             ->whereDate('date', $validated_data['date'])
             ->sum('person');
-    
+
         $remaining_capacity = $destination->capacity_perday - $reservations_on_date;
-    
+
         if ($validated_data['person'] > $remaining_capacity) {
             notify()->error('Reservation capacity for the selected date is full.');
             return redirect()->back()->withInput();
         }
-    
+
         $travel = Travel::find($validated_data['travel_id'] ?? null);
-    
+
         $total_price = $destination->price * $validated_data['person'];
         if ($travel) {
             $total_price += $travel->price + ($travel->price_per_km * ($validated_data['distance_in_km'] ?? 0));
         }
-    
+
         $reservation = new Reservation([
             'user_id' => auth()->id(),
             'date' => $validated_data['date'],
@@ -72,14 +72,14 @@ class ReservationController extends Controller
             'total_price' => $total_price,
             'status' => 'unpaid',
         ]);
-    
+
         $reservation->save();
-    
+
         \Midtrans\Config::$serverKey = config('midtrans.server_key');
         \Midtrans\Config::$isProduction = false;
         \Midtrans\Config::$isSanitized = true;
         \Midtrans\Config::$is3ds = true;
-    
+
         $params = [
             'transaction_details' => [
                 'order_id' => rand(),
@@ -97,7 +97,7 @@ class ReservationController extends Controller
                 'total_ticket_price' => $destination->price * $validated_data['person'],
             ],
         ];
-        
+
         if ($travel) {
             $params['travel_id'] = [
                 'travel' => $travel->name,
@@ -108,12 +108,12 @@ class ReservationController extends Controller
                 'total_travel_price' => $travel->price + ($travel->price_per_km * ($validated_data['distance_in_km'] ?? 0)),
             ];
         }
-        
+
         $snapToken = \Midtrans\Snap::getSnapToken($params);
-    
+
         $reservation->snap_token = $snapToken;
         $reservation->save();
-    
+
         if ($reservation) {
             notify()->success('Successfully Creating Reservation');
             return redirect()->route('user.dashboard.reservation');
@@ -122,9 +122,9 @@ class ReservationController extends Controller
             return redirect()->back()->withInput();
         }
     }
-    
-    
-    
+
+
+
 
     public function confirm(string $id)
     {
@@ -180,6 +180,31 @@ class ReservationController extends Controller
             return redirect()->back()->withInput();
         }
     }
+
+
+    public function paymentSuccess($snap_token)
+    {
+        $reservation = Reservation::where('snap_token', $snap_token)->firstOrFail();
+        $reservation->status = 'paid and pending';
+        $reservation->save();
+
+        notify()->success('Successfully Payment Reservation');
+        return redirect()->route('user.dashboard.reservation');
+    }
+
+    public function paymentFailed($snap_token)
+    {
+        $reservation = Reservation::where('snap_token', $snap_token)->firstOrFail();
+        $reservation->status = 'unpaid';
+        $reservation->save();
+
+        notify()->error('Failed to Payment Reservation');
+        return redirect()->route('user.dashboard.reservation');
+    }
+
+
+
+
 
     /**
      * Display the specified resource.
