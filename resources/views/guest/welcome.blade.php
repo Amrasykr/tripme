@@ -70,6 +70,91 @@
         </div>
     </div>
 
+    {{-- travel --}}
+    <div class="mt-10 md:mt-20 px-4 md:px-0 container ">
+        <div class="md:flex justify-between md:space-x-10">
+            <img src="{{asset('/images/travel.jpg')}}" class="hidden md:block h-[20rem] md:h-[38rem] w-full md:w-7/12 object-cover object-center rounded-2xl" alt="travel">
+            <div class="flex flex-col w-full md:w-5/12">
+                <div class="text-center md:text-start text-sm md:text-lg text-secondary/60">
+                    Your Journey Awaits
+                </div>
+                <div class="text-center text-3xl md:text-start md:text-6xl text-tertiary md:mt-2 font-light">
+                    Discover Your Travel
+                </div>
+                <div class="mt-8 h-full  flex flex-col space-y-3">
+                    <div class="h-1/4 rounded-2xl hover:bg-secondary/10 hover:translate-y-0.5 transition-all duration-500 ease-in-out">
+                        <div class="flex h-full">
+                            <div class="m-3.5 w-1/6 flex justify-center items-start">
+                                <div class="p-3 w-16 rounded-2xl bg-tertiary/10 flex justify-center">
+                                    <i class="fa-solid fa-suitcase text-xl  text-tertiary"></i>
+                                </div>
+                            </div>
+                            <div class="mx-3.5 my-3 w-5/6  flex flex-col justify-between">
+                                <div class="text-xl font-medium text-tertiary">
+                                    Customizable Travel Plans
+                                </div>
+                                <div class="text-sm md:text-md mb-2 font-light text-tertiary/50">
+                                    Choose from a variety of travel options tailored to your needs. Travel your way, any day, with flexibility and comfort.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-1/4 rounded-2xl hover:bg-secondary/10 hover:translate-y-0.5 transition-all duration-500 ease-in-out">
+                        <div class="flex h-full">
+                            <div class="m-3.5 w-1/6 flex justify-center items-start">
+                                <div class="p-3 w-16 rounded-2xl bg-tertiary/10 flex justify-center">
+                                    <i class="fa-solid fa-credit-card text-xl  text-tertiary"></i>
+                                </div>
+                            </div>
+                            <div class="mx-3.5 my-3 w-5/6  flex flex-col justify-between">
+                                <div class="text-xl font-medium text-tertiary">
+                                    Easy Payment Options
+                                </div>
+                                <div class="text-sm md:text-md mb-2 font-light text-tertiary/50">
+                                    Enjoy hassle-free payments anytime with our flexible payment gateway. Pay at your convenience, whether you're at home.                               
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-1/4 rounded-2xl hover:bg-secondary/10 hover:translate-y-0.5 transition-all duration-500 ease-in-out">
+                        <div class="flex h-full">
+                            <div class="m-3.5 w-1/6 flex justify-center items-start">
+                                <div class="p-3 w-16 rounded-2xl bg-tertiary/10 flex justify-center">
+                                    <i class="fa-solid fa-ticket-alt text-xl  text-tertiary"></i>
+                                </div>
+                            </div>
+                            <div class="mx-3.5 my-3 w-5/6  flex flex-col justify-between">
+                                <div class="text-xl font-medium text-tertiary">
+                                    Instant E-Ticketing
+                                </div>
+                                <div class="text-sm md:text-md mb-2 font-light text-tertiary/50">
+                                    Receive your tickets instantly with every reservation. No more waiting or printing; just book and go with ease.                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-1/4 rounded-2xl hover:bg-secondary/10 hover:translate-y-0.5 transition-all duration-500 ease-in-out">
+                        <div class="flex h-full">
+                            <div class="m-3.5 w-1/6 flex justify-center items-start">
+                                <div class="p-3 w-16 rounded-2xl bg-tertiary/10 flex justify-center">
+                                    <i class="fa-solid fa-calendar-alt text-xl  text-tertiary"></i>
+                                </div>
+                            </div>
+                            <div class="mx-3.5 my-3 w-5/6  flex flex-col justify-between">
+                                <div class="text-xl font-medium text-tertiary">
+                                    Capacity & Schedule View                                
+                                </div>
+                                <div class="text-sm md:text-md mb-2 font-light text-tertiary/50">
+                                    Easily check destination capacities and view detailed reservation schedules with our user-friendly calendar feature.                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+
+    
+
     {{-- Top 3 Destinations --}}
     <div class="my-10 md:my-20 container px-4 md:px-0" id="top">
         <div class="flex flex-col items-center text-center">
@@ -78,7 +163,7 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6 md:mt-8 w-full">
                 @foreach ($top_3_destinations as $destination)
-                <div class="hover:bg-second_white shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out">
+                <div class="hover:bg-second_white shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 ease-in-out">
                     <a href="/destination/{{$destination->id}}">
                         <img src="{{ asset('assets/tumbnail_image/'.$destination->main_image) }}" alt="hero" class="w-full h-72 object-cover rounded-2xl">
                         <div class="py-1 bg-tertiary text-sm text-white w-1/3 my-3 md:my-5 rounded-2xl mx-1">
