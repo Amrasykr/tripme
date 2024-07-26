@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\VisitorController as AdminVisitorController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\Admin\TravelController as AdminTravelController;
+use App\Http\Controllers\Admin\ReviewController as AdminReviewController;
 
 
 use App\Http\Controllers\Guest\AboutController;
@@ -55,6 +56,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard/travel/{id}/edit', [AdminTravelController::class, 'edit'])->name('admin.dashboard.travel.edit');
         Route::patch('/dashboard/travel/{id}/update', [AdminTravelController::class, 'update'])->name('admin.dashboard.travel.update');
         Route::delete('/dashboard/travel/{id}/delete', [AdminTravelController::class, 'destroy'])->name('admin.dashboard.travel.destroy');
+
+        Route::get('/dashboard/review', [AdminReviewController::class, 'index'])->name('admin.dashboard.review');
+        Route::patch('/dashboard/review/{id}/publish', [AdminReviewController::class, 'publish'])->name('admin.dashboard.review.publish');
+        Route::patch('/dashboard/review/{id}/draft', [AdminReviewController::class, 'draft'])->name('admin.dashboard.review.draft');
+
 
         Route::get('/profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [AdminProfileController::class, 'update'])->name('profile.update');

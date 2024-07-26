@@ -26,7 +26,7 @@
                             <div class="w-full md:w-1/3 rounded-lg px-5 pb-4 pt-10 mb-4 flex items-center justify-between shadow-xl bg-alternate">
                                 <div>
                                     <h1 class="text-5xl font-bold text text-tertiary font-sans">{{$pending_reservation}}</h1>
-                                    <h3 class="text-lg font-light text-tertiary/80">Pending</h3>
+                                    <h3 class="text-lg font-light text-tertiary/80">Paid</h3>
                                 </div>
                                 <div class="mt-[-6rem]">
                                     <i class="fa-solid fa-clock text-4xl text-tertiary/70"></i>
@@ -198,6 +198,7 @@
                                                         </div>
                                                     </div>
                                                     @endif
+                                                    
                                                     <div class="flex justify-between space-x-2 mt-6">
                                                         <p class="mb-1 mx-1 text-md font-semibold">
                                                             Total Price
@@ -240,7 +241,6 @@
                                                 <!-- No actions to display -->
                                             @elseif ($rsvp->status === 'finished')
                                                 @if ($rsvp->review)
-                                                    <p class="text-gray-700 font-extrabold">-</p>
                                                 @else
                                                     <button onclick="document.getElementById('review-{{ $rsvp->id }}').showModal()"  class="font-medium text-tertiary  text-xs bg-yellow-300 rounded-full px-3 py-2" title="create review">
                                                         Review

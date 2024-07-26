@@ -28,7 +28,7 @@ class CalendarController extends Controller
             ->whereBetween('date', [$startDate, $endDate])
             ->get();
     
-        $pending_reservation = Reservation::where('user_id', auth()->id())->where('status', 'pending')->count();
+        $pending_reservation = Reservation::where('user_id', auth()->id())->where('status', 'paid and pending')->count();
         $confirmed_reservation = Reservation::where('user_id', auth()->id())->where('status', 'confirmed')->count();
         $finished_reservation = Reservation::where('user_id', auth()->id())->where('status', 'finished')->count();
     
