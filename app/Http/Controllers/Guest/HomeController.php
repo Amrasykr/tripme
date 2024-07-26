@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Guest;
 use App\Http\Controllers\Controller;
 use App\Models\Destination;
 use App\Models\Reservation;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -23,8 +24,10 @@ class HomeController extends Controller
         ->orderByRaw('COUNT(reservation.destination_id) DESC')
         ->limit(3)
         ->get();
+
+        $reviews = Review::where('status', 'published')->get();
         
-        return view('guest.welcome', ['top_3_destinations' => $top_3_destinations]);
+        return view('guest.welcome', ['top_3_destinations' => $top_3_destinations] , ['reviews' => $reviews]);
     }
 
     /**

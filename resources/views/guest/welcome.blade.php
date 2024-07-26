@@ -29,17 +29,17 @@
     {{-- services --}}
     <div class="mt-10 md:mt-20 px-4 md:px-0 container">
         <div class="flex flex-col items-center text-center">
-            <div class="text-3xl md:text-7xl font-light text-tertiary" >
+            <div class="text-3xl md:text-7xl font-light text-tertiary" data-aos="zoom-in">
                 Make Every Journey Memorable
             </div>
-            <div class="mt-[-1.5rem] md:mt-4 flex items-center text-3xl md:text-7xl font-light text-tertiary" >
+            <div class="mt-[-1.5rem] md:mt-4 flex items-center text-3xl md:text-7xl font-light text-tertiary" data-aos="fade-up" data-aos-duration="2200">
                 With <span class="flex items-center space-x-1 md:space-x-2 mx-1 md:mx-4">
                     <img src="{{ asset('images/ammar.jpeg') }}" alt="user" class="w-6 h-6 md:w-14 md:h-14 object-cover object-center my-8 rounded-full">
                     <img src="{{ asset('images/erik.jpeg') }}" alt="user" class="w-6 h-6 md:w-14 md:h-14 object-cover object-bottom my-8 rounded-full">
                 </span> Us
             </div>
-            <div class="md:flex md:space-x-8 space-y-8 md:space-y-0 mt-0 md:mt-8 w-full" >
-                <div class="w-full md:w-1/3 bg-secondary rounded-xl text-white shadow-xl">
+            <div class="md:flex md:space-x-8 space-y-8 md:space-y-0 mt-0 md:mt-8 w-full">
+                <div class="w-full md:w-1/3 bg-secondary rounded-xl text-white shadow-xl" data-aos="fade-up" data-aos-duration="2200">
                     <h3 class="text-2xl md:text-4xl font-base pt-5 md:pt-10">
                         Adventure Tours
                     </h3>
@@ -48,7 +48,7 @@
                         Immerse yourself in local cultures and traditions with our curated cultural experiences.
                     </p>
                 </div>
-                <div class="w-full md:w-1/3 bg-secondary rounded-xl text-white shadow-xl">
+                <div class="w-full md:w-1/3 bg-secondary rounded-xl text-white shadow-xl" data-aos="fade-up" data-aos-duration="2300">
                     <h3 class="text-2xl md:text-4xl font-base pt-5 md:pt-10">
                         Cultural Experiences
                     </h3>
@@ -57,7 +57,7 @@
                         Explore thrilling adventures with our expert guides to make your trip unforgettable.
                     </p>
                 </div>
-                <div class="w-full md:w-1/3 bg-secondary rounded-xl text-white shadow-xl">
+                <div class="w-full md:w-1/3 bg-secondary rounded-xl text-white shadow-xl" data-aos="fade-up" data-aos-duration="2400">
                     <h3 class="text-2xl md:text-4xl font-base pt-5 md:pt-10">
                         Luxury Retreats
                     </h3>
@@ -73,16 +73,16 @@
     {{-- travel --}}
     <div class="mt-10 md:mt-20 px-4 md:px-0 container ">
         <div class="md:flex justify-between md:space-x-10">
-            <img src="{{asset('/images/travel.jpg')}}" class="hidden md:block h-[20rem] md:h-[38rem] w-full md:w-7/12 object-cover object-center rounded-2xl" alt="travel">
+            <img src="{{asset('/images/travel.jpg')}}" class="hidden md:block h-[20rem] md:h-[38rem] w-full md:w-7/12 object-cover object-center rounded-2xl" alt="travel" data-aos="fade-right">
             <div class="flex flex-col w-full md:w-5/12">
-                <div class="text-center md:text-start text-sm md:text-lg text-secondary/60">
+                <div class="text-center md:text-start text-sm md:text-lg text-secondary/60" data-aos="zoom-in">
                     Your Journey Awaits
                 </div>
-                <div class="text-center text-3xl md:text-start md:text-6xl text-tertiary md:mt-2 font-light">
+                <div class="text-center text-3xl md:text-start md:text-6xl text-tertiary md:mt-2 font-light" data-aos="zoom-in" >
                     Discover Your Travel
                 </div>
                 <div class="mt-8 h-full  flex flex-col space-y-3">
-                    <div class="h-1/4 rounded-2xl hover:bg-secondary/10 hover:translate-y-0.5 transition-all duration-500 ease-in-out">
+                    <div class="h-1/4 rounded-2xl hover:bg-secondary/10 hover:translate-y-0.5 transition-all duration-500 ease-in-out" data-aos="fade-left" data-aos-duration="2200">
                         <div class="flex h-full">
                             <div class="m-3.5 w-1/6 flex justify-center items-start">
                                 <div class="p-3 w-16 rounded-2xl bg-tertiary/10 flex justify-center">
@@ -99,7 +99,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="h-1/4 rounded-2xl hover:bg-secondary/10 hover:translate-y-0.5 transition-all duration-500 ease-in-out">
+                    <div class="h-1/4 rounded-2xl hover:bg-secondary/10 hover:translate-y-0.5 transition-all duration-500 ease-in-out" data-aos="fade-left" data-aos-duration="2300">
                         <div class="flex h-full">
                             <div class="m-3.5 w-1/6 flex justify-center items-start">
                                 <div class="p-3 w-16 rounded-2xl bg-tertiary/10 flex justify-center">
@@ -116,7 +116,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="h-1/4 rounded-2xl hover:bg-secondary/10 hover:translate-y-0.5 transition-all duration-500 ease-in-out">
+                    <div class="h-1/4 rounded-2xl hover:bg-secondary/10 hover:translate-y-0.5 transition-all duration-500 ease-in-out" data-aos="fade-left" data-aos-duration="2400">
                         <div class="flex h-full">
                             <div class="m-3.5 w-1/6 flex justify-center items-start">
                                 <div class="p-3 w-16 rounded-2xl bg-tertiary/10 flex justify-center">
@@ -132,7 +132,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="h-1/4 rounded-2xl hover:bg-secondary/10 hover:translate-y-0.5 transition-all duration-500 ease-in-out">
+                    <div class="h-1/4 rounded-2xl hover:bg-secondary/10 hover:translate-y-0.5 transition-all duration-500 ease-in-out" data-aos="fade-left" data-aos-duration="2500">
                         <div class="flex h-full">
                             <div class="m-3.5 w-1/6 flex justify-center items-start">
                                 <div class="p-3 w-16 rounded-2xl bg-tertiary/10 flex justify-center">
@@ -153,15 +153,13 @@
         </div>
     </div>
 
-    
-
     {{-- Top 3 Destinations --}}
     <div class="my-10 md:my-20 container px-4 md:px-0" id="top">
         <div class="flex flex-col items-center text-center">
             <div class="text-3xl md:text-7xl font-light text-gray-900">
                 Our Destinations
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6 md:mt-8 w-full">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6 md:mt-8 w-full" data-aos="fade-up" data-aos-duration="2200">
                 @foreach ($top_3_destinations as $destination)
                 <div class="hover:bg-second_white shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 ease-in-out">
                     <a href="/destination/{{$destination->id}}">
@@ -181,6 +179,38 @@
             </div>
         </div>
     </div>
+
+    {{-- Review --}}
+    <div class="my-10 md:my-20 px-4 md:px-0 container">
+        <div class="carousel w-full">
+            @foreach ($reviews as $index => $review)
+            <div id="slide{{ $index + 1 }}" class="carousel-item relative w-full bg-second_white rounded-2xl" data-aos="fade-up">
+                <div class="flex flex-col items-center w-full mt-10 mb-5">
+                    <img src="{{ asset('/assets/user_image/' . $review->reservation->user->image) }}" alt="user" class="w-20 h-20">
+                    <div class="mt-3 text-tertiary font-light text-3xl">
+                        {{ $review->reservation->user->name }}
+                    </div>
+                    <div>
+                        @php
+                        $rating = $review->rating;
+                        @endphp
+                        @for ($i = 1; $i <= 5; $i++)
+                            <i class="fa-solid fa-star {{ $i <= $rating ? 'text-secondary' : 'text-gray-300' }}"></i>
+                        @endfor
+                    </div>
+                    <div class="w-2/5 text-lg text-tertiary font-normal text-center mt-5">
+                        {{$review->content}}
+                    </div>
+                </div>
+                <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                    <a href="#slide{{ $index == 0 ? count($reviews) : $index }}" class="btn btn-circle bg-secondary text-white hover:bg-tertiary">❮</a>
+                    <a href="#slide{{ $index == count($reviews) - 1 ? 1 : $index + 2 }}" class="btn btn-circle bg-secondary text-white hover:bg-tertiary">❯</a>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+    
 
 @endsection
 
