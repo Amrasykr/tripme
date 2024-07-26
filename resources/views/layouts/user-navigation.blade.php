@@ -85,7 +85,7 @@
         <button @click="open = !open" class="flex items-center  text-gray-700 font-semibold rounded focus:outline-none">
             <span class="mr-1">
                 @if (Auth::user()->image)
-                <img src="{{ asset('assets/user_image/' . Auth::user()->image) }}" alt="user" class="w-10 rounded-full">
+                <img src="{{ asset('assets/user_image/' . Auth::user()->image) }}" alt="user" class="w-10 h-10 object-cover rounded-full">
                 @else
                 <img src="{{ asset('images/user-default.png') }}" alt="user" class="w-10 rounded-full">
                 @endif

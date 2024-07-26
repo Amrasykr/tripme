@@ -104,7 +104,7 @@
                         @method('PATCH')
                         <div class="flex justify-center items-center">
                             @if (Auth::user()->image)
-                            <img src="{{ asset('assets/user_image/' . Auth::user()->image) }}" alt="user" class="w-36 rounded-full">
+                            <img src="{{ asset('assets/user_image/' . Auth::user()->image) }}" alt="user" class="w-36 h-36 object-cover rounded-full">
                             @else
                             <img src="{{ asset('images/user-default.png') }}" alt="user" class="w-36 rounded-full">
                             @endif

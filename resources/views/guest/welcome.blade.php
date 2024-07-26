@@ -182,34 +182,45 @@
 
     {{-- Review --}}
     <div class="my-10 md:my-20 px-4 md:px-0 container">
+        <div class="text-3xl md:text-7xl font-light text-gray-900 text-center">
+            Exquisite Testimonials
+        </div>
         <div class="carousel w-full">
-            @foreach ($reviews as $index => $review)
-            <div id="slide{{ $index + 1 }}" class="carousel-item relative w-full bg-second_white rounded-2xl" data-aos="fade-up">
-                <div class="flex flex-col items-center w-full mt-10 mb-5">
-                    <img src="{{ asset('/assets/user_image/' . $review->reservation->user->image) }}" alt="user" class="w-20 h-20">
-                    <div class="mt-3 text-tertiary font-light text-3xl">
-                        {{ $review->reservation->user->name }}
+            @php
+                $chunks = $reviews->chunk(3);
+            @endphp
+            @foreach ($chunks as $chunkIndex => $chunk)
+            <div id="slide{{ $chunkIndex + 1 }}" class="carousel-item relative w-full" data-aos="fade-up">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mx-auto">
+                    @foreach ($chunk as $index => $review)
+                    <div class="bg-second_white rounded-2xl p-4 w-full flex flex-col items-center mt-10 mb-5">
+                        <img src="{{ asset('/assets/user_image/' . $review->reservation->user->image) }}" alt="user" class="w-20 h-20 rounded-full object-cover">
+                        <div class="mt-3 text-tertiary font-light text-3xl">
+                            {{ $review->reservation->user->name }}
+                        </div>
+                        <div>
+                            @php
+                            $rating = $review->rating;
+                            @endphp
+                            @for ($i = 1; $i <= 5; $i++)
+                                <i class="fa-solid fa-star {{ $i <= $rating ? 'text-secondary' : 'text-gray-300' }}"></i>
+                            @endfor
+                        </div>
+                        <div class="w-4/5 text-lg text-tertiary font-normal text-center mt-5">
+                            {{ $review->content }}
+                        </div>
                     </div>
-                    <div>
-                        @php
-                        $rating = $review->rating;
-                        @endphp
-                        @for ($i = 1; $i <= 5; $i++)
-                            <i class="fa-solid fa-star {{ $i <= $rating ? 'text-secondary' : 'text-gray-300' }}"></i>
-                        @endfor
-                    </div>
-                    <div class="w-2/5 text-lg text-tertiary font-normal text-center mt-5">
-                        {{$review->content}}
-                    </div>
+                    @endforeach
                 </div>
                 <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                    <a href="#slide{{ $index == 0 ? count($reviews) : $index }}" class="btn btn-circle bg-secondary text-white hover:bg-tertiary">❮</a>
-                    <a href="#slide{{ $index == count($reviews) - 1 ? 1 : $index + 2 }}" class="btn btn-circle bg-secondary text-white hover:bg-tertiary">❯</a>
+                    <a href="#slide{{ $chunkIndex == 0 ? count($chunks) : $chunkIndex }}" class="btn btn-circle bg-secondary text-white hover:bg-tertiary">❮</a>
+                    <a href="#slide{{ $chunkIndex == count($chunks) - 1 ? 1 : $chunkIndex + 2 }}" class="btn btn-circle bg-secondary text-white hover:bg-tertiary">❯</a>
                 </div>
             </div>
             @endforeach
         </div>
     </div>
+
     
 
 @endsection
