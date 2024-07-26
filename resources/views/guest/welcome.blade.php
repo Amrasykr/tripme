@@ -81,8 +81,8 @@
                 <div class="text-center text-3xl md:text-start md:text-6xl text-tertiary md:mt-2 font-light" data-aos="zoom-in" >
                     Discover Your Travel
                 </div>
-                <div class="mt-8 h-full  flex flex-col space-y-3">
-                    <div class="h-1/4 rounded-2xl hover:bg-secondary/10 hover:translate-y-0.5 transition-all duration-500 ease-in-out" data-aos="fade-left" data-aos-duration="2200">
+                <div class="mt-8 h-full  flex flex-col space-y-3" data-aos="fade-left" data-aos-duration="2200">
+                    <div class="h-1/4 rounded-2xl hover:bg-secondary/10 hover:translate-y-0.5 transition-all duration-500 ease-in-out" >
                         <div class="flex h-full">
                             <div class="m-3.5 w-1/6 flex justify-center items-start">
                                 <div class="p-3 w-16 rounded-2xl bg-tertiary/10 flex justify-center">
@@ -99,7 +99,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="h-1/4 rounded-2xl hover:bg-secondary/10 hover:translate-y-0.5 transition-all duration-500 ease-in-out" data-aos="fade-left" data-aos-duration="2300">
+                    <div class="h-1/4 rounded-2xl hover:bg-secondary/10 hover:translate-y-0.5 transition-all duration-500 ease-in-out" >
                         <div class="flex h-full">
                             <div class="m-3.5 w-1/6 flex justify-center items-start">
                                 <div class="p-3 w-16 rounded-2xl bg-tertiary/10 flex justify-center">
@@ -116,7 +116,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="h-1/4 rounded-2xl hover:bg-secondary/10 hover:translate-y-0.5 transition-all duration-500 ease-in-out" data-aos="fade-left" data-aos-duration="2400">
+                    <div class="h-1/4 rounded-2xl hover:bg-secondary/10 hover:translate-y-0.5 transition-all duration-500 ease-in-out" >
                         <div class="flex h-full">
                             <div class="m-3.5 w-1/6 flex justify-center items-start">
                                 <div class="p-3 w-16 rounded-2xl bg-tertiary/10 flex justify-center">
@@ -132,7 +132,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="h-1/4 rounded-2xl hover:bg-secondary/10 hover:translate-y-0.5 transition-all duration-500 ease-in-out" data-aos="fade-left" data-aos-duration="2500">
+                    <div class="h-1/4 rounded-2xl hover:bg-secondary/10 hover:translate-y-0.5 transition-all duration-500 ease-in-out">
                         <div class="flex h-full">
                             <div class="m-3.5 w-1/6 flex justify-center items-start">
                                 <div class="p-3 w-16 rounded-2xl bg-tertiary/10 flex justify-center">
