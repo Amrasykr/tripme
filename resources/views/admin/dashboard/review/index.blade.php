@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Visitors Dashboard')
+@section('title', 'Reviews Dashboard')
 
 @section('header')
     <h2 class="text-4xl font-medium text-secondary">
-        All Visitors
+        All Reviews
     </h2>
 @endsection
 
@@ -12,7 +12,7 @@
 
     <div class="w-80 md:w-full block overflow-x-auto shadow-md sm:rounded-lg">
         <div class="flex flex-wrap sm:space-y-0 items-center justify-between p-4 bg-second_white">
-            <form action="{{ route('admin.dashboard.visitor') }}" method="GET" class="flex items-center">
+            <form action="{{ route('admin.dashboard.review') }}" method="GET" class="flex items-center">
                 <label for="table-search" class="sr-only">Search</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -27,60 +27,65 @@
         <table class="w-full text-sm text-left text-tertiary">
             <thead class="text-sm text-white uppercase bg-tertiary">
                 <tr>
-                    <th scope="col" class="px-6 py-3 w-1/3">Visitor</th>
-                    <th scope="col" class="px-6 py-3 w-1/4">Destination</th>
-                    <th scope="col" class="px-6 py-3 w-1/4">Date</th>
+                    <th scope="col" class="px-6 py-3 w-1/3">Reviewer</th>
+                    <th scope="col" class="px-6 py-3 w-1/4">Rating</th>
                     <th scope="col" class="px-6 py-3 w-1/4">Status</th>
+                    <th scope="col" class="px-6 py-3 w-1/4">Created At</th>
                     <th scope="col" class="px-6 py-3 w-24">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @empty($visitors->all())
+                @empty($reviews->all())
                     <tr>
-                        <td colspan="6" class="text-center py-5 text-lg">There is no visitor</td>
+                        <td colspan="6" class="text-center py-5 text-lg">There is no review</td>
                     </tr>
                 @endempty
-                @foreach ($visitors as $visitor)
+                @foreach ($reviews as $review)
                 <tr class="bg-white border-b hover:bg-gray-50">
                     <td>
                         <div class="flex items-center space-x-3">
                             <div class="avatar">
                                 <div class="p-2">
-                                    @if ($visitor->user->image)
-                                    <img src="{{ asset('assets/user_image/'. $visitor->user->image) }}" alt="user image" class="rounded-full w-12">
+                                    @if ($review->reservation->user->image)
+                                    <img src="{{ asset('assets/user_image/'. $review->reservation->user->image) }}" alt="user image" class="rounded-full w-12">
                                     @else
                                     <img src="{{ asset('images/user-default.png') }}" alt="user image" class="rounded-full w-12">
                                     @endif                                
                                 </div>
                             </div>
                             <div>
-                                <div class="font-bold">{{ $visitor->user->name}}</div>
+                                <div class="font-bold">{{ $review->reservation->user->name}}</div>
                             </div>
                         </div>
                     </td>
-                    <td class="px-6 py-4 w-1/4">{{ $visitor->destination->name }}</td>
-                    <td class="px-6 py-4 w-1/4">{{ \Carbon\Carbon::parse($visitor->date)->translatedFormat('l, j F Y') }}</td>
-                    <td class="px-6 py-4 w-1/4">{{ $visitor->status }}</td>
+                    <td class="px-6 py-4 w-1/4">
+                        @php
+                            $rating = $review->rating;
+                        @endphp
+                        @for ($i = 1; $i <= 5; $i++)
+                            <i class="fa-solid fa-star {{ $i <= $rating ? 'text-yellow-300' : 'text-gray-300' }} {{ $i <= $rating ? 'filled' : 'border' }}"></i>
+                        @endfor
+                    </td>
+                    
+                    <td class="px-6 py-4 w-1/4">{{ $review->status }}</td>
+                    <td class="px-6 py-4 w-1/4">{{ \Carbon\Carbon::parse($review->created_at)->translatedFormat('l, j F Y') }}</td>
                     <td class="px-4 py-6 flex space-x-3">
-                        @if ($visitor->status === 'paid and pending')
-                        <form action="/admin/dashboard/visitor/{{$visitor->id}}/confirm" method="POST" style="display:inline;">
+                        @if ($review->status === 'draft')
+                        <form action="/admin/dashboard/review/{{$review->id}}/publish" method="POST" style="display:inline;">
                             @csrf
                             @method('PATCH')
                             <button type="submit" class="font-medium text-tertiary text-xs bg-alternate rounded-full px-3 py-2" id="payment-button">
-                                Confirm
-                            </button> 
-                        </form>
-                        <form action="/admin/dashboard/visitor/{{$visitor->id}}/reject" method="POST" style="display:inline;">
-                            @csrf
-                            @method('PATCH')
-                            <button type="submit" class="font-medium text-tertiary text-xs bg-red-300 rounded-full px-3 py-2" id="payment-button">
-                                Reject
+                                Publish
                             </button> 
                         </form>
                         @else
-                            <p class="text-gray-700 font-extrabold">
-                                -
-                            </p>
+                        <form action="/admin/dashboard/review/{{$review->id}}/draft" method="POST" style="display:inline;">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" class="font-medium text-tertiary text-xs bg-yellow-300 rounded-full px-3 py-2" id="payment-button">
+                                Draft
+                            </button> 
+                        </form>
                         @endif
                     </td>
                 </tr>
@@ -89,7 +94,7 @@
         </table>
         <!-- Pagination Links -->
         <div class="px-4 py-3 bg-white border-t border-gray-200 ">
-            {{ $visitors->withQueryString()->links() }}
+            {{ $reviews->withQueryString()->links() }}
         </div>
     </div>
 

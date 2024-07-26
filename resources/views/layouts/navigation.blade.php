@@ -50,6 +50,15 @@
                 </x-nav-link>
             </li>
 
+            <li class="relative px-6 py-3">
+                <x-nav-link href="{{ route('admin.dashboard.review') }}" :active="request()->routeIs('admin.dashboard.review')">
+                    <x-slot name="icon">
+                        <i class="text-tertiary fa-solid fa-star"></i>
+                    </x-slot>
+                    Review
+                </x-nav-link>
+            </li>
+
         </ul>
     </div>
 </aside>

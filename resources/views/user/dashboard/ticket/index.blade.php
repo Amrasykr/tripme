@@ -5,6 +5,7 @@
 @section('title', 'Main Dashboard')
 
 @section('content')
+
         {{-- Hero User Dasboard --}}
         <div class="mt-28 md:mt-32 mb-10 px-6 md:px-0 container">
             <div class="md:flex justify-between md:space-x-10">
@@ -37,7 +38,7 @@
                                 <h3 class="text-lg font-light text-tertiary/80">Confirmed</h3>
                             </div>
                             <div class="mt-[-6rem]">
-                                <i class="fa-solid fa-clock text-4xl text-tertiary/70"></i>
+                                <i class="fa-solid fa-calendar-check text-4xl text-tertiary/70"></i>
                             </div>
                         </div>
                         <div class="w-full md:w-1/3 rounded-lg px-5 pb-4 pt-10 mb-4 flex items-center justify-between shadow-xl bg-alternate">
@@ -46,7 +47,7 @@
                                 <h3 class="text-lg font-light text-tertiary/80">finished</h3>
                             </div>
                             <div class="mt-[-6rem]">
-                                <i class="fa-solid fa-clock text-4xl text-tertiary/70"></i>
+                                <i class="fa-solid fa-font-awesome text-4xl text-tertiary/70"></i>
                             </div>
                         </div>
                     </div>

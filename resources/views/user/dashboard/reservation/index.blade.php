@@ -198,6 +198,7 @@
                                                         </div>
                                                     </div>
                                                     @endif
+                                                    
                                                     <div class="flex justify-between space-x-2 mt-6">
                                                         <p class="mb-1 mx-1 text-md font-semibold">
                                                             Total Price
@@ -240,7 +241,6 @@
                                                 <!-- No actions to display -->
                                             @elseif ($rsvp->status === 'finished')
                                                 @if ($rsvp->review)
-                                                    <p class="text-gray-700 font-extrabold">-</p>
                                                 @else
                                                     <button onclick="document.getElementById('review-{{ $rsvp->id }}').showModal()"  class="font-medium text-tertiary  text-xs bg-yellow-300 rounded-full px-3 py-2" title="create review">
                                                         Review
