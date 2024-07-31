@@ -5,10 +5,10 @@
 @section('content')
 
     {{-- Hero --}}
-    <div class="relative mt-24 container" data-aos="fade-up">
+    <div class="relative mt-24 container">
         <div class="px-4 md:px-0" >
             <div class="relative">
-                <img src="{{ asset('images/about.jpg') }}" alt="hero" class="w-full md:h-[43rem] object-cover rounded-2xl">
+                <img src="{{ asset('images/about.jpg') }}" alt="hero" class="w-full h-80 md:h-[46rem] object-cover rounded-2xl">
                 <div class="absolute inset-0 bg-black/40 rounded-2xl z-10"></div>
                 <div class="absolute inset-0 flex flex-col items-center justify-center z-20 ">
                     <img src="{{ asset('images/logo-white.svg') }}" alt="logo" class="w-28 md:w-52 mb-4 md:mb-28 mt-5">
@@ -29,7 +29,7 @@
     {{-- Why --}}
     <div class="my-10 md:my-20 px-4 md:px-0 container" id="why">
         <div class="md:flex justify-between space-x-0 md:space-x-8">
-            <div class="w-full md:w-1/2 mb-10 md:mb-0" data-aos="fade-right">
+            <div class="w-full md:w-1/2 mb-10 md:mb-0">
                 <p class="text-2xl font-medium text-secondary">
                     Why Choose Our Services?
                 </p>
@@ -43,7 +43,7 @@
                     revitalizing local businesses; a 30% decrease in unemployment, creating new job opportunities; a 40% rise in local income, empowering communities; and a 25% improvement in infrastructure, enhancing connectivity and facilities for residents and visitors alike.
                 </p>
             </div>
-            <div class="w-full md:w-1/2 space-y-4 flex flex-col items-center" data-aos="fade-left">
+            <div class="w-full md:w-1/2 space-y-4 flex flex-col items-center">
                 <img src="{{ asset('images/about-2.jpg') }}" alt="hero" class="w-full h-64 object-cover object-center rounded-2xl">
                 <div class="grid grid-cols-2 grid-rows-2 gap-4 md:gap-x-56 md:gap-y-9">
                     <div>
@@ -97,8 +97,5 @@
             loop : true
         })
 
-        AOS.init({
-            duration: 2000
-        });
     </script>
 @endsection   

@@ -11,7 +11,7 @@
 @section('content')
 
 <div class="mb-10">
-    <div class="w-80 md:w-full block overflow-x-scroll shadow-lg sm:rounded-xl">
+    <div class="w-full overflow-x-scroll shadow-lg sm:rounded-xl">
         <div class="sm:space-y-0 items-center justify-between p-4 bg-second_white">
             <form action="{{ route('admin.dashboard.user') }}" method="GET">
                 <label for="table-search" class="sr-only text-tertiary">Search</label>
@@ -47,7 +47,7 @@
                             <div class="avatar">
                                 <div class="p-2">
                                     @if ($user->image)
-                                    <img src="{{ asset('assets/user_image/'. $user->image) }}" alt="user image" class="rounded-full w-12">
+                                    <img src="{{ asset('assets/user_image/'. $user->image) }}" alt="user image" class="rounded-full w-12 h-12 object-cover">
                                     @else
                                     <img src="{{ asset('images/user-default.png') }}" alt="user image" class="rounded-full w-12">
                                     @endif

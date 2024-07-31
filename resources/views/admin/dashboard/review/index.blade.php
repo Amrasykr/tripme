@@ -47,7 +47,7 @@
                             <div class="avatar">
                                 <div class="p-2">
                                     @if ($review->reservation->user->image)
-                                    <img src="{{ asset('assets/user_image/'. $review->reservation->user->image) }}" alt="user image" class="rounded-full w-12">
+                                    <img src="{{ asset('assets/user_image/'. $review->reservation->user->image) }}" alt="user image" class="rounded-full w-12 h-12 object-cover">
                                     @else
                                     <img src="{{ asset('images/user-default.png') }}" alt="user image" class="rounded-full w-12">
                                     @endif                                
