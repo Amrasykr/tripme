@@ -5,11 +5,11 @@
 @section('content')
 
     {{-- Hero --}}
-    <div class="relative mt-24" data-aos="fade-up">
+    <div class="relative mt-24">
         <div class="px-4 md:px-0 container" >
             <div class="relative">
                 <a href="#">
-                    <img src="{{ asset('assets/tumbnail_image/'.$destination->main_image) }}" alt="hero" class="w-full md:h-[43rem] object-cover rounded-2xl">
+                    <img src="{{ asset('assets/tumbnail_image/'.$destination->main_image) }}" alt="hero" class="w-full h-96 md:h-[46rem] object-cover rounded-2xl">
                     <div class="absolute inset-0 bg-black opacity-45 rounded-2xl z-10"></div>
                     <div class="absolute inset-0 flex flex-col items-start justify-end ml-4 pb-4 md:ml-10 md:pb-10 z-20">
                         <div class="">
@@ -26,6 +26,9 @@
                             </p>
                             <p class="w-full text-xs md:text-sm text-white font-light">
                                 {{ \Carbon\Carbon::parse($destination->created_at)->diffForHumans() }}  <span class="mx-1 md:mx-2 font-extralight "><b>·</b></span> {{$total_visitors}} Visitors
+                            </p>
+                            <p class="w-full text-xs md:text-sm text-white font-light">
+                                Rp. {{number_format($destination->price)}} / person
                             </p>
                             <a href="{{$destination->address_url}}" class="w-full" target="_blank">
                                 <p class="text-xs md:text-sm text-white font-light">
@@ -181,20 +184,25 @@
     <div class="my-10 md:my-20 container px-4 md:px-0">
         <div class="flex flex-col items-center text-center">
             <div class="text-3xl md:text-7xl font-light text-gray-900">
-                Our Destinations
+                Related Destinations
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6 md:mt-8 w-full">
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4  md:gap-8 mt-6 md:mt-8 w-full">
                 @foreach ($related_destinations as $related)
-                <div class="hover:bg-second_white shadow-xl p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out">
+                <div class="hover:bg-second_white shadow-xl p-2 md:p-5 rounded-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-1000 ease-in-out">
                     <a href="/destination/{{$related->id}}">
-                        <img src="{{ asset('assets/tumbnail_image/'.$related->main_image) }}" alt="hero" class="w-full h-72 object-cover rounded-2xl">
-                        <div class="py-1 bg-tertiary text-sm text-white w-1/3 my-3 md:my-5 rounded-2xl mx-1">
-                            {{$related->category}}
+                        <img src="{{ asset('assets/tumbnail_image/'.$related->main_image) }}" alt="hero" class="w-full h-28 md:h-72 object-cover rounded-2xl">
+                        <div class="flex justify-between items-center">
+                            <div class="py-1 bg-tertiary text-xs md:text-sm text-white w-1/3 my-3 md:my-5 rounded-2xl mx-1">
+                                {{$related->category}}
+                            </div>
+                            <h6 class="text-xs md:text-sm">
+                              Rp. {{number_format($related->price) }}
+                            </h6>
                         </div>
-                        <h3 class="text-start text-tertiary text-3xl font-medium tracking-wide mx-1">
+                        <h3 class="text-start text-tertiary text-sm md:text-3xl font-medium tracking-wide mx-1">
                             {{$related->name}}
                         </h3>
-                        <p class="text-start text-tertiary text-xl my-2 mx-1 font-light">
+                        <p class="text-start text-tertiary text-xs md:text-xl my-2 mx-1 font-light">
                             {{$related->description}}
                         </p>
                     </a>
@@ -207,13 +215,3 @@
 
 
 @endsection
-
-@section('script')
-    <script>
-        // Scroll Animation
-        AOS.init({
-            duration: 2000
-        });
-
-    </script>
-@endsection   

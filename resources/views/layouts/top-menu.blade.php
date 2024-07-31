@@ -11,7 +11,7 @@
             <x-slot name="trigger">
                 <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none" @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account" aria-haspopup="true">
                     @if (Auth::user()->image)
-                    <img src="{{ asset('assets/user_image/' . Auth::user()->image) }}" alt="user" class="w-10 rounded-full">
+                    <img src="{{ asset('assets/user_image/' . Auth::user()->image) }}" alt="user" class="w-10 h-10 object-cover rounded-full">
                     @else
                     <img src="{{ asset('images/user-default.png') }}" alt="user" class="w-10 rounded-full">
                     @endif

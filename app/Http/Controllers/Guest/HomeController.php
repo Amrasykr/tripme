@@ -18,9 +18,9 @@ class HomeController extends Controller
     public function index()
     {
         //
-        $top_3_destinations = Destination::select('destination.id', 'destination.name', 'destination.category', 'destination.main_image', 'destination.description')
+        $top_3_destinations = Destination::select('destination.id', 'destination.name', 'destination.category', 'destination.main_image', 'destination.description', 'destination.price')
         ->join('reservation', 'destination.id', '=', 'reservation.destination_id')
-        ->groupBy('destination.id', 'destination.name', 'destination.category', 'destination.main_image', 'destination.description')
+        ->groupBy('destination.id', 'destination.name', 'destination.category', 'destination.main_image', 'destination.description', 'destination.price')
         ->orderByRaw('COUNT(reservation.destination_id) DESC')
         ->limit(3)
         ->get();

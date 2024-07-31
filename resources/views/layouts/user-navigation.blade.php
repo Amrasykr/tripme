@@ -87,7 +87,7 @@
                 @if (Auth::user()->image)
                 <img src="{{ asset('assets/user_image/' . Auth::user()->image) }}" alt="user" class="w-10 h-10 object-cover rounded-full">
                 @else
-                <img src="{{ asset('images/user-default.png') }}" alt="user" class="w-10 rounded-full">
+                <img src="{{ asset('images/user-default.png') }}" alt="user" class="w-10 h-10 object-cover rounded-full">
                 @endif
             </span>
             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" style="margin-top:3px">

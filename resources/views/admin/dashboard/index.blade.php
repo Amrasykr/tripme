@@ -56,8 +56,8 @@
                 <canvas id="myChart"></canvas>
             </div>
             {{-- Table --}}
-            <div class="w-[28rem] md:w-2/5 block overflow-x-auto shadow-lg rounded-lg mt-5 md:mt-0">
-                <div class="flex flex-wrap sm:space-y-0 items-center justify-between p-4 bg-second_white">
+            <div class="w-full md:w-2/5 block overflow-x-auto shadow-lg rounded-lg mt-5 md:mt-0">
+                <div class="w-full flex flex-wrap sm:space-y-0 items-center justify-between p-4 bg-second_white">
                     <form action="/admin/dashboard">
                         <label for="table-search" class="sr-only text-tertiary">Search</label>
                         <div class="relative">

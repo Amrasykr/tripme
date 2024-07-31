@@ -20,11 +20,31 @@ class DestinationController extends Controller
     {
         $destinations = Destination::all();
     
-        $top = Destination::select('destination.id', 'destination.name', 'destination.category', 'destination.main_image', 'destination.description', 'destination.created_at', 'destination.address', 'destination.address_url', DB::raw('COUNT(reservation.destination_id) as total_visitors'))
-            ->join('reservation', 'destination.id', '=', 'reservation.destination_id')
-            ->groupBy('destination.id', 'destination.name', 'destination.category', 'destination.main_image', 'destination.description', 'destination.created_at', 'destination.address', 'destination.address_url')
-            ->orderByDesc('total_visitors')
-            ->first();
+        $top = Destination::select(
+            'destination.id',
+            'destination.name',
+            'destination.category',
+            'destination.main_image',
+            'destination.description',
+            'destination.created_at',
+            'destination.address',
+            'destination.address_url',
+            DB::raw('SUM(reservation.person) as total_visitors')
+        )
+        ->join('reservation', 'destination.id', '=', 'reservation.destination_id')
+        ->groupBy(
+            'destination.id',
+            'destination.name',
+            'destination.category',
+            'destination.main_image',
+            'destination.description',
+            'destination.created_at',
+            'destination.address',
+            'destination.address_url'
+        )
+        ->orderByDesc('total_visitors')
+        ->first();
+
 
         $total_visitors = $top ? $top->total_visitors : 0;
     
@@ -52,7 +72,7 @@ class DestinationController extends Controller
 
         $total_visitors = DB::table('reservation')
             ->where('destination_id', $destination->id)
-            ->count();
+            ->sum('person');
     
         $today_reservations = DB::table('reservation')
             ->where('destination_id', $destination->id)

@@ -62,7 +62,7 @@
                         </div>
                     </td>
                     <td class="px-6 py-4">{{ $destination->address }}</td>
-                    <td class="px-6 py-4 ">Rp.{{ $destination->price }}</td>
+                    <td class="px-6 py-4 ">Rp.{{ number_format($destination->price) }}</td>
                     <td class="px-6 py-4">{{ $destination->capacity_perday}}</td>
                     <td class="px-3 py-7 w-24 flex space-x-3 items-center">
                         <a href="/admin/dashboard/destination/{{$destination->id}}" class="font-medium text-secondary hover:underline text-lg">

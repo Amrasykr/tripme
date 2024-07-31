@@ -100,7 +100,7 @@
                 </div>
                 {{-- Content --}}
                 <div class="w-full md:w-3/5">
-                    <div class="w-[26rem] mt-8 md:mt-0 md:w-full block overflow-x-auto shadow-md sm:rounded-lg">
+                    <div class="w-full mt-8 md:mt-0 md:w-full block overflow-x-auto shadow-md sm:rounded-lg">
                         <div class="flex flex-wrap sm:space-y-0 items-center justify-between p-4 bg-second_white">
                             <form action="{{ route('user.dashboard.reservation') }}" method="GET" class="flex items-center">
                                 <label for="table-search" class="sr-only text-tertiary">Search</label>

@@ -29,13 +29,13 @@ class DashboardController extends Controller
         $total_destinations = Destination::count();
         $total_users = User::where('role', 'user')->count();
         $total_visitors = Reservation::count();
-        $total_visitor_on_january = Reservation::whereMonth('created_at', 1)->count();
-        $total_visitor_on_february = Reservation::whereMonth('created_at', 2)->count();
-        $total_visitor_on_march = Reservation::whereMonth('created_at', 3)->count();
-        $total_visitor_on_april = Reservation::whereMonth('created_at', 4)->count();
-        $total_visitor_on_may = Reservation::whereMonth('created_at', 5)->count();
-        $total_visitor_on_june = Reservation::whereMonth('created_at', 6)->count();
-        $total_visitor_on_july = Reservation::whereMonth('created_at', 7)->count();
+        $total_visitor_on_january = Reservation::whereMonth('created_at', 1)->count('person');
+        $total_visitor_on_february = Reservation::whereMonth('created_at', 2)->count('person');
+        $total_visitor_on_march = Reservation::whereMonth('created_at', 3)->count('person');
+        $total_visitor_on_april = Reservation::whereMonth('created_at', 4)->count('person');
+        $total_visitor_on_may = Reservation::whereMonth('created_at', 5)->count('person');
+        $total_visitor_on_june = Reservation::whereMonth('created_at', 6)->count('person');
+        $total_visitor_on_july = Reservation::whereMonth('created_at', 7)->count('person');
 
         $visitors_data = [
             'January' => $total_visitor_on_january,

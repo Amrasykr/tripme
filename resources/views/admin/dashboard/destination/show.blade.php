@@ -72,7 +72,7 @@
                 <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                         <label for="address" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Ticket Price</label>
-                        <input id="address" name="address" type="text" value="{{$destination->price}}" class="appearance-none block w-full bg-second_white text-tertiary border-none @error('address') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" disabled>
+                        <input id="address" name="address" type="text" value="{{ number_format($destination->price)}}" class="appearance-none block w-full bg-second_white text-tertiary border-none @error('address') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" disabled>
                     </div>
                     <div class="w-full md:w-1/2 px-3">
                         <label for="address_url" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Capacity Per Day</label>
