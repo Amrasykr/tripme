@@ -20,34 +20,34 @@ class CalendarController extends Controller
         $year = $request->input('year', now()->year);
         $month = $request->input('month', now()->month);
         $selected_date = $request->input('date', now()->toDateString());
-    
+
         $startDate = Carbon::createFromDate($year, $month, 1)->startOfMonth();
         $endDate = $startDate->copy()->endOfMonth();
-    
+
         $reservations = Reservation::where('user_id', $user->id)
             ->whereBetween('date', [$startDate, $endDate])
             ->get();
-    
+
         $pending_reservation = Reservation::where('user_id', auth()->id())->where('status', 'paid and pending')->count();
         $confirmed_reservation = Reservation::where('user_id', auth()->id())->where('status', 'confirmed')->count();
         $finished_reservation = Reservation::where('user_id', auth()->id())->where('status', 'finished')->count();
-    
+
         $destinations = Destination::all();
         $capacities = [];
-    
+
         foreach ($destinations as $destination) {
             $capacity_today = Reservation::where('destination_id', $destination->id)
                 ->whereDate('date', $selected_date)
                 ->sum('person');
-    
+
             $remaining_capacity = $destination->capacity_perday - $capacity_today;
             $capacities[$destination->id] = $remaining_capacity;
         }
-    
+
         return view('user.dashboard.calendar.index', compact('year', 'month', 'reservations', 'pending_reservation', 'confirmed_reservation', 'finished_reservation', 'destinations', 'capacities', 'selected_date'));
     }
-    
-    
+
+
 
     /**
      * Store a newly created resource in storage.

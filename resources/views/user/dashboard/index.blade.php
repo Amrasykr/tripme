@@ -16,7 +16,7 @@
                         Welcome To User Dashboard ✨
                     </h1>
                     <p class="text-md md:text-xl font-light text-tertiary">
-                        Experience seamless travel planning with our comprehensive user dashboard. 
+                        Experience seamless travel planning with our comprehensive user dashboard.
                         Manage bookings, explore new destinations, and access personalized insights for a tailored journey every time.
                     </p>
                 </div>
@@ -53,12 +53,12 @@
                 </div>
             </div>
         </div>
-    
+
         {{-- Divider --}}
         <div class="container px-6 md:px-0">
             <div class="h-[2px] bg-tertiary/50 mt-1"></div>
         </div>
-    
+
         {{-- Navigation and Content --}}
         <div class="my-10 container px-6 md:px-0">
             <div class="md:flex justify-between ">
@@ -124,7 +124,7 @@
                                 @error('image')
                                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                 @enderror
-                            </div>                        
+                            </div>
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-3 mt-2">
                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -133,14 +133,14 @@
                                 @error('phone')
                                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                 @enderror
-                            </div>                            
+                            </div>
                             <div class="w-full md:w-1/2 px-3">
                                 <label for="email" class="block uppercase tracking-wide text-tertiary text-xs font-bold mb-2">Email</label>
                                 <input id="email" name="email" type="email" value={{Auth::user()->email}} class="appearance-none block w-full bg-white text-tertiary focus:ring-tertiary border-none @error('email') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
                                 @error('email')
                                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                 @enderror
-                            </div>                        
+                            </div>
                         </div>
                         <div class="mt-2 flex justify-end">
                             <button type="submit" class="bg-tertiary text-white px-8 py-2 shadow-lg rounded-md">Edit</button>
@@ -156,9 +156,3 @@
     <script>
     </script>
 @endsection
-
-
-
-
-
-
