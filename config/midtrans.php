@@ -2,7 +2,7 @@
 
 return [
 
-    'merchant_id' => 'G203740335',
-    'client_key' => 'SB-Mid-client-xTtxhOlf1l9NG86W',
-    'server_key' => 'SB-Mid-server-soQuJSZHWahhRYNlT714IT47',
+    'merchant_id' => env('MIDTRANS_MERCHANT_ID'),
+    'client_key' => env('MIDTRANS_CLIENT_KEY'),
+    'server_key' => env('MIDTRANS_SERVER_KEY'),
 ];
