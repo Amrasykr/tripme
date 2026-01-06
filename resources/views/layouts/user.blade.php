@@ -9,8 +9,9 @@
 
     <title>{{ config('TripMe', 'TripMe') }} :: @yield('title')</title>
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/logo-white.svg') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('images/logo-white.svg') }}">
     <link rel="alternate icon" type="image/x-icon" href="{{ asset('images/logo-white.svg') }}">
-
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />

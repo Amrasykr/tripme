@@ -6,8 +6,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('TripMe', 'Tripme') }} :: @yield('title')</title>
-    <link rel="icon" type="image/png" href="{{ asset('images/logo-head.png') }}">
-
+    <link rel="icon" type="image/svg+xml" href="{{ asset('images/logo-white.svg') }}">
+    <link rel="alternate icon" type="image/x-icon" href="{{ asset('images/logo-white.svg') }}">
     @notifyCss
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- Scripts -->
