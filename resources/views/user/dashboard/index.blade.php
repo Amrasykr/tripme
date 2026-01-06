@@ -104,9 +104,9 @@
                         @method('PATCH')
                         <div class="flex justify-center items-center">
                             @if (Auth::user()->image)
-                            <img src="{{ asset('assets/user_image/' . Auth::user()->image) }}" alt="user" class="w-36 h-36 object-cover rounded-full">
+                            <img id="profileImagePreview" src="{{ asset('assets/user_image/' . Auth::user()->image) }}" alt="user" class="w-36 h-36 object-cover rounded-full">
                             @else
-                            <img src="{{ asset('images/user-default.png') }}" alt="user" class="w-36 rounded-full">
+                            <img id="profileImagePreview" src="{{ asset('images/user-default.png') }}" alt="user" class="w-36 h-36 rounded-full object-cover">
                             @endif
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-3 mt-10">
@@ -154,6 +154,43 @@
 
 @section('script')
     <script>
+        // Live image preview on file select
+        const imageInput = document.getElementById('image');
+        const profileImagePreview = document.getElementById('profileImagePreview');
+        
+        imageInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            
+            if (file) {
+                // Validate file type
+                const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+                if (!validTypes.includes(file.type)) {
+                    alert('Please select a valid image file (JPEG, JPG, or PNG)');
+                    imageInput.value = '';
+                    return;
+                }
+                
+                // Validate file size (max 1MB)
+                const maxSize = 1048 * 1024; // 1048KB in bytes
+                if (file.size > maxSize) {
+                    alert('Image size must be less than 1MB');
+                    imageInput.value = '';
+                    return;
+                }
+                
+                // Create preview
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    profileImagePreview.src = event.target.result;
+                    profileImagePreview.style.opacity = '0';
+                    setTimeout(() => {
+                        profileImagePreview.style.transition = 'opacity 0.3s ease-in-out';
+                        profileImagePreview.style.opacity = '1';
+                    }, 10);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
     </script>
 @endsection
 

@@ -61,7 +61,29 @@ class DestinationController extends Controller
             'content' => 'required',
             'price' => 'required',
             'capacity_perday' => 'required',
+            'latitude' => 'nullable|numeric|between:-90,90',
+            'longitude' => 'nullable|numeric|between:-180,180',
         ]);
+
+        // Custom validation: Check if coordinates are within West Java boundaries
+        if ($request->filled('latitude') && $request->filled('longitude')) {
+            $lat = floatval($request->latitude);
+            $lng = floatval($request->longitude);
+            
+            // West Java boundaries (approximate)
+            $minLat = -7.8;
+            $maxLat = -5.5;
+            $minLng = 106.0;
+            $maxLng = 108.9;
+            
+            if ($lat < $minLat || $lat > $maxLat || $lng < $minLng || $lng > $maxLng) {
+                notify()->error(message: 'Location must be within West Java region!');
+                return redirect()->back()->withInput()->withErrors([
+                    'latitude' => 'Coordinates are outside West Java boundaries.',
+                    'longitude' => 'Please select a location within West Java.'
+                ]);
+            }
+        }
 
         $destination = new Destination([
             'name' => $validated_data['name'],
@@ -72,6 +94,8 @@ class DestinationController extends Controller
             'content' => $validated_data['content'],
             'price' => $validated_data['price'],
             'capacity_perday' => $validated_data['capacity_perday'],
+            'latitude' => $validated_data['latitude'] ?? null,
+            'longitude' => $validated_data['longitude'] ?? null,
         ]);
 
         // Handle main image
@@ -142,9 +166,31 @@ class DestinationController extends Controller
             'content' => 'required',
             'price' => 'required',
             'capacity_perday' => 'required',
+            'latitude' => 'nullable|numeric|between:-90,90',
+            'longitude' => 'nullable|numeric|between:-180,180',
         ]);
 
-        // Find the destination record by ID
+    // Custom validation: Check if coordinates are within West Java boundaries
+    if ($request->filled('latitude') && $request->filled('longitude')) {
+        $lat = floatval($request->latitude);
+        $lng = floatval($request->longitude);
+        
+        // West Java boundaries (approximate)
+        $minLat = -7.8;
+        $maxLat = -5.5;
+        $minLng = 106.0;
+        $maxLng = 108.9;
+        
+        if ($lat < $minLat || $lat > $maxLat || $lng < $minLng || $lng > $maxLng) {
+            notify()->error(message: 'Location must be within West Java region!');
+            return redirect()->back()->withInput()->withErrors([
+                'latitude' => 'Coordinates are outside West Java boundaries.',
+                'longitude' => 'Please select a location within West Java.'
+            ]);
+        }
+    }
+
+    // Find the destination record by ID
         $destination = Destination::findOrFail($id);
 
         // Update destination data
@@ -156,6 +202,8 @@ class DestinationController extends Controller
         $destination->content = $validated_data['content'];
         $destination->price = $validated_data['price'];
         $destination->capacity_perday = $validated_data['capacity_perday'];
+        $destination->latitude = $validated_data['latitude'] ?? null;
+        $destination->longitude = $validated_data['longitude'] ?? null;
 
         // Handle main image update
         if ($request->hasFile('tumbnail') && $request->file('tumbnail')->isValid()) {

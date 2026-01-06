@@ -45,6 +45,14 @@ class DestinationController extends Controller
         ->orderByDesc('total_visitors')
         ->first();
 
+        // Fallback: if no top destination (no reservations yet), pick a random destination
+        if (!$top) {
+            $top = Destination::inRandomOrder()->first();
+            // Set total_visitors to 0 for the random destination
+            if ($top) {
+                $top->total_visitors = 0;
+            }
+        }
 
         $total_visitors = $top ? $top->total_visitors : 0;
     

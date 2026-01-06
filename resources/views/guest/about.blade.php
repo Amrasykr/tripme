@@ -8,7 +8,7 @@
     <div class="relative mt-24 container">
         <div class="px-4 md:px-0" >
             <div class="relative">
-                <img src="{{ asset('images/about.jpg') }}" alt="hero" class="w-full h-80 md:h-[46rem] object-cover rounded-2xl">
+                <img src="{{ asset('images/about.jpg') }}" alt="hero" class="w-full h-80 md:h-[56rem] object-cover rounded-2xl">
                 <div class="absolute inset-0 bg-black/40 rounded-2xl z-10"></div>
                 <div class="absolute inset-0 flex flex-col items-center justify-center z-20 ">
                     <img src="{{ asset('images/logo-white.svg') }}" alt="logo" class="w-28 md:w-52 mb-4 md:mb-28 mt-5">

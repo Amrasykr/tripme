@@ -13,11 +13,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
+        // Create 1 admin user
+        User::factory()->create([
+            'name' => 'Admin TripMe',
+            'email' => 'admin@tripme.com',
+            'role' => 'admin',
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
+            'phone' => '081234567890',
+        ]);
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // Create 10 regular users
+        User::factory(10)->create([
+            'role' => 'user',
+        ]);
+
+
+        
+        // Seed destinations with coordinates
+        $this->call(DestinationSeeder::class);
+
+        // Seed travel options
+        $this->call(TravelSeeder::class);
     }
 }

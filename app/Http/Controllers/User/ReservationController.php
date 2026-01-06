@@ -27,6 +27,32 @@ class ReservationController extends Controller
 
 
     /**
+     * Show the booking page for a specific destination.
+     */
+    public function create(string $id)
+    {
+        $destination = Destination::findOrFail($id);
+        $travels = Travel::all();
+        
+        // Calculate available capacity for today
+        $reservations_today = Reservation::where('destination_id', $id)
+            ->whereDate('date', today())
+            ->sum('person');
+        
+        $available_capacity_today = $destination->capacity_perday - $reservations_today;
+        
+        // Calculate total visitors
+        $total_visitors = Reservation::where('destination_id', $id)->sum('person');
+        
+        return view('guest.booking.create', compact(
+            'destination',
+            'travels',
+            'available_capacity_today',
+            'total_visitors'
+        ));
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request, string $id)

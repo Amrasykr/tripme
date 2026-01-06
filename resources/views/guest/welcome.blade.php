@@ -8,7 +8,7 @@
     <div class="relative mt-24 container">
         <div class="px-4 md:px-0" >
             <div class="relative">
-                <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full h-80 md:h-[46rem] object-cover rounded-2xl">
+                <img src="{{ asset('images/hero.jpg') }}" alt="hero" class="w-full h-80 md:h-[56rem] object-cover rounded-2xl">
                 <div class="absolute inset-0 bg-black/40 rounded-2xl z-10"></div>
                 <div class="absolute inset-0 flex flex-col items-center justify-center z-20 ">
                     <img src="{{ asset('images/logo-white.svg') }}" alt="logo" class="w-28 md:w-52 mb-4 md:mb-28 mt-5">
@@ -33,10 +33,7 @@
                 Make Every Journey Memorable
             </div>
             <div class="mt-[-1.5rem] md:mt-4 flex items-center text-3xl md:text-7xl font-light text-tertiary">
-                With <span class="flex items-center space-x-1 md:space-x-2 mx-1 md:mx-4">
-                    <img src="{{ asset('images/ammar.jpeg') }}" alt="user" class="w-6 h-6 md:w-14 md:h-14 object-cover object-center my-8 rounded-full">
-                    <img src="{{ asset('images/erik.jpeg') }}" alt="user" class="w-6 h-6 md:w-14 md:h-14 object-cover object-bottom my-8 rounded-full">
-                </span> Us
+                With Us
             </div>
             <div class="md:flex md:space-x-8 space-y-8 md:space-y-0 mt-0 md:mt-8 w-full">
                 <div class="w-full md:w-1/3 bg-secondary rounded-xl text-white shadow-xl">
@@ -187,6 +184,7 @@
     </div>
 
     {{-- Review --}}
+    @if($reviews->isNotEmpty())
     <div class="my-10 md:my-16 px-4 md:px-0 container">
         <div class="text-3xl md:text-7xl font-light text-gray-900 text-center">
             Exquisite Testimonials
@@ -219,6 +217,7 @@
             @endforeach
         </div>        
     </div>
+    @endif
 
     
 

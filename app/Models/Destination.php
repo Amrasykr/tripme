@@ -16,6 +16,11 @@ class Destination extends Model
         'updated_at',
     ];
 
+    protected $casts = [
+        'latitude' => 'decimal:8',
+        'longitude' => 'decimal:8',
+    ];
+
     public function reservations()
     {
         return $this->hasMany(Reservation::class);

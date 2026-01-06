@@ -5,11 +5,12 @@
 @section('content')
 
     {{-- Top 1 --}}
+    @if($top)
     <div class="relative mt-24">
         <div class="px-4 md:px-0 container" >
             <div class="relative">
                 <a href="/destination/{{$top->id}}">
-                    <img src="{{ asset('assets/tumbnail_image/'.$top->main_image) }}" alt="hero" class="w-full h-96 md:h-[46rem] object-cover rounded-2xl">
+                    <img src="{{ asset('assets/tumbnail_image/'.$top->main_image) }}" alt="hero" class="w-full h-96 md:h-[56rem] object-cover rounded-2xl">
                     <div class="absolute inset-0 bg-black opacity-45 rounded-2xl z-10"></div>
                     <div class="absolute inset-0 flex flex-col items-start justify-end ml-4 pb-4 md:ml-10 md:pb-10 z-20">
                         <h3 class="text-2xl md:text-7xl text-white font-semibold tracking-tight mb-1 md:mb-2">
@@ -38,6 +39,7 @@
             </div>
         </div>
     </div>
+    @endif
 
     {{-- All Destinations --}}
     <div class="my-10 md:my-20 container px-4 md:px-0">

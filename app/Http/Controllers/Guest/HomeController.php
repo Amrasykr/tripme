@@ -25,7 +25,12 @@ class HomeController extends Controller
         ->limit(3)
         ->get();
 
-        $reviews = Review::where('status', 'published')->get();
+        // Fallback: if no top destinations (no reservations yet), pick 3 random destinations
+        if ($top_3_destinations->isEmpty()) {
+            $top_3_destinations = Destination::inRandomOrder()->limit(3)->get();
+        }
+
+        $reviews = Review::all();
         
         return view('guest.welcome', ['top_3_destinations' => $top_3_destinations] , ['reviews' => $reviews]);
     }

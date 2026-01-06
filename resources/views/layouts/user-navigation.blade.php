@@ -32,6 +32,8 @@
             <hr>
             <a href="/destination" class="text-secondary hover:text-tertiary transition-all duration-300 ease-in-out">Destination</a>
             <hr>
+            <a href="/peta" class="text-secondary hover:text-tertiary transition-all duration-300 ease-in-out">Map</a>
+            <hr>
             <a href="/about" class="text-secondary hover:text-tertiary transition-all duration-300 ease-in-out">About</a>
             <hr>
             @if (Auth::user())
@@ -63,6 +65,7 @@
             <div class="flex-1 pt-6 justify-center text-lg lg:pt-0 lg:flex space-x-10 mr-10">
                 <a href="/" class="text-base font-medium  inline-block py-2 no-underline text-secondary hover:text-tertiary  transition-all duration-300 ease-in-out">Home</a>
                 <a href="/destination" class="text-base font-medium inline-block py-2 no-underline text-secondary hover:text-tertiary  transition-all duration-300 ease-in-out">Destination</a>
+                <a href="/peta" class="text-base font-medium inline-block py-2 no-underline text-secondary hover:text-tertiary  transition-all duration-300 ease-in-out">Map</a>
                 <a href="/about" class="inline-block text-base font-medium py-2 no-underline text-secondary hover:text-tertiary  transition-all duration-300 ease-in-out">About</a>
             </div>
         </div>
@@ -71,6 +74,7 @@
         <div class="flex-1 pt-6 justify-center text-lg lg:pt-0 lg:flex space-x-10 ml-12">
             <a href="/" class="text-base font-medium  inline-block py-2 no-underline text-secondary hover:text-tertiary  transition-all duration-300 ease-in-out">Home</a>
             <a href="/destination" class="text-base font-medium inline-block py-2 no-underline text-secondary hover:text-tertiary transition-all duration-300 ease-in-out">Destination</a>
+            <a href="/peta" class="text-base font-medium inline-block py-2 no-underline text-secondary hover:text-tertiary transition-all duration-300 ease-in-out">Map</a>
             <a href="/about" class="inline-block text-base font-medium py-2 no-underline text-secondary hover:text-tertiary  transition-all duration-300 ease-in-out">About</a>
         </div>
     </div>

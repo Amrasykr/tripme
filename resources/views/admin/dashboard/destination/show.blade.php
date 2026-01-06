@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('title', $destination->name)
-    
+
 @section('header')
     <h2 class="text-4xl font-medium text-secondary">
         {{$destination->name}}
     </h2>
 @endsection
-    
+
 @section('content')
-    <div class="mb-10 md:flex md:space-x-5">
+    <div class="my-10 md:flex md:space-x-5">
         <div class="w-full md:w-1/3 bg-white">
             <div class="tumbnail">
                 <img src="{{ asset('assets/tumbnail_image/'. $destination->main_image) }}" alt="destination image" class="w-full h-72 rounded-lg object-cover object-center">
@@ -20,7 +20,6 @@
                 </div>
                 <div class="w-1/2 md:h-32 ">
                     <img src="{{ asset('assets/destination_image/'. $destination->image_2) }}" alt="destination image" class="w-full h-32 rounded-lg object-cover object-center">
-
                 </div>
             </div>
             @if ($destination->image_3 && !$destination->image_4)
@@ -44,7 +43,7 @@
                     <img src="{{ asset('assets/destination_image/'. $destination->image_4) }}" alt="destination image" class="w-full h-32 rounded-lg object-cover object-center">
                 </div>
             </div>
-        @endif        
+        @endif
         </div>
         <div class="w-full md:w-2/3 bg-white mt-3 md:mt-0">
             <div class="w-full bg-white p-8 shadow-xl rounded-lg">
@@ -85,7 +84,6 @@
                         <input id="description" name="description" type="text" value="{{$destination->description}}"class="appearance-none block w-full bg-second_white text-tertiary border-none @error('description') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" disabled>
                     </div>
                 </div>
-                
                 <div class="mt-2 flex justify-end">
                     <a href="/admin/dashboard/destination/{{$destination->id}}/edit" class="bg-secondary text-white px-6 py-2 shadow-lg rounded-md">Edit</a>
                 </div>
@@ -93,10 +91,9 @@
         </div>
     </div>
 @endsection
-    
+
 @section('script')
     <script>
-    
+
     </script>
 @endsection
-    

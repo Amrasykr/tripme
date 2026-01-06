@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ReviewController as AdminReviewController;
 use App\Http\Controllers\Guest\AboutController;
 use App\Http\Controllers\guest\DestinationController;
 use App\Http\Controllers\Guest\HomeController;
+use App\Http\Controllers\Guest\MapController;
 
 
 use App\Http\Controllers\User\CalendarController as UserCalendarController;
@@ -26,6 +27,8 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/destination', [DestinationController::class, 'index']);
 Route::get('/destination/{id}', [DestinationController::class, 'show']);
 Route::get('/about', [AboutController::class, 'index']);
+Route::get('/peta', [MapController::class, 'index'])->name('guest.map');
+Route::get('/destination/{id}/book', [UserReservationController::class, 'create'])->name('destination.book');
 
 
 Route::middleware('auth')->group(function () {
