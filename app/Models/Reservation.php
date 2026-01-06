@@ -16,6 +16,11 @@ class Reservation extends Model
         'updated_at',
     ];
 
+    protected $casts = [
+        'pickup_latitude' => 'decimal:8',
+        'pickup_longitude' => 'decimal:8',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

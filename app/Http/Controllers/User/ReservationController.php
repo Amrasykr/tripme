@@ -62,6 +62,8 @@ class ReservationController extends Controller
             'person' => 'required|integer',
             'duration' => 'required|integer',
             'pickup_location' => 'sometimes',
+            'pickup_latitude' => 'nullable|numeric|between:-90,90',
+            'pickup_longitude' => 'nullable|numeric|between:-180,180',
             'distance_in_km' => 'sometimes',
             'travel_id' => 'sometimes',
         ]);
@@ -92,6 +94,8 @@ class ReservationController extends Controller
             'duration' => $validated_data['duration'],
             'person' => $validated_data['person'],
             'pickup_location' => $validated_data['pickup_location'] ?? null,
+            'pickup_latitude' => $validated_data['pickup_latitude'] ?? null,
+            'pickup_longitude' => $validated_data['pickup_longitude'] ?? null,
             'distance_in_km' => $validated_data['distance_in_km'] ?? null,
             'travel_id' => $validated_data['travel_id'] ?? null,
             'destination_id' => $id,

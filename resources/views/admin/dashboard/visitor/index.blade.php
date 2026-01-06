@@ -61,26 +61,29 @@
                     <td class="px-6 py-4 w-1/4">{{ $visitor->destination->name }}</td>
                     <td class="px-6 py-4 w-1/4">{{ \Carbon\Carbon::parse($visitor->date)->translatedFormat('l, j F Y') }}</td>
                     <td class="px-6 py-4 w-1/4">{{ $visitor->status }}</td>
-                    <td class="px-4 py-6 flex space-x-3">
+                    <td class="px-4 py-6 flex space-x-2">
+                        <!-- View Button - Always visible -->
+                        <button type="button" 
+                                onclick="openModal({{ $visitor->id }})"
+                                class="font-medium text-white text-xs bg-blue-500 hover:bg-blue-600 rounded-full px-3 py-2">
+                            View
+                        </button>
+                        
                         @if ($visitor->status === 'paid and pending')
                         <form action="/admin/dashboard/visitor/{{$visitor->id}}/confirm" method="POST" style="display:inline;">
                             @csrf
                             @method('PATCH')
-                            <button type="submit" class="font-medium text-tertiary text-xs bg-alternate rounded-full px-3 py-2" id="payment-button">
+                            <button type="submit" class="font-medium text-tertiary text-xs bg-alternate rounded-full px-3 py-2">
                                 Confirm
                             </button> 
                         </form>
                         <form action="/admin/dashboard/visitor/{{$visitor->id}}/reject" method="POST" style="display:inline;">
                             @csrf
                             @method('PATCH')
-                            <button type="submit" class="font-medium text-tertiary text-xs bg-red-300 rounded-full px-3 py-2" id="payment-button">
+                            <button type="submit" class="font-medium text-tertiary text-xs bg-red-300 rounded-full px-3 py-2">
                                 Reject
                             </button> 
                         </form>
-                        @else
-                            <p class="text-gray-700 font-extrabold">
-                                -
-                            </p>
                         @endif
                     </td>
                 </tr>
@@ -93,12 +96,83 @@
         </div>
     </div>
 
+    <!-- Modal -->
+    <div id="detailModal" class="fixed inset-0 z-50 hidden">
+        <div class="fixed inset-0 bg-black bg-opacity-50" onclick="closeModal()"></div>
+        <div class="fixed inset-0 flex items-center justify-center p-4">
+            <div class="bg-white rounded-xl shadow-xl w-full max-w-lg max-h-[85vh] overflow-y-auto relative">
+                <div class="sticky top-0 bg-tertiary text-white p-4 rounded-t-xl flex justify-between items-center">
+                    <h3 class="font-semibold">Reservation Detail</h3>
+                    <button onclick="closeModal()" class="text-white hover:text-gray-200">&times;</button>
+                </div>
+                <div id="modalContent" class="p-4">Loading...</div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
 @section('script')
-    <script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-    </script>
+<script>
+    const visitors = @json($visitors->items());
+    let map = null;
+
+    function openModal(id) {
+        const v = visitors.find(x => x.id === id);
+        if (!v) return;
+
+        document.getElementById('detailModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+
+        const hasLocation = v.pickup_latitude && v.pickup_longitude;
+        
+        document.getElementById('modalContent').innerHTML = `
+            <div class="space-y-3 text-sm">
+                <div><span class="text-gray-500">Visitor:</span> <b>${v.user.name}</b></div>
+                <div><span class="text-gray-500">Email:</span> ${v.user.email}</div>
+                <div><span class="text-gray-500">Phone:</span> ${v.user.phone || '-'}</div>
+                <hr>
+                <div><span class="text-gray-500">Destination:</span> <b>${v.destination.name}</b></div>
+                <div><span class="text-gray-500">Date:</span> ${new Date(v.date).toLocaleDateString('id-ID', {weekday:'long', day:'numeric', month:'long', year:'numeric'})}</div>
+                <div><span class="text-gray-500">Persons:</span> ${v.person}</div>
+                <div><span class="text-gray-500">Duration:</span> ${v.duration} day(s)</div>
+                <div><span class="text-gray-500">Distance:</span> ${v.distance_in_km ? v.distance_in_km + ' km' : '-'}</div>
+                <div><span class="text-gray-500">Total:</span> <b class="text-secondary">Rp ${parseInt(v.total_price).toLocaleString('id-ID')}</b></div>
+                <div><span class="text-gray-500">Status:</span> ${v.status}</div>
+                <hr>
+                <div><span class="text-gray-500">Pickup Location:</span></div>
+                <div class="text-xs text-gray-600">${v.pickup_location || '-'}</div>
+                ${hasLocation ? `<div id="pickupMap" class="w-full h-48 rounded-lg mt-2"></div>` : '<div class="text-gray-400 text-center py-4">No location data</div>'}
+            </div>
+        `;
+
+        if (hasLocation) {
+            setTimeout(() => {
+                if (map) { map.remove(); map = null; }
+                map = L.map('pickupMap').setView([v.pickup_latitude, v.pickup_longitude], 14);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+                L.marker([v.pickup_latitude, v.pickup_longitude]).addTo(map).bindPopup('Pickup').openPopup();
+                if (v.destination.latitude && v.destination.longitude) {
+                    L.marker([v.destination.latitude, v.destination.longitude], {
+                        icon: L.icon({
+                            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+                            iconSize: [25, 41], iconAnchor: [12, 41]
+                        })
+                    }).addTo(map).bindPopup(v.destination.name);
+                }
+            }, 100);
+        }
+    }
+
+    function closeModal() {
+        document.getElementById('detailModal').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+        if (map) { map.remove(); map = null; }
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
 @endsection
-
