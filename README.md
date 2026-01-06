@@ -192,4 +192,4 @@ tripme/
 | `Review` | Review dari pengguna |
 | `Travel` | Informasi travel/transportasi |
 
----
+--- 
